@@ -40,4 +40,5 @@ jobs:
         with:
           args: deploy --only hosting
         env:
+          DEFAULT_BRANCH: master
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
