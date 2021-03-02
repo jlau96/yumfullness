@@ -23,7 +23,10 @@ jobs:
         run: npm test
 
       - name: Build
+        env:
+          CI: false
         run: npm run build
+
 
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
