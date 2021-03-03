@@ -4,8 +4,8 @@ export const MenuItems = [
         url: '/'
     },
     {
-        label: 'Order Now',
-        url: '/orderNow'
+        label: 'Order',
+        url: '/order'
     },
     {
         label: 'Contact Me',

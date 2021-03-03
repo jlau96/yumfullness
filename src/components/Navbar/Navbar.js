@@ -111,7 +111,7 @@ export default function Header() {
     const getDrawerChoices = () => {
       return MenuItems.map(({ label, url }) => {
         return (
-          <Link
+          <Link href={url}
             {...{
             //   component: RouterLink,
               to: url,
@@ -135,7 +135,7 @@ export default function Header() {
     const getMenuButtons = () => {
       return MenuItems.map(({ label, url }) => {
         return (
-          <Button
+          <Button href={url}
             {...{
               key: label,
               color: "inherit",
