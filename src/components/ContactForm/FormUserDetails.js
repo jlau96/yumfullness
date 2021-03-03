@@ -17,7 +17,7 @@ export class FormUserDetails extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={1} style = {{ marginTop: 60 }}>
                         <Grid item xs={12}>
                             <TextField 
                                 id = "outlined-full-width"

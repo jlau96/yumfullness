@@ -1,40 +1,160 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import './Navbar.css';
 import { MenuItems } from './MenuItems';
-import { Button } from '../Button';
+import { AppBar, Toolbar, Typography, makeStyles, Button, IconButton, Drawer, Link, MenuItem } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Link as RouterLink } from "react-router-dom";
 
-class NavBar extends Component {
-    state = { clicked: false }
-
-    handleClick = () => {
-        this.setState({ clicked: !this.state.clicked })
+const useStyles = makeStyles(() => ({
+    header: {
+      backgroundColor: "#ffc5cd",
+      paddingRight: "79px",
+      paddingLeft: "118px",
+      "@media (max-width: 900px)": {
+        paddingLeft: 0,
+      },
+    },
+    logo: {
+      fontFamily: "Work Sans, sans-serif",
+      fontWeight: 600, 
+      color: "#f8f8ff",
+      textAlign: "left",
+    },
+    menuButton: {
+      fontFamily: "Open Sans, sans-serif",
+      fontWeight: 700,
+      size: "18px",
+      marginLeft: "38px"
+    },
+    toolbar: {
+      display: "flex",
+      justifyContent: "space-between",
+      color: "#f8f8ff",
+      fontWeight: "bolder"
+    },
+    drawerContainer: {
+      padding: "20px 30px"
+    },
+    menuItem: {
+    //    fontWeight: "bold",
+       color: "#000000",
+       fontSize: 16
     }
+  }));
 
-    render() {
-        return(
-            <nav className="NavbarItem">
-                <h1 className="navbar-logo">
-                    <i className="fas fa-at"></i>
-                    Yumfullness
-                </h1>
-                <div className="menu-icon" onClick={ this.handleClick }>
-                    <i className={ this.state.clicked ? 'fas fa-times' : 'fas fa-bars' }></i>
-                </div>
-                <ul className={ this.state.clicked ? 'nav-menu active' : 'nav-menu' }>
-                    { MenuItems.map( (item, index) => {
-                        return (
-                            <li key={ index }>
-                                <a className={ item.cName } href={ item.url }>
-                                    { item.label }
-                                </a>
-                            </li>
-                        )
-                    })}
-                </ul>
-                {/* <Button>Sign Up</Button> */}
-            </nav>
-        )
-    }
+export default function Header() {
+    const { header, logo, menuButton, toolbar, drawerContainer, menuItem } = useStyles();
+  
+    const [state, setState] = useState({
+      mobileView: false,
+      drawerOpen: false,
+    });
+  
+    const { mobileView, drawerOpen } = state;
+  
+    useEffect(() => {
+      const setResponsiveness = () => {
+        return window.innerWidth < 900
+          ? setState((prevState) => ({ ...prevState, mobileView: true }))
+          : setState((prevState) => ({ ...prevState, mobileView: false }));
+      };
+  
+      setResponsiveness();
+  
+      window.addEventListener("resize", () => setResponsiveness());
+    }, []);
+  
+    const displayDesktop = () => {
+      return (
+        <Toolbar className={toolbar}>
+          {yumfullnessLogo}
+          <div>{getMenuButtons()}</div>
+        </Toolbar>
+      );
+    };
+  
+    const displayMobile = () => {
+      const handleDrawerOpen = () =>
+        setState((prevState) => ({ ...prevState, drawerOpen: true }));
+      const handleDrawerClose = () =>
+        setState((prevState) => ({ ...prevState, drawerOpen: false }));
+  
+      return (
+        <Toolbar>
+          <IconButton
+            {...{
+              edge: "start",
+              color: "inherit",
+              "aria-label": "menu",
+              "aria-haspopup": "true",
+              onClick: handleDrawerOpen,
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+  
+          <Drawer
+            {...{
+              anchor: "left",
+              open: drawerOpen,
+              onClose: handleDrawerClose,
+            }}
+          >
+            <div className={drawerContainer}>{getDrawerChoices()}</div>
+          </Drawer>
+  
+          <div>{yumfullnessLogo}</div>
+        </Toolbar>
+      );
+    };
+  
+    const getDrawerChoices = () => {
+      return MenuItems.map(({ label, url }) => {
+        return (
+          <Link
+            {...{
+            //   component: RouterLink,
+              to: url,
+              color: "inherit",
+              style: { textDecoration: "none" },
+              key: label
+            }}
+          >
+            <MenuItem className={menuItem}>{label}</MenuItem>
+          </Link>
+        );
+      });
+    };
+  
+    const yumfullnessLogo = (
+      <Typography variant="h6" component="h1" className={logo}>
+        @Yumfullness
+      </Typography>
+    );
+  
+    const getMenuButtons = () => {
+      return MenuItems.map(({ label, url }) => {
+        return (
+          <Button
+            {...{
+              key: label,
+              color: "inherit",
+              to: url,
+            //   component: RouterLink,
+              className: menuButton
+            }}
+          >
+            {label}
+          </Button>
+        );
+      });
+    };
+  
+    return (
+      <header>
+        <AppBar className={header}>
+          {mobileView ? displayMobile() : displayDesktop()}
+        </AppBar>
+      </header>
+    );
 }
-
-export default NavBar;

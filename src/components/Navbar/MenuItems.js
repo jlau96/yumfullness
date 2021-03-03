@@ -1,22 +1,18 @@
 export const MenuItems = [
     {
         label: 'Home',
-        url: '/',
-        cName: 'nav-links'
+        url: '/'
     },
     {
         label: 'Order Now',
-        url: '/orderNow',
-        cName: 'nav-links'
+        url: '/orderNow'
     },
     {
         label: 'Contact Me',
-        url: '/contact',
-        cName: 'nav-links'
+        url: '/contact'
     },
     {
         label: 'Instagram',
-        url: 'https://www.instagram.com/yumfullness/',
-        cName: 'nav-links'
+        url: 'https://www.instagram.com/yumfullness/'
     }
 ]

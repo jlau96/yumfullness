@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { MuiThemeProvider, Typography } from '@material-ui/core';
+import { MuiThemeProvider } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 
@@ -24,12 +24,14 @@ export class Confirm extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <List>
-                        <ListItemText primary = { "First Name" } secondary = { firstName } style = {{ margin: 15, whiteSpace: 'normal' }} />
-                        <ListItemText primary = { "Last Name" } secondary = { lastName } style = {{ margin: 15, whiteSpace: 'normal' }} />
-                        <ListItemText primary = { "Email" } secondary = { email } style = {{ margin: 15, whiteSpace: 'normal' }} />
-                        <ListItemText primary = { "Message" } secondary = { message } style = {{ margin: 15, whiteSpace: 'normal' }} />
-                    </List>
+                    <Grid container spacing={1} style = {{ marginTop: 60 }}>
+                        <List>
+                            <ListItemText primary = { "First Name" } secondary = { firstName } style = {{ margin: 15, whiteSpace: 'normal' }} />
+                            <ListItemText primary = { "Last Name" } secondary = { lastName } style = {{ margin: 15, whiteSpace: 'normal' }} />
+                            <ListItemText primary = { "Email" } secondary = { email } style = {{ margin: 15, whiteSpace: 'normal' }} />
+                            <ListItemText primary = { "Message" } secondary = { message } style = {{ margin: 15, whiteSpace: 'normal' }} />
+                        </List>
+                    </Grid>
                     <Button
                         label = "Submit"
                         variant = "contained"
@@ -48,6 +50,7 @@ export class Confirm extends Component {
                         onClick = { this.continue }>
                         Submit
                     </Button>
+                    
                 </React.Fragment>
             </MuiThemeProvider>
         )
