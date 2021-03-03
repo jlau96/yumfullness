@@ -6,10 +6,11 @@
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+    box-shadow: 0 3px 2px 0px rgba(0,0,0,.2);
 }
 
 .navbar-logo {
-    color: #fff;
+    color: #000000;
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -21,7 +22,7 @@
 }
 
 .fa-bars {
-    color: #fff;
+    color: #000000; 
 }
 
 .nav-menu {
@@ -36,9 +37,10 @@
 }
 
 .nav-links {
-    color: #fff;
+    color: #000000;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    font-weight: bold;
 }
 
 .nav-links:hover {
@@ -64,7 +66,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 145px;
+        height: 195px;
         position: absolute;
         top: 70px;
         left: -100%;
@@ -88,7 +90,7 @@
     }
 
     .nav-links:hover {
-        background-color: #ffc5cd;
+        background-color: #ffb6c1;
         border-radius: 0;
     }
 
@@ -110,7 +112,7 @@
     }
 
     .fa-times {
-        color: #fff;
+        color: #000000;
         font-size: 2rem;
     }
 

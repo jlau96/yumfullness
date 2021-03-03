@@ -13,5 +13,10 @@ export const MenuItems = [
         label: 'Contact Me',
         url: '/contact',
         cName: 'nav-links'
+    },
+    {
+        label: 'Instagram',
+        url: 'https://www.instagram.com/yumfullness/',
+        cName: 'nav-links'
     }
 ]
