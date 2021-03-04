@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
       paddingRight: "79px",
       paddingLeft: "118px",
       "@media (max-width: 900px)": {
-        paddingLeft: 0,
+        paddingLeft: 0
       },
     },
     logo: {
@@ -38,6 +38,8 @@ const useStyles = makeStyles(() => ({
     menuItem: {
     //    fontWeight: "bold",
        color: "#000000",
+       fontFamily: "Open Sans, sans-serif",
+       fontWeight: 700,
        fontSize: 16
     }
   }));
@@ -153,7 +155,7 @@ export default function Header() {
     return (
       <header>
         <AppBar className={header}>
-          {mobileView ? displayMobile() : displayDesktop()}
+          { mobileView ? displayMobile() : displayDesktop() }
         </AppBar>
       </header>
     );
