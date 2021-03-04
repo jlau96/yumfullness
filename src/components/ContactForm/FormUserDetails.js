@@ -19,10 +19,10 @@ export class FormUserDetails extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
+                    <Grid container spacing={1} style = {{ marginTop: 80, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Contact Form</h1>
                     </Grid>
-                    <Box display="flex" justifyContent="center" alignItems="center">
+                    <Box display="flex" justifyContent="center" alignItems="center" paddingBottom="100px">
                         <Grid container spacing={1}
                             style = {{ 
                                 marginTop: 20, 
@@ -32,11 +32,10 @@ export class FormUserDetails extends Component {
                                 flexDirection: "column",
                                 width: "340px",
                                 minWidth: "120px",
-                                minHeight: "400px",
+                                minHeight: "450px",
                                 padding: "5px 20px 30px 20px",
                                 borderRadius: "6px"
-                            }}
-                        >
+                            }}>
                             <Grid item xs={12}>
                                 <TextField 
                                     id = "outlined-full-width"
@@ -102,7 +101,7 @@ export class FormUserDetails extends Component {
                                     variant = "outlined"
                                     style = {{ margin: 12, width: 275 }}
                                     multiline
-                                    rows = { 10 }
+                                    rows = { 8 }
                                     // rowsMax = { 30 }
                                     onChange = { handleChange('message') }
                                     defaultValue = { values.message }
