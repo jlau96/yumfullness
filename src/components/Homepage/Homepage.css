@@ -1,7 +1,13 @@
 .image-gallery {
-    width: 100px;
+    width: 40%;
+    height: auto;
 }
 
 .image-gallery-slide img {
-    width: 400px;
-  }
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center center;
+}

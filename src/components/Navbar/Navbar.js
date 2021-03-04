@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
       },
     },
     logo: {
-      fontFamily: "Work Sans, sans-serif",
+      fontFamily: "Open Sans, sans-serif",
       fontWeight: 600, 
       color: "#f8f8ff",
       textAlign: "left",
@@ -129,7 +129,7 @@ export default function Header() {
     };
   
     const yumfullnessLogo = (
-      <Typography variant="h6" component="h1" className={logo}>
+      <Typography variant="h6" component="h1" className={logo} >
         @Yumfullness
       </Typography>
     );

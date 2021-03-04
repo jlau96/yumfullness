@@ -8,6 +8,10 @@ export const MenuItems = [
         url: '/order'
     },
     {
+        label: 'Testimonials',
+        url: '/testimonials'
+    },
+    {
         label: 'Contact Me',
         url: '/contact'
     },

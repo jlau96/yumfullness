@@ -27,7 +27,7 @@ export class Homepage extends Component {
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Homepage</h1>
                     </Grid>
-                    <Grid container spacing={1} style = {{ marginTop: 10, justifyContent:'center', alignItems: 'center' }}>
+                    <Grid container spacing={1} style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
                         <ImageGallery 
                             items={ images }
                             showPlayButton = "false"

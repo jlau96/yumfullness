@@ -19,7 +19,7 @@ export class FormUserDetails extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <Grid container spacing={1} style = {{ marginTop: 80, justifyContent:'center', alignItems: 'center' }}>
+                    <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Contact Form</h1>
                     </Grid>
                     <Box display="flex" justifyContent="center" alignItems="center" paddingBottom="100px">
@@ -48,7 +48,7 @@ export class FormUserDetails extends Component {
                                         shrink: true,
                                     }}
                                     variant = "outlined"
-                                    style = {{ margin: 12, marginTop: 30 }}
+                                    style = {{ margin: 12, marginTop: 30, width: 275 }}
                                     size = "small"
                                     onChange = { handleChange('name') }
                                     defaultValue = { values.name }
@@ -65,7 +65,7 @@ export class FormUserDetails extends Component {
                                         shrink: true,
                                     }}
                                     variant = "outlined"
-                                    style = {{ margin: 12}}
+                                    style = {{ margin: 12, width: 275  }}
                                     size = "small"
                                     onChange = { handleChange('email') }
                                     defaultValue = { values.email }
@@ -82,7 +82,7 @@ export class FormUserDetails extends Component {
                                         shrink: true,
                                     }}
                                     variant = "outlined"
-                                    style = {{ margin: 12}}
+                                    style = {{ margin: 12, width: 275 }}
                                     size = "small"
                                     onChange = { handleChange('subject') }
                                     defaultValue = { values.subject }
