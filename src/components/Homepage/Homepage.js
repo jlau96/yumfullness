@@ -52,11 +52,11 @@ export class Homepage extends Component {
                     </Grid>
                     <hr/>
                     <Grid container spacing={3} direction="row" style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
-                        <Grid item sm alignContent="center" alignItems="center" justify="center">
+                        <Grid container item sm alignItems="center" justify="center">
                             <h1 style = {{ textAlign: "center"}}>About Me</h1>
                             <img src={AboutMe} alt="aboutMe" style = {{ width: 250, height: 320 }}/>
                         </Grid>
-                        <Grid item sm style = {{ marginLeft: 20, marginRight: 20 }}>
+                        <Grid container item sm style = {{ marginLeft: 20, marginRight: 20 }}>
                             <p style = {{ fontSize: 18 }}>Welcome to my page @yumfullness!</p>
                             <br/>
                             <p style = {{ fontSize: 18 }}
