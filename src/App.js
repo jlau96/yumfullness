@@ -9,6 +9,7 @@ import NotFound from './components/NotFound/NotFound'
 import BottomNav from '@material-ui/core/BottomNavigation';
 import BottomNavAction from '@material-ui/core/BottomNavigationAction';
 import Testimonials from './components/Testimonials/Testimonials';
+import Menu from './components/Menu/Menu';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Switch>
+          <Route exact path="/menu"> 
+            <Menu />
+          </Route>
           <Route exact path="/order"> 
             <OrderForm />
           </Route>
@@ -31,9 +35,12 @@ function App() {
           <Route component={ NotFound } />
         </Switch>
       </BrowserRouter>
-      <BottomNav showLabels position = "sticky" style = {{ bottom: 0 }}>
-        <BottomNavAction label = "Created by Jeffrey Lau - jeff_lau96@yahoo.com"/>
-      </BottomNav>
+      {/* <BottomNav showLabels position = "sticky" style = {{ bottom: 0 }}>
+        <BottomNavAction label = "Designed & Built by Jeffrey Lau"/>
+      </BottomNav> */}
+      <footer>
+        <div className="footer-f">Website designed & built by <a href="https://www.linkedin.com/in/jeffrey-lau/" style = {{ color: "blue" }} >Jeffrey Lau</a></div>
+      </footer>
     </div>
   );
 }
