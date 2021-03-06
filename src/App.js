@@ -6,8 +6,6 @@ import Navbar from "./components/Navbar/Navbar";
 import OrderForm from './components/OrderForm/OrderForm';
 import Homepage from './components/Homepage/Homepage';
 import NotFound from './components/NotFound/NotFound'
-import BottomNav from '@material-ui/core/BottomNavigation';
-import BottomNavAction from '@material-ui/core/BottomNavigationAction';
 import Testimonials from './components/Testimonials/Testimonials';
 import Menu from './components/Menu/Menu';
 import ScrollToTop from './components/ScrollToTop/ScollToTop';
@@ -37,8 +35,8 @@ function App() {
         </Switch>
       </BrowserRouter>
       <ScrollToTop />
-      <footer>
-        <div className="footer-f">Website designed & built by <a href="https://www.linkedin.com/in/jeffrey-lau/" style = {{ color: "blue" }} >Jeffrey Lau</a></div>
+      <footer className="footer-container">
+        <div className="footer">Website designed & built by <a href="https://www.linkedin.com/in/jeffrey-lau/" style = {{ color: "blue" }} >Jeffrey Lau</a></div>
       </footer>
     </div>
   );

@@ -10,11 +10,16 @@ body {
   background-color: #ffffff; 
 }
 
-.footer-f {
+.footer-container {
+  padding-bottom: 60px;
+}
+
+.footer {
   text-align: center;
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   font-size: small;
 }
+

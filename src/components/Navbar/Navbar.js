@@ -47,11 +47,7 @@ const useStyles = makeStyles(() => ({
 export default function Header() {
     const { header, logo, menuButton, toolbar, drawerContainer, menuItem } = useStyles();
   
-    const [state, setState] = useState({
-      mobileView: false,
-      drawerOpen: false,
-    });
-  
+    const [state, setState] = useState({mobileView: false, drawerOpen: false});
     const { mobileView, drawerOpen } = state;
   
     useEffect(() => {
@@ -60,9 +56,7 @@ export default function Header() {
           ? setState((prevState) => ({ ...prevState, mobileView: true }))
           : setState((prevState) => ({ ...prevState, mobileView: false }));
       };
-  
       setResponsiveness();
-  
       window.addEventListener("resize", () => setResponsiveness());
     }, []);
   
@@ -76,10 +70,8 @@ export default function Header() {
     };
   
     const displayMobile = () => {
-      const handleDrawerOpen = () =>
-        setState((prevState) => ({ ...prevState, drawerOpen: true }));
-      const handleDrawerClose = () =>
-        setState((prevState) => ({ ...prevState, drawerOpen: false }));
+      const handleDrawerOpen = () => setState((prevState) => ({ ...prevState, drawerOpen: true }));
+      const handleDrawerClose = () => setState((prevState) => ({ ...prevState, drawerOpen: false }));
   
       return (
         <Toolbar>

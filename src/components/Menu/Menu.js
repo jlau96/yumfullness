@@ -1,36 +1,42 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+
 import { Link, AnimateScroll as Scroll } from 'react-scroll';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: 'flex',
-    },
-    drawer: {
-      width: 240,
-      flexShrink: 0
-    },
-    drawerPaper: {
-      width: 200,
-      marginTop: 70
+        display: 'flex',
     },
     menuItem: {
-        fontSize: 25,
-        marginBottom: 10
+        fontSize: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 300,
+        '&:hover': {
+            backgroundColor: "#ffc5cd"
+        }
     },
     header: {
-        fontSize: 40
+        fontSize: 30,
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        marginBottom: 10
     },
     sectionHeader: {
-        fontSize: 30
+        fontSize: 25,
+        fontWeight: 'bold'
     },
-    toolbar: theme.mixins.toolbar,
+    pageNavBar: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    toolbar: theme.mixins.toolbar
   }));
 
 export default function Menu() {
@@ -39,31 +45,30 @@ export default function Menu() {
     return (
         <MuiThemeProvider>
             <React.Fragment>
-                <Drawer className={classes.drawer} variant="permanent" classes={{paper: classes.drawerPaper}} anchor="left">
-                <div className={classes.toolbar} />
-                <List>
-                    <ListItem button className={classes.menuItem} key="cakes">
-                        <Link activeClass="active" to="cakes" spy={true} smooth={true} offset={-70} duration={500}>
-                            Cakes
-                        </Link>
-                    </ListItem>
-                    <ListItem button className={classes.menuItem} key="breakableHearts">
-                        <Link activeClass="active" to="breakableHearts" spy={true} smooth={true} offset={-70} duration={1000}>
-                            Breakable Hearts
-                        </Link>
-                    </ListItem>
-                    <ListItem button className={classes.menuItem} key="sweetTreats">
-                        <Link activeClass="active" to="sweetTreats" spy={true} smooth={true} offset={-70} duration={1000}>
-                            Sweet Treats
-                        </Link>
-                    </ListItem>
-                </List>
-                </Drawer>
-                <div className={classes.toolbar} style = {{ marginLeft: 250 , marginRight: 50}}>
-                    <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
+                <div className={classes.toolbar} style = {{ marginLeft: 50 , marginRight: 50}}>   
+                    <Grid container spacing={1} style = {{ marginTop: 100, justifyContent: 'center', alignItems: 'center' }}>
                         <div className={classes.header}>Yumfullness Menu</div>
                     </Grid>
-                    <div className="section-content" id="cakes" style = {{ marginTop: 30 }}>
+                    
+                    <List className={classes.pageNavBar}>
+                        <ListItem button className={classes.menuItem} key="cakes">
+                            <Link activeClass="active" to="cakes" spy={true} smooth={true} offset={-70} duration={500}>
+                                Cakes
+                            </Link>
+                        </ListItem>
+                        <ListItem button className={classes.menuItem} key="breakableHearts">
+                            <Link activeClass="active" to="breakableHearts" spy={true} smooth={true} offset={-70} duration={1000}>
+                                Breakable Hearts
+                            </Link>
+                        </ListItem>
+                        <ListItem button className={classes.menuItem} key="sweetTreats">
+                            <Link activeClass="active" to="sweetTreats" spy={true} smooth={true} offset={-70} duration={1000}>
+                                Sweet Treats
+                            </Link>
+                        </ListItem>
+                    </List>
+
+                    <div className="section-content" id="cakes" style = {{ marginTop: 10 }}>
                         <div className={classes.sectionHeader}>Cakes</div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
                             Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
