@@ -28,8 +28,8 @@ const imageNames = [
 
 const images = imageNames.map(name => {
     return {
-        original: process.env.PUBLIC_URL + '/galleryImages/' + name,
-        thumbnail: process.env.PUBLIC_URL + '/galleryImages/' + name
+        original: './galleryImages/' + name,
+        thumbnail: './galleryImages/' + name
     }
 })
 
