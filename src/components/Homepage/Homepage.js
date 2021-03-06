@@ -3,7 +3,6 @@ import { MuiThemeProvider } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import ImageGallery from 'react-image-gallery';
 import AboutMe from './aboutMe.jpg';
-import { ImageNames } from './ImageNames';
 import "react-image-gallery/styles/css/image-gallery.css";
 import './Homepage.css';
 
@@ -52,19 +51,18 @@ export class Homepage extends Component {
                     </Grid>
                     <hr/>
                     <Grid container spacing={3} direction="row" style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
-                        <Grid container item sm alignItems="center" justify="center">
-                            <h1 style = {{ textAlign: "center"}}>About Me</h1>
+                        <Grid container item sm alignItems="center" justify="center" direction="column">
+                            <h1 style = {{ marginBottom: 10, textAlign: "center"}}>About Me</h1>
                             <img src={AboutMe} alt="aboutMe" style = {{ width: 250, height: 320 }}/>
                         </Grid>
                         <Grid container item sm style = {{ marginLeft: 20, marginRight: 20 }}>
                             <p style = {{ fontSize: 18 }}>Welcome to my page @yumfullness!</p>
-                            <br/>
-                            <p style = {{ fontSize: 18 }}
-                                >My name is Regan and I am the face behind all the treats. I have always loved baking and creating
-                                beautiful desserts, and to me nothing feels more rewarding than making someone's birthday,
-                                anniversary, gender reveal, etc. unique and memorable. Thank you taking interest in my page, and
-                                thank you to all my clients for trusting me to make your celebration so special. I hope I am able to bring
-                                the same joy to your special days as creating your treats makes me. Have a great day and please
+                            <br/><br/>
+                            <p style = {{ fontSize: 18 }}>
+                                My name is Regan and I am the face behind all the treats. I have always loved baking and creating beautiful desserts, 
+                                and to me nothing feels more rewarding than making someone's birthday, anniversary, gender reveal, etc. unique and memorable. 
+                                Thank you taking interest in my page, and thank you to all my clients for trusting me to make your celebration so special. 
+                                I hope I am able to bring the same joy to your special days as creating your treats makes me. Have a great day and please 
                                 reach out with any inquiries!
                             </p>
                         </Grid>

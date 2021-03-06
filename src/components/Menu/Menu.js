@@ -1,12 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { MuiThemeProvider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import { Link } from 'react-scroll';
 
-import { Link, AnimateScroll as Scroll } from 'react-scroll';
+import NumberCake from './menuImages/number_cake.jpg';
+import LetterCake from './menuImages/letter_cake.jpg';
+import BreakableHeart from './menuImages/breakable_heart.jpg';
+import CakeHeart from './menuImages/cake_hearts.jpg';
+import ChocoStraw from './menuImages/choco_straw.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +47,14 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    toolbar: theme.mixins.toolbar
+    toolbar: theme.mixins.toolbar,
+    cardRoot: {
+        maxWidth: 400,
+        marginTop: 15
+    },
+    cardMedia: {
+        height: 500
+    }
   }));
 
 export default function Menu() {
@@ -45,7 +63,7 @@ export default function Menu() {
     return (
         <MuiThemeProvider>
             <React.Fragment>
-                <div className={classes.toolbar} style = {{ marginLeft: 50 , marginRight: 50}}>   
+                <div className={classes.toolbar} style = {{ marginLeft: 20 , marginRight: 20}}>   
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent: 'center', alignItems: 'center' }}>
                         <div className={classes.header}>Yumfullness Menu</div>
                     </Grid>
@@ -70,156 +88,103 @@ export default function Menu() {
 
                     <div className="section-content" id="cakes" style = {{ marginTop: 10 }}>
                         <div className={classes.sectionHeader}>Cakes</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
-                            Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
-                            elit lorem lobortis magna, ac fermentum enim mi eget justo. Curabitur sit amet interdum nibh. Donec non erat porttitor,
-                            ultricies felis in, sodales tortor. Sed gravida rutrum ultrices. Phasellus vitae dui neque. Curabitur congue, enim sit amet 
-                            gravida gravida, felis dui efficitur felis, vitae viverra dui massa vel massa. Maecenas imperdiet convallis ipsum eu facilisis. 
-                            Nulla non aliquet tellus. Cras cursus, leo a consectetur ultrices, felis nibh mollis risus, vitae varius sem dui in mauris. 
-                            Ut at ornare orci. In lacinia turpis vitae ex efficitur luctus. Ut finibus tincidunt erat id maximus. In hac habitasse platea 
-                            dictumst. Curabitur dolor turpis, aliquet commodo feugiat blandit, vehicula sit amet metus. Quisque at lectus et turpis condimentum 
-                            hendrerit vel quis velit. Duis eu dui eget dui vehicula gravida vitae in felis. Nunc vel finibus mauris. Sed porttitor est sed 
-                            ligula viverra luctus. Nullam tempor ornare hendrerit. Proin aliquam erat neque, vitae tristique tortor dapibus vel. Fusce sed 
-                            fermentum mi. Proin vulputate quis ante non hendrerit. Aenean pulvinar malesuada mi sit amet accumsan. Mauris hendrerit laoreet 
-                            tincidunt. Nulla ac tempor tellus, sed cursus nibh. Nam aliquam sapien turpis, sit amet sollicitudin ipsum iaculis vitae. 
-                            Phasellus ac urna feugiat, luctus elit ut, sagittis ante. Suspendisse non molestie justo, tincidunt lacinia nisi. Aliquam in 
-                            commodo diam. Mauris turpis odio, pellentesque a semper sit amet, sodales fermentum nisl. Sed sed lacus quis nunc lobortis 
-                            pellentesque. Quisque eu dui sit amet nunc venenatis viverra id a felis. Duis posuere neque ultrices diam pellentesque efficitur. 
-                            Morbi ac blandit libero. Nulla euismod scelerisque nisl, nec luctus leo tincidunt quis. Etiam in cursus est, id maximus neque. 
-                            Curabitur dictum massa nunc, in volutpat elit consequat cursus. Quisque at porttitor ipsum. Donec sit amet consectetur tortor. 
-                            Ut mattis, orci eget eleifend euismod, nisl turpis vulputate neque, nec eleifend urna turpis non risus. Curabitur neque nulla, 
-                            aliquet vel aliquam sit amet, commodo finibus libero. Suspendisse ultricies dictum mauris at dictum. Nam orci enim, rutrum sit 
-                            amet varius eu, sagittis ac lorem. Maecenas sed condimentum sapien. Maecenas non eleifend risus. Vestibulum lacus dolor, egestas 
-                            ac diam in, tempus sagittis urna. Curabitur lacinia congue magna in euismod. Nullam molestie massa ac justo efficitur, in 
-                            pellentesque sem ultrices. Nulla suscipit, lectus sed tristique hendrerit, diam massa sagittis mi, id pulvinar tellus ante 
-                            tincidunt turpis. Proin vulputate sed dolor et tincidunt. Aenean pretium aliquet dolor, ultrices pharetra justo imperdiet in.
-
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
-                            Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
-                            elit lorem lobortis magna, ac fermentum enim mi eget justo. Curabitur sit amet interdum nibh. Donec non erat porttitor,
-                            ultricies felis in, sodales tortor. Sed gravida rutrum ultrices. Phasellus vitae dui neque. Curabitur congue, enim sit amet 
-                            gravida gravida, felis dui efficitur felis, vitae viverra dui massa vel massa. Maecenas imperdiet convallis ipsum eu facilisis. 
-                            Nulla non aliquet tellus. Cras cursus, leo a consectetur ultrices, felis nibh mollis risus, vitae varius sem dui in mauris. 
-                            Ut at ornare orci. In lacinia turpis vitae ex efficitur luctus. Ut finibus tincidunt erat id maximus. In hac habitasse platea 
-                            dictumst. Curabitur dolor turpis, aliquet commodo feugiat blandit, vehicula sit amet metus. Quisque at lectus et turpis condimentum 
-                            hendrerit vel quis velit. Duis eu dui eget dui vehicula gravida vitae in felis. Nunc vel finibus mauris. Sed porttitor est sed 
-                            ligula viverra luctus. Nullam tempor ornare hendrerit. Proin aliquam erat neque, vitae tristique tortor dapibus vel. Fusce sed 
-                            fermentum mi. Proin vulputate quis ante non hendrerit. Aenean pulvinar malesuada mi sit amet accumsan. Mauris hendrerit laoreet 
-                            tincidunt. Nulla ac tempor tellus, sed cursus nibh. Nam aliquam sapien turpis, sit amet sollicitudin ipsum iaculis vitae. 
-                            Phasellus ac urna feugiat, luctus elit ut, sagittis ante. Suspendisse non molestie justo, tincidunt lacinia nisi. Aliquam in 
-                            commodo diam. Mauris turpis odio, pellentesque a semper sit amet, sodales fermentum nisl. Sed sed lacus quis nunc lobortis 
-                            pellentesque. Quisque eu dui sit amet nunc venenatis viverra id a felis. Duis posuere neque ultrices diam pellentesque efficitur. 
-                            Morbi ac blandit libero. Nulla euismod scelerisque nisl, nec luctus leo tincidunt quis. Etiam in cursus est, id maximus neque. 
-                            Curabitur dictum massa nunc, in volutpat elit consequat cursus. Quisque at porttitor ipsum. Donec sit amet consectetur tortor. 
-                            Ut mattis, orci eget eleifend euismod, nisl turpis vulputate neque, nec eleifend urna turpis non risus. Curabitur neque nulla, 
-                            aliquet vel aliquam sit amet, commodo finibus libero. Suspendisse ultricies dictum mauris at dictum. Nam orci enim, rutrum sit 
-                            amet varius eu, sagittis ac lorem. Maecenas sed condimentum sapien. Maecenas non eleifend risus. Vestibulum lacus dolor, egestas 
-                            ac diam in, tempus sagittis urna. Curabitur lacinia congue magna in euismod. Nullam molestie massa ac justo efficitur, in 
-                            pellentesque sem ultrices. Nulla suscipit, lectus sed tristique hendrerit, diam massa sagittis mi, id pulvinar tellus ante 
-                            tincidunt turpis. Proin vulputate sed dolor et tincidunt. Aenean pretium aliquet dolor, ultrices pharetra justo imperdiet in.
-                        </p>
+                        <Grid>
+                            <Card className={classes.cardRoot}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    className={classes.cardMedia}
+                                    image={NumberCake}
+                                    title="Number Cake"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Number Cake
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Custom number cake!
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                            <Card className={classes.cardRoot}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    className={classes.cardMedia}
+                                    image={LetterCake}
+                                    title="Letter Cake"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Letter Cake
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Custom letter cake!
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>  
                     </div>
                     <div className="section-content" id="breakableHearts" style = {{ marginTop: 30 }}>
                         <div className={classes.sectionHeader}>Breakable Hearts</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
-                            Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
-                            elit lorem lobortis magna, ac fermentum enim mi eget justo. Curabitur sit amet interdum nibh. Donec non erat porttitor,
-                            ultricies felis in, sodales tortor. Sed gravida rutrum ultrices. Phasellus vitae dui neque. Curabitur congue, enim sit amet 
-                            gravida gravida, felis dui efficitur felis, vitae viverra dui massa vel massa. Maecenas imperdiet convallis ipsum eu facilisis. 
-                            Nulla non aliquet tellus. Cras cursus, leo a consectetur ultrices, felis nibh mollis risus, vitae varius sem dui in mauris. 
-                            Ut at ornare orci. In lacinia turpis vitae ex efficitur luctus. Ut finibus tincidunt erat id maximus. In hac habitasse platea 
-                            dictumst. Curabitur dolor turpis, aliquet commodo feugiat blandit, vehicula sit amet metus. Quisque at lectus et turpis condimentum 
-                            hendrerit vel quis velit. Duis eu dui eget dui vehicula gravida vitae in felis. Nunc vel finibus mauris. Sed porttitor est sed 
-                            ligula viverra luctus. Nullam tempor ornare hendrerit. Proin aliquam erat neque, vitae tristique tortor dapibus vel. Fusce sed 
-                            fermentum mi. Proin vulputate quis ante non hendrerit. Aenean pulvinar malesuada mi sit amet accumsan. Mauris hendrerit laoreet 
-                            tincidunt. Nulla ac tempor tellus, sed cursus nibh. Nam aliquam sapien turpis, sit amet sollicitudin ipsum iaculis vitae. 
-                            Phasellus ac urna feugiat, luctus elit ut, sagittis ante. Suspendisse non molestie justo, tincidunt lacinia nisi. Aliquam in 
-                            commodo diam. Mauris turpis odio, pellentesque a semper sit amet, sodales fermentum nisl. Sed sed lacus quis nunc lobortis 
-                            pellentesque. Quisque eu dui sit amet nunc venenatis viverra id a felis. Duis posuere neque ultrices diam pellentesque efficitur. 
-                            Morbi ac blandit libero. Nulla euismod scelerisque nisl, nec luctus leo tincidunt quis. Etiam in cursus est, id maximus neque. 
-                            Curabitur dictum massa nunc, in volutpat elit consequat cursus. Quisque at porttitor ipsum. Donec sit amet consectetur tortor. 
-                            Ut mattis, orci eget eleifend euismod, nisl turpis vulputate neque, nec eleifend urna turpis non risus. Curabitur neque nulla, 
-                            aliquet vel aliquam sit amet, commodo finibus libero. Suspendisse ultricies dictum mauris at dictum. Nam orci enim, rutrum sit 
-                            amet varius eu, sagittis ac lorem. Maecenas sed condimentum sapien. Maecenas non eleifend risus. Vestibulum lacus dolor, egestas 
-                            ac diam in, tempus sagittis urna. Curabitur lacinia congue magna in euismod. Nullam molestie massa ac justo efficitur, in 
-                            pellentesque sem ultrices. Nulla suscipit, lectus sed tristique hendrerit, diam massa sagittis mi, id pulvinar tellus ante 
-                            tincidunt turpis. Proin vulputate sed dolor et tincidunt. Aenean pretium aliquet dolor, ultrices pharetra justo imperdiet in.
-
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
-                            Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
-                            elit lorem lobortis magna, ac fermentum enim mi eget justo. Curabitur sit amet interdum nibh. Donec non erat porttitor,
-                            ultricies felis in, sodales tortor. Sed gravida rutrum ultrices. Phasellus vitae dui neque. Curabitur congue, enim sit amet 
-                            gravida gravida, felis dui efficitur felis, vitae viverra dui massa vel massa. Maecenas imperdiet convallis ipsum eu facilisis. 
-                            Nulla non aliquet tellus. Cras cursus, leo a consectetur ultrices, felis nibh mollis risus, vitae varius sem dui in mauris. 
-                            Ut at ornare orci. In lacinia turpis vitae ex efficitur luctus. Ut finibus tincidunt erat id maximus. In hac habitasse platea 
-                            dictumst. Curabitur dolor turpis, aliquet commodo feugiat blandit, vehicula sit amet metus. Quisque at lectus et turpis condimentum 
-                            hendrerit vel quis velit. Duis eu dui eget dui vehicula gravida vitae in felis. Nunc vel finibus mauris. Sed porttitor est sed 
-                            ligula viverra luctus. Nullam tempor ornare hendrerit. Proin aliquam erat neque, vitae tristique tortor dapibus vel. Fusce sed 
-                            fermentum mi. Proin vulputate quis ante non hendrerit. Aenean pulvinar malesuada mi sit amet accumsan. Mauris hendrerit laoreet 
-                            tincidunt. Nulla ac tempor tellus, sed cursus nibh. Nam aliquam sapien turpis, sit amet sollicitudin ipsum iaculis vitae. 
-                            Phasellus ac urna feugiat, luctus elit ut, sagittis ante. Suspendisse non molestie justo, tincidunt lacinia nisi. Aliquam in 
-                            commodo diam. Mauris turpis odio, pellentesque a semper sit amet, sodales fermentum nisl. Sed sed lacus quis nunc lobortis 
-                            pellentesque. Quisque eu dui sit amet nunc venenatis viverra id a felis. Duis posuere neque ultrices diam pellentesque efficitur. 
-                            Morbi ac blandit libero. Nulla euismod scelerisque nisl, nec luctus leo tincidunt quis. Etiam in cursus est, id maximus neque. 
-                            Curabitur dictum massa nunc, in volutpat elit consequat cursus. Quisque at porttitor ipsum. Donec sit amet consectetur tortor. 
-                            Ut mattis, orci eget eleifend euismod, nisl turpis vulputate neque, nec eleifend urna turpis non risus. Curabitur neque nulla, 
-                            aliquet vel aliquam sit amet, commodo finibus libero. Suspendisse ultricies dictum mauris at dictum. Nam orci enim, rutrum sit 
-                            amet varius eu, sagittis ac lorem. Maecenas sed condimentum sapien. Maecenas non eleifend risus. Vestibulum lacus dolor, egestas 
-                            ac diam in, tempus sagittis urna. Curabitur lacinia congue magna in euismod. Nullam molestie massa ac justo efficitur, in 
-                            pellentesque sem ultrices. Nulla suscipit, lectus sed tristique hendrerit, diam massa sagittis mi, id pulvinar tellus ante 
-                            tincidunt turpis. Proin vulputate sed dolor et tincidunt. Aenean pretium aliquet dolor, ultrices pharetra justo imperdiet in.
-                        </p>
+                        <Grid>
+                            <Card className={classes.cardRoot}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    className={classes.cardMedia}
+                                    image={BreakableHeart}
+                                    title="Breakable Heart"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Breakable Heart
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Custom breakable heart!
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
                     </div>
                     <div className="section-content" id="sweetTreats" style = {{ marginTop: 30 }}>
                         <div className={classes.sectionHeader}>Sweet Treats</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
-                            Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
-                            elit lorem lobortis magna, ac fermentum enim mi eget justo. Curabitur sit amet interdum nibh. Donec non erat porttitor,
-                            ultricies felis in, sodales tortor. Sed gravida rutrum ultrices. Phasellus vitae dui neque. Curabitur congue, enim sit amet 
-                            gravida gravida, felis dui efficitur felis, vitae viverra dui massa vel massa. Maecenas imperdiet convallis ipsum eu facilisis. 
-                            Nulla non aliquet tellus. Cras cursus, leo a consectetur ultrices, felis nibh mollis risus, vitae varius sem dui in mauris. 
-                            Ut at ornare orci. In lacinia turpis vitae ex efficitur luctus. Ut finibus tincidunt erat id maximus. In hac habitasse platea 
-                            dictumst. Curabitur dolor turpis, aliquet commodo feugiat blandit, vehicula sit amet metus. Quisque at lectus et turpis condimentum 
-                            hendrerit vel quis velit. Duis eu dui eget dui vehicula gravida vitae in felis. Nunc vel finibus mauris. Sed porttitor est sed 
-                            ligula viverra luctus. Nullam tempor ornare hendrerit. Proin aliquam erat neque, vitae tristique tortor dapibus vel. Fusce sed 
-                            fermentum mi. Proin vulputate quis ante non hendrerit. Aenean pulvinar malesuada mi sit amet accumsan. Mauris hendrerit laoreet 
-                            tincidunt. Nulla ac tempor tellus, sed cursus nibh. Nam aliquam sapien turpis, sit amet sollicitudin ipsum iaculis vitae. 
-                            Phasellus ac urna feugiat, luctus elit ut, sagittis ante. Suspendisse non molestie justo, tincidunt lacinia nisi. Aliquam in 
-                            commodo diam. Mauris turpis odio, pellentesque a semper sit amet, sodales fermentum nisl. Sed sed lacus quis nunc lobortis 
-                            pellentesque. Quisque eu dui sit amet nunc venenatis viverra id a felis. Duis posuere neque ultrices diam pellentesque efficitur. 
-                            Morbi ac blandit libero. Nulla euismod scelerisque nisl, nec luctus leo tincidunt quis. Etiam in cursus est, id maximus neque. 
-                            Curabitur dictum massa nunc, in volutpat elit consequat cursus. Quisque at porttitor ipsum. Donec sit amet consectetur tortor. 
-                            Ut mattis, orci eget eleifend euismod, nisl turpis vulputate neque, nec eleifend urna turpis non risus. Curabitur neque nulla, 
-                            aliquet vel aliquam sit amet, commodo finibus libero. Suspendisse ultricies dictum mauris at dictum. Nam orci enim, rutrum sit 
-                            amet varius eu, sagittis ac lorem. Maecenas sed condimentum sapien. Maecenas non eleifend risus. Vestibulum lacus dolor, egestas 
-                            ac diam in, tempus sagittis urna. Curabitur lacinia congue magna in euismod. Nullam molestie massa ac justo efficitur, in 
-                            pellentesque sem ultrices. Nulla suscipit, lectus sed tristique hendrerit, diam massa sagittis mi, id pulvinar tellus ante 
-                            tincidunt turpis. Proin vulputate sed dolor et tincidunt. Aenean pretium aliquet dolor, ultrices pharetra justo imperdiet in.
-
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu tortor, tristique iaculis est eget, suscipit rhoncus ipsum. 
-                            Aenean lobortis lorem non quam laoreet convallis. Vestibulum vitae suscipit purus. Duis dapibus, ex at porta malesuada, 
-                            elit lorem lobortis magna, ac fermentum enim mi eget justo. Curabitur sit amet interdum nibh. Donec non erat porttitor,
-                            ultricies felis in, sodales tortor. Sed gravida rutrum ultrices. Phasellus vitae dui neque. Curabitur congue, enim sit amet 
-                            gravida gravida, felis dui efficitur felis, vitae viverra dui massa vel massa. Maecenas imperdiet convallis ipsum eu facilisis. 
-                            Nulla non aliquet tellus. Cras cursus, leo a consectetur ultrices, felis nibh mollis risus, vitae varius sem dui in mauris. 
-                            Ut at ornare orci. In lacinia turpis vitae ex efficitur luctus. Ut finibus tincidunt erat id maximus. In hac habitasse platea 
-                            dictumst. Curabitur dolor turpis, aliquet commodo feugiat blandit, vehicula sit amet metus. Quisque at lectus et turpis condimentum 
-                            hendrerit vel quis velit. Duis eu dui eget dui vehicula gravida vitae in felis. Nunc vel finibus mauris. Sed porttitor est sed 
-                            ligula viverra luctus. Nullam tempor ornare hendrerit. Proin aliquam erat neque, vitae tristique tortor dapibus vel. Fusce sed 
-                            fermentum mi. Proin vulputate quis ante non hendrerit. Aenean pulvinar malesuada mi sit amet accumsan. Mauris hendrerit laoreet 
-                            tincidunt. Nulla ac tempor tellus, sed cursus nibh. Nam aliquam sapien turpis, sit amet sollicitudin ipsum iaculis vitae. 
-                            Phasellus ac urna feugiat, luctus elit ut, sagittis ante. Suspendisse non molestie justo, tincidunt lacinia nisi. Aliquam in 
-                            commodo diam. Mauris turpis odio, pellentesque a semper sit amet, sodales fermentum nisl. Sed sed lacus quis nunc lobortis 
-                            pellentesque. Quisque eu dui sit amet nunc venenatis viverra id a felis. Duis posuere neque ultrices diam pellentesque efficitur. 
-                            Morbi ac blandit libero. Nulla euismod scelerisque nisl, nec luctus leo tincidunt quis. Etiam in cursus est, id maximus neque. 
-                            Curabitur dictum massa nunc, in volutpat elit consequat cursus. Quisque at porttitor ipsum. Donec sit amet consectetur tortor. 
-                            Ut mattis, orci eget eleifend euismod, nisl turpis vulputate neque, nec eleifend urna turpis non risus. Curabitur neque nulla, 
-                            aliquet vel aliquam sit amet, commodo finibus libero. Suspendisse ultricies dictum mauris at dictum. Nam orci enim, rutrum sit 
-                            amet varius eu, sagittis ac lorem. Maecenas sed condimentum sapien. Maecenas non eleifend risus. Vestibulum lacus dolor, egestas 
-                            ac diam in, tempus sagittis urna. Curabitur lacinia congue magna in euismod. Nullam molestie massa ac justo efficitur, in 
-                            pellentesque sem ultrices. Nulla suscipit, lectus sed tristique hendrerit, diam massa sagittis mi, id pulvinar tellus ante 
-                            tincidunt turpis. Proin vulputate sed dolor et tincidunt. Aenean pretium aliquet dolor, ultrices pharetra justo imperdiet in.
-                        </p>
+                        <Grid>
+                            <Card className={classes.cardRoot}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    className={classes.cardMedia}
+                                    image={CakeHeart}
+                                    title="Cake Hearts"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Cake Hearts"
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Custom cake hearts!
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                            <Card className={classes.cardRoot}>
+                                <CardActionArea>
+                                    <CardMedia
+                                    className={classes.cardMedia}
+                                    image={ChocoStraw}
+                                    title="Chocolate Covered Strawberries"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Chocolate Covered Strawberries
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Custom chocolate covered strawberries!
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>  
                     </div>
 
                     <Grid container spacing={1} style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
