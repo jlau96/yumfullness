@@ -22,7 +22,7 @@ export class FormUserDetails extends Component {
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Contact Form</h1>
                     </Grid>
-                    <Box display="flex" justifyContent="center" alignItems="center" paddingBottom="100px">
+                    <Box display="flex" justifyContent="center" alignItems="center">
                         <Grid container spacing={1}
                             style = {{ 
                                 marginTop: 20, 
@@ -102,7 +102,6 @@ export class FormUserDetails extends Component {
                                     style = {{ margin: 12, width: 275 }}
                                     multiline
                                     rows = { 8 }
-                                    // rowsMax = { 30 }
                                     onChange = { handleChange('message') }
                                     defaultValue = { values.message }
                                 />

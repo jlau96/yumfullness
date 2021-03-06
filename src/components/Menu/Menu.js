@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 15
     },
     cardMedia: {
-        height: 500
+        height: 500,
     }
   }));
 
@@ -86,16 +86,12 @@ export default function Menu() {
                         </ListItem>
                     </List>
 
-                    <div className="section-content" id="cakes" style = {{ marginTop: 10 }}>
+                    <Grid className="sectionContent" id="cakes" style = {{ marginTop: 10 }}>
                         <div className={classes.sectionHeader}>Cakes</div>
                         <Grid>
                             <Card className={classes.cardRoot}>
                                 <CardActionArea>
-                                    <CardMedia
-                                    className={classes.cardMedia}
-                                    image={NumberCake}
-                                    title="Number Cake"
-                                    />
+                                    <CardMedia className={classes.cardMedia} image={NumberCake} title="Number Cake" />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Number Cake
@@ -108,11 +104,7 @@ export default function Menu() {
                             </Card>
                             <Card className={classes.cardRoot}>
                                 <CardActionArea>
-                                    <CardMedia
-                                    className={classes.cardMedia}
-                                    image={LetterCake}
-                                    title="Letter Cake"
-                                    />
+                                    <CardMedia className={classes.cardMedia} image={LetterCake} title="Letter Cake" />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Letter Cake
@@ -124,17 +116,13 @@ export default function Menu() {
                                 </CardActionArea>
                             </Card>
                         </Grid>  
-                    </div>
-                    <div className="section-content" id="breakableHearts" style = {{ marginTop: 30 }}>
+                    </Grid>
+                    <div className="sectionContent" id="breakableHearts" style = {{ marginTop: 30 }}>
                         <div className={classes.sectionHeader}>Breakable Hearts</div>
                         <Grid>
                             <Card className={classes.cardRoot}>
                                 <CardActionArea>
-                                    <CardMedia
-                                    className={classes.cardMedia}
-                                    image={BreakableHeart}
-                                    title="Breakable Heart"
-                                    />
+                                    <CardMedia className={classes.cardMedia} image={BreakableHeart} title="Breakable Heart" />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Breakable Heart
@@ -147,19 +135,15 @@ export default function Menu() {
                             </Card>
                         </Grid>
                     </div>
-                    <div className="section-content" id="sweetTreats" style = {{ marginTop: 30 }}>
+                    <div className="sectionContent" id="sweetTreats" style = {{ marginTop: 30 }}>
                         <div className={classes.sectionHeader}>Sweet Treats</div>
                         <Grid>
                             <Card className={classes.cardRoot}>
                                 <CardActionArea>
-                                    <CardMedia
-                                    className={classes.cardMedia}
-                                    image={CakeHeart}
-                                    title="Cake Hearts"
-                                    />
+                                    <CardMedia className={classes.cardMedia} image={CakeHeart} title="Cake Hearts" />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Cake Hearts"
+                                            Cake Hearts
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
                                             Custom cake hearts!
@@ -169,11 +153,7 @@ export default function Menu() {
                             </Card>
                             <Card className={classes.cardRoot}>
                                 <CardActionArea>
-                                    <CardMedia
-                                    className={classes.cardMedia}
-                                    image={ChocoStraw}
-                                    title="Chocolate Covered Strawberries"
-                                    />
+                                    <CardMedia className={classes.cardMedia} image={ChocoStraw} title="Chocolate Covered Strawberries" />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Chocolate Covered Strawberries
@@ -188,14 +168,8 @@ export default function Menu() {
                     </div>
 
                     <Grid container spacing={1} style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
-                        <Button
-                            href = "/"
-                            label = "Submit"
-                            variant = "contained"
-                            color = "primary"
-                            size = "large"
-                            style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}
-                        >
+                        <Button href = "/" label = "Submit" variant = "contained" color = "primary" size = "large"
+                                style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
                             Return Home
                         </Button>
                     </Grid>
