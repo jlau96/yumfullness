@@ -37,7 +37,7 @@ export class Success extends Component {
                                     variant = "contained"
                                     color = "primary"
                                     size = "large"
-                                    style = {{ marginTop: 25, width: 200, backgroundColor: "#1976d2", color: "#ffffff" }}
+                                    style = {{ marginTop: 25, backgroundColor: "#1976d2", color: "#ffffff" }}
                                 >
                                     Return Home
                                 </Button>

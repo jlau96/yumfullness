@@ -54,9 +54,8 @@ export class Confirm extends Component {
                                 <Button
                                     label = "Submit"
                                     variant = "contained"
-                                    color = "secondary"
                                     size = "large"
-                                    style = {{ margin: 15, backgroundColor: "#f8f8ff", color: "#000000" }}
+                                    style = {{ margin: 15 }}
                                     onClick = { this.back }>
                                     Back
                                 </Button>

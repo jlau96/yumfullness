@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormUserDetails from './FormUserDetails';
 import Confirm from './Confirm';
 import Success from './Success';
+import NotFound from '../NotFound/NotFound';
 
 export class UserForm extends Component {
     state = {
@@ -40,11 +41,7 @@ export class UserForm extends Component {
         switch(step) {
             case 1:
                 return (
-                    <FormUserDetails
-                        nextStep = { this.nextStep }
-                        handleChange = { this.handleChange }
-                        values = { values }
-                    />
+                    <FormUserDetails nextStep = { this.nextStep } handleChange = { this.handleChange } values = { values } />
                 );
             case 2:
                 return (
@@ -56,13 +53,11 @@ export class UserForm extends Component {
                 );
             case 3:
                 return <Success />;
+            default:
+                return <NotFound />;
         }
 
-        return (
-            <div>
-                
-            </div>
-        )
+        return (<div></div>)
     }
 }
 

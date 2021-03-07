@@ -121,7 +121,7 @@ export default function Header() {
     };
   
     const yumfullnessLogo = (
-      <Typography variant="h6" component="h1" className={logo} >
+      <Typography variant="h6" component="h1" className={logo}>
         @Yumfullness
       </Typography>
     );

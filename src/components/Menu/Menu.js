@@ -47,13 +47,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    toolbar: theme.mixins.toolbar,
     cardRoot: {
-        maxWidth: 400,
+        maxWidth: 300,
         marginTop: 15
     },
     cardMedia: {
-        height: 500,
+        height: 300,
     }
   }));
 
@@ -63,7 +62,7 @@ export default function Menu() {
     return (
         <MuiThemeProvider>
             <React.Fragment>
-                <div className={classes.toolbar} style = {{ marginLeft: 20 , marginRight: 20}}>   
+                <div className={classes.toolbar}>   
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent: 'center', alignItems: 'center' }}>
                         <div className={classes.header}>Yumfullness Menu</div>
                     </Grid>
@@ -86,84 +85,94 @@ export default function Menu() {
                         </ListItem>
                     </List>
 
-                    <Grid className="sectionContent" id="cakes" style = {{ marginTop: 10 }}>
-                        <div className={classes.sectionHeader}>Cakes</div>
-                        <Grid>
-                            <Card className={classes.cardRoot}>
-                                <CardActionArea>
-                                    <CardMedia className={classes.cardMedia} image={NumberCake} title="Number Cake" />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Number Cake
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Custom number cake!
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card className={classes.cardRoot}>
-                                <CardActionArea>
-                                    <CardMedia className={classes.cardMedia} image={LetterCake} title="Letter Cake" />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Letter Cake
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Custom letter cake!
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                    <div className="sectionContent" id="cakes" style = {{ marginTop: 10 }}>
+                        <div className={classes.sectionHeader} style={{ textAlign: 'center'}}>Cakes</div>
+                        <Grid container spacing={3} display="flex" justify="center">
+                            <Grid item xs={6} sm={3}>
+                                <Card className={classes.cardRoot}>
+                                    <CardActionArea>
+                                        <CardMedia className={classes.cardMedia} image={NumberCake} title="Number Cake" />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                Number Cake
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Custom number cake!
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Card className={classes.cardRoot}>
+                                    <CardActionArea>
+                                        <CardMedia className={classes.cardMedia} image={LetterCake} title="Letter Cake" />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                Letter Cake
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Custom letter cake!
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
                         </Grid>  
-                    </Grid>
+                    </div>
                     <div className="sectionContent" id="breakableHearts" style = {{ marginTop: 30 }}>
-                        <div className={classes.sectionHeader}>Breakable Hearts</div>
-                        <Grid>
-                            <Card className={classes.cardRoot}>
-                                <CardActionArea>
-                                    <CardMedia className={classes.cardMedia} image={BreakableHeart} title="Breakable Heart" />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Breakable Heart
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Custom breakable heart!
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                        <div className={classes.sectionHeader} style={{ textAlign: 'center'}}>Breakable Hearts</div>
+                        <Grid container spacing={3} display="flex" justify="center">
+                            <Grid item xs={6}>
+                                <Card className={classes.cardRoot}>
+                                    <CardActionArea>
+                                        <CardMedia className={classes.cardMedia} image={BreakableHeart} title="Breakable Heart" />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                Breakable Heart
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Custom breakable heart!
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
                         </Grid>
                     </div>
                     <div className="sectionContent" id="sweetTreats" style = {{ marginTop: 30 }}>
-                        <div className={classes.sectionHeader}>Sweet Treats</div>
-                        <Grid>
-                            <Card className={classes.cardRoot}>
-                                <CardActionArea>
-                                    <CardMedia className={classes.cardMedia} image={CakeHeart} title="Cake Hearts" />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Cake Hearts
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Custom cake hearts!
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card className={classes.cardRoot}>
-                                <CardActionArea>
-                                    <CardMedia className={classes.cardMedia} image={ChocoStraw} title="Chocolate Covered Strawberries" />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Chocolate Covered Strawberries
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            Custom chocolate covered strawberries!
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                        <div className={classes.sectionHeader} style={{ textAlign: 'center'}}>Sweet Treats</div>
+                        <Grid container spacing={3} display="flex" justify="center">
+                            <Grid item xs={6} sm={3}>
+                                <Card className={classes.cardRoot}>
+                                    <CardActionArea>
+                                        <CardMedia className={classes.cardMedia} image={CakeHeart} title="Cake Hearts" />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                Cake Hearts
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Custom cake hearts!
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Card className={classes.cardRoot}>
+                                    <CardActionArea>
+                                        <CardMedia className={classes.cardMedia} image={ChocoStraw} title="Chocolate Covered Strawberries" />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                Chocolate Covered Strawberries
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Custom chocolate covered strawberries!
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>   
                         </Grid>  
                     </div>
 
