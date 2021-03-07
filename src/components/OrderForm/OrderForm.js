@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
         display: 'flex', 
         justifyContent: 'center',
-        fontWeight: 600
+        fontWeight: 600,
+        textAlign: 'center',
+        marginLeft: 10,
+        marginRight: 10
     }
 }));
 
@@ -69,39 +72,47 @@ export default function OrderForm() {
                 <Grid container spacing={1} style = {{ marginTop: 100, marginBottom: 10, justifyContent:'center', alignItems: 'center' }}>
                     <h1>Order Form</h1>
                 </Grid>
+                
                 <div className={classes.root}>
-                    <Stepper activeStep={activeStep}>
-                        { steps.map((label, index) => {
-                                const stepProps = {};
-                                const labelProps = {};
-                                return (
-                                    <Step key={label} {...stepProps}>
-                                        <StepLabel {...labelProps}>{label}</StepLabel>
-                                    </Step>
-                                );
-                            })
-                        }
-                    </Stepper>
-
+                    <Grid container justify="center">
+                        <Stepper activeStep={activeStep}>
+                            { steps.map((label, index) => {
+                                    const stepProps = {};
+                                    const labelProps = {};
+                                    return (
+                                        <Step key={label} {...stepProps}>
+                                            <StepLabel {...labelProps}>{label}</StepLabel>
+                                        </Step>
+                                    );
+                                })
+                            }
+                        </Stepper>
+                    </Grid>
                     <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         { activeStep === steps.length 
                             ? (<div>
                                     <Typography className={classes.instructions}>
-                                        You&apos;re order is completed!
+                                        You&apos;re order is completed! 
+                                        <br/>
+                                        I will confirm the order within 24 hours! 
+                                        <br/>
+                                        Thanks for ordering from Yumfullness!
                                     </Typography>
-                                    <Button href = "/" label = "Submit" variant = "contained" color = "primary" ize = "large"
-                                        style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
-                                        Return Home
-                                    </Button>
+                                    <Grid container justify="center">
+                                        <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
+                                            style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                            Return Home
+                                        </Button>
+                                    </Grid>
                                 </div>) 
                             : (<div>
                                     <Typography className={classes.instructions}>
                                         { getStepContent(activeStep) }
                                     </Typography>
                                     <div className="buttons" style = {{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button} variant="contained">
-                                            Back
-                                        </Button>
+                                            <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button} variant="contained">
+                                                Back
+                                            </Button>
                                         <Button variant="contained" color="primary" onClick={handleNext} className={classes.button}
                                                 style = {{ backgroundColor: "#1976d2", color: "#ffffff" }}>
                                             { activeStep === steps.length - 1 ? 'Order!' : 'Next' }

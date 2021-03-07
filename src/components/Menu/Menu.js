@@ -176,7 +176,7 @@ export default function Menu() {
                     </div>
 
                     <Grid container spacing={1} style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
-                        <Button href = "/" label = "Submit" variant = "contained" color = "primary" size = "large"
+                        <Button href = "/" label = "Submit" variant = "contained" color = "primary" size = "medium"
                                 style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
                             Return Home
                         </Button>

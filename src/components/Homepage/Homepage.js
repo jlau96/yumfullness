@@ -31,9 +31,9 @@ const imageNames = [
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
-        width:"1000px",
+        width:"900px",
         "@media (max-width: 900px)": {
-            width: "500px"
+            width: "400px"
         }
     }
 }));
