@@ -3,7 +3,6 @@ import './Navbar.css';
 import { MenuItems } from './MenuItems';
 import { AppBar, Toolbar, Typography, makeStyles, Button, IconButton, Drawer, Link, MenuItem } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     header: {
@@ -107,7 +106,6 @@ export default function Header() {
         return (
           <Link href={url}
             {...{
-            //   component: RouterLink,
               to: url,
               color: "inherit",
               style: { textDecoration: "none" },
@@ -134,7 +132,6 @@ export default function Header() {
               key: label,
               color: "inherit",
               to: url,
-            //   component: RouterLink,
               className: menuButton
             }}
           >

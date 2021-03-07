@@ -40,7 +40,7 @@ const muiTheme = createMuiTheme({
 });
 
 function getSteps() {
-    return ['Select Treats', 'Order Details', 'Review and Order!'];
+    return ['Select Treats', 'Order Details', 'Review & Order'];
 }
 
 function getStepContent(step) {
@@ -90,7 +90,7 @@ export default function OrderForm() {
                                         You&apos;re order is completed!
                                     </Typography>
                                     <Button href = "/" label = "Submit" variant = "contained" color = "primary" ize = "large"
-                                        style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                        style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
                                         Return Home
                                     </Button>
                                 </div>) 

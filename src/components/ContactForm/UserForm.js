@@ -56,8 +56,6 @@ export class UserForm extends Component {
             default:
                 return <NotFound />;
         }
-
-        return (<div></div>)
     }
 }
 
