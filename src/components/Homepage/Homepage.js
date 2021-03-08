@@ -2,7 +2,6 @@ import React from 'react';
 import { MuiThemeProvider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import ImageGallery from 'react-image-gallery';
 import { Carousel } from 'react-responsive-carousel';
 import AboutMe from './aboutMe.jpg';
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     carousel: {
         width:"900px",
         "@media (max-width: 900px)": {
-            width: "400px"
+            width: "350px"
         }
     }
 }));
@@ -48,8 +47,7 @@ export default function Homepage() {
                     <h1>Homepage</h1>
                 </Grid>
                 <Grid container spacing={1} style = {{ marginTop: 20, marginBottom: 20, justifyContent:'center', alignItems: 'center' }}>
-                    
-                    <Carousel className={classes.carousel} infiniteLoop useKeyboardArrows autoPlay>
+                    <Carousel className={classes.carousel} infiniteLoop useKeyboardArrows autoPlay transitionTime="500">
                         {   
                             imageNames.map((imageName) => {
                                 return (   
@@ -62,7 +60,6 @@ export default function Homepage() {
                             
                         }
                     </Carousel>
-
                 </Grid>
                 <hr/>
                 <Grid container spacing={3} direction="row" style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
@@ -86,43 +83,3 @@ export default function Homepage() {
         </MuiThemeProvider>
     )
 }
-
-// function importAll(r) {
-//     return r.keys().map(r);
-// }
-
-// function getGalleryImages() {
-//     var fileNames = [];
-//     var imageNames = [];
-
-//     // get list of files
-//     var files = importAll(require.context('./galleryImages/', false));
-
-//     // get filenames from files
-//     Object.keys(files).forEach((key) => {
-//         fileNames.push(files[key].default);
-//     });
-
-//     // transform filenames
-//     fileNames.forEach(element => {
-//         var strings = element.replace('/static/media/','').split('.');
-//         imageNames.push(strings[0] + '.jpg');
-//     });   
-//     imageNames = imageNames.sort();
-    
-//     // create images array for image gallery
-//     var images = imageNames.map(function (name) {
-//         return {
-//             original: './galleryImages/' + name,
-//             thumbnail: './galleryImages/' + name
-//         }
-//     })
-//     return images;
-// }
-
-// const images = imageNames.map(name => {
-//     return {
-//         original: './galleryImages/' + name,
-//         thumbnail: './galleryImages/' + name
-//     }
-// })

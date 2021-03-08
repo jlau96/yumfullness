@@ -1,0 +1,12 @@
+root {
+    width: '100%';
+}
+
+.instructions {
+    margin-left: 10;
+    margin-right: 10;
+    display: 'flex';
+    justify-content: 'center';
+    font-weight: 600;
+    text-align: 'center';   
+}
