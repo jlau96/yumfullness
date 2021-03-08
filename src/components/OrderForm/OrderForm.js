@@ -31,13 +31,15 @@ export class OrderForm extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        transferMethod: '',
-        pickupDate: '',
-        pickupTime: '',
-        deliveryDate: '',
+        transferMethod: 'pickUp',
+        pickUpDate: null,
+        pickUpTime: '',
+        pickUpTimeOther: null,
+        deliveryDate: null,
         deliveryTime: '',
+        deliveryTimeOther: null,
         deliveryAddress: '',
-        deliveryState: '',
+        deliveryState: 'none',
         deliveryZip: '',
         paymentMethod: '',
         discoveryMethod: ''
@@ -78,12 +80,18 @@ export class OrderForm extends Component {
     handleChange = (input) => e => {
         this.setState({ [input]: e.target.value });
     }
+
+    handleDateChange = (input) => e => {
+        this.setState({ [input]: e });
+    }
     
     render() {
         const steps = this.getSteps();
 
-        const { activeStep, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, deliveryDate, deliveryTime, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
-        const values = { activeStep, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, deliveryDate, deliveryTime, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod };
+        const { activeStep, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
+                deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
+        const values = { activeStep, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
+                         deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod };
 
         switch(activeStep) {
             case 0:
@@ -188,7 +196,8 @@ export class OrderForm extends Component {
                                     }
                                 </div>
 
-                                <CustomerDetails nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values}/>
+                                <CustomerDetails nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} handleDateChange={this.handleDateChange} 
+                                                 values={values}/>
             
                                 <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
                                     { activeStep === steps.length 
