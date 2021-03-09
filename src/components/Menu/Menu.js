@@ -1,5 +1,5 @@
 import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -17,6 +17,11 @@ import LetterCake from './menuImages/letter_cake.jpg';
 import BreakableHeart from './menuImages/breakable_heart.jpg';
 import CakeHeart from './menuImages/cake_hearts.jpg';
 import ChocoStraw from './menuImages/choco_straw.jpg';
+
+const muiTheme = createMuiTheme({
+    overrides: {
+    }
+});
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -59,7 +64,7 @@ export default function Menu() {
     const classes = useStyles();
 
     return (
-        <MuiThemeProvider>
+        <MuiThemeProvider theme={muiTheme}>
             <React.Fragment>
                 <div className={classes.toolbar}>   
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent: 'center', alignItems: 'center' }}>

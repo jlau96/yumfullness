@@ -1,5 +1,5 @@
 import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Carousel } from 'react-responsive-carousel';
@@ -28,6 +28,11 @@ const imageNames = [
     "assets/galleryImages/17_12_yr_heart.jpg"
 ]
 
+const muiTheme = createMuiTheme({
+    overrides: {
+    }
+});
+
 const useStyles = makeStyles((theme) => ({
     carousel: {
         width:"900px",
@@ -41,7 +46,7 @@ export default function Homepage() {
     const classes = useStyles();
 
     return (
-        <MuiThemeProvider>
+        <MuiThemeProvider theme={muiTheme}>
             <React.Fragment>
                 <Grid container spacing={1} style = {{ marginTop: 90, justifyContent:'center', alignItems: 'center' }}>
                     <h1>Homepage</h1>
@@ -49,9 +54,9 @@ export default function Homepage() {
                 <Grid container spacing={1} style = {{ marginTop: 20, marginBottom: 20, justifyContent:'center', alignItems: 'center' }}>
                     <Carousel className={classes.carousel} infiniteLoop useKeyboardArrows autoPlay transitionTime="500">
                         {   
-                            imageNames.map((imageName) => {
+                            imageNames.map((imageName, key) => {
                                 return (   
-                                    <div className="carouselImg">
+                                    <div className="carouselImg" key={key}>
                                         <img alt="" src={imageName} />
                                         <p>Legend</p>
                                     </div>

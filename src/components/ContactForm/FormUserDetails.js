@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
+
+const muiTheme = createMuiTheme({
+    overrides: {
+    }
+});
 
 export class FormUserDetails extends Component {
     continue = e => {
@@ -17,7 +22,7 @@ export class FormUserDetails extends Component {
         const { values, handleChange } = this.props;
 
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider theme={muiTheme}>
                 <React.Fragment>
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Contact Form</h1>
@@ -38,7 +43,7 @@ export class FormUserDetails extends Component {
                             }}>
                             <Grid item xs={12}>
                                 <TextField 
-                                    id = "outlined-full-width"
+                                    id = "name"
                                     label = "Name"
                                     placeholder = "Enter Full Name"
                                     required
@@ -56,7 +61,7 @@ export class FormUserDetails extends Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField 
-                                    id = "outlined-full-width"
+                                    id = "email"
                                     label = "Email"
                                     placeholder = "Enter Email Address"
                                     required
@@ -73,7 +78,7 @@ export class FormUserDetails extends Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField 
-                                    id = "outlined-full-width"
+                                    id = "subject"
                                     label = "Subject"
                                     placeholder = "Enter Subject"
                                     required
@@ -90,7 +95,7 @@ export class FormUserDetails extends Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField 
-                                    id = "outlined-multiline-static"
+                                    id = "message"
                                     label = "Message"
                                     placeholder = "Enter Message"
                                     required

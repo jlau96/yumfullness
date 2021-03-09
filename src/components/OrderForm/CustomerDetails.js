@@ -118,15 +118,15 @@ export class CustomerDetails extends Component {
                             <Grid item xs={12} style = {{ marginLeft: 15 }}>
                                 <FormControl component="fieldset">
                                     <FormLabel component="legend">Pick-Up or Delivery</FormLabel>
-                                    <RadioGroup aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue='pickUp'>
-                                        <FormControlLabel value="pickUp" control={<Radio color="primary"/>} label="Pick-Up" />
-                                        <FormControlLabel value="delivery" control={<Radio color="primary"/>} label="Delivery" style={{marginTop: -10}}/>
+                                    <RadioGroup aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue="Pick-Up">
+                                        <FormControlLabel value="Pick-Up" control={<Radio color="primary"/>} label="Pick-Up" />
+                                        <FormControlLabel value="Delivery" control={<Radio color="primary"/>} label="Delivery (+$10)" style={{marginTop: -10}}/>
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
                             
                             <div className="transferMethodOptions" style = {{ marginTop: -10, marginBottom: 10 }}>
-                                {   values.transferMethod === 'pickUp'
+                                {   values.transferMethod !== 'Delivery'
                                     ? (<div className="pickUpOptions" style = {{ marginTop: 5 }}>
                                             <Grid item xs={12} style = {{ marginLeft: 12 }}>
                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -149,25 +149,25 @@ export class CustomerDetails extends Component {
                                                     <Grid>
                                                         <InputLabel id="pickUpTime">Pick-Up Time</InputLabel>
                                                     </Grid>
-                                                    <Select id="pickUpTime" label="Pick-Up Time" defaultValue="select" onChange={handleChange('pickUpTime')}
-                                                            MenuProps={{ anchorOrigin: { vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                        <MenuItem value="select" disabled>Select Pick-Up Time</MenuItem>
-                                                        <MenuItem value="10am_11am">10:00am-11:00am</MenuItem>
-                                                        <MenuItem value="11am_12pm">11:00am-12:00pm</MenuItem>
-                                                        <MenuItem value="12pm_1pm">12:00pm-1:00pm</MenuItem>
-                                                        <MenuItem value="1pm_2pm">1:00pm-2:00pm</MenuItem>
-                                                        <MenuItem value="2pm_3pm">2:00pm-3:00pm</MenuItem>
-                                                        <MenuItem value="3pm_4pm">3:00pm-4:00pm</MenuItem>
-                                                        <MenuItem value="4pm_5pm">4:00pm-5:00pm</MenuItem>
-                                                        <MenuItem value="5pm_6pm">5:00pm-6:00pm</MenuItem>
-                                                        <MenuItem value="6pm_7pm">6:00pm-7:00pm</MenuItem>
-                                                        <MenuItem value="7pm_8pm">7:00pm-8:00pm</MenuItem>
-                                                        <MenuItem value="other">Other</MenuItem>
+                                                    <Select id="pickUpTime" label="Pick-Up Time" defaultValue="Select" onChange={handleChange('pickUpTime')}
+                                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                        <MenuItem value="Select" disabled>Select Pick-Up Time</MenuItem>
+                                                        <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
+                                                        <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
+                                                        <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
+                                                        <MenuItem value="1:00pm-2:00pm">1:00pm-2:00pm</MenuItem>
+                                                        <MenuItem value="2:00pm-3:00pm">2:00pm-3:00pm</MenuItem>
+                                                        <MenuItem value="3:00pm-4:00pm">3:00pm-4:00pm</MenuItem>
+                                                        <MenuItem value="4:00pm-5:00pm">4:00pm-5:00pm</MenuItem>
+                                                        <MenuItem value="5:00pm-6:00pm">5:00pm-6:00pm</MenuItem>
+                                                        <MenuItem value="6:00pm-7:00pm">6:00pm-7:00pm</MenuItem>
+                                                        <MenuItem value="7:00pm-8:00pm">7:00pm-8:00pm</MenuItem>
+                                                        <MenuItem value="Other">Other</MenuItem>
                                                     </Select>
                                                 </FormControl>
                                                 <div>
                                                     {
-                                                        values.pickUpTime === 'other'
+                                                        values.pickUpTime === 'Other'
                                                         ? (<TextField 
                                                             id = "pickUpTimeOther"
                                                             label = "Other Pick-Up Time"
@@ -207,23 +207,23 @@ export class CustomerDetails extends Component {
                                         <Grid item xs={12} style = {{ marginTop: 20, marginBottom: -10 }}>
                                             <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275 }}>
                                                 <Grid>
-                                                    <InputLabel id="deliveryTime">Delivery Time</InputLabel>
+                                                    <InputLabel id="deliveryTime">Delivery Time</InputLabel> 
                                                 </Grid>
-                                                <Select id="deliveryTime" label="Delivery Time" defaultValue="select" onChange={handleChange('deliveryTime')}
-                                                        MenuProps={{ anchorOrigin: { vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                    <MenuItem value="select" disabled>Select Delivery Time</MenuItem>
-                                                    <MenuItem value="10am_11am">10:00am-11:00am</MenuItem>
-                                                    <MenuItem value="11am_12pm">11:00am-12:00pm</MenuItem>
-                                                    <MenuItem value="12pm_1pm">12:00pm-1:00pm</MenuItem>
-                                                    <MenuItem value="1pm_2pm">1:00pm-2:00pm</MenuItem>
-                                                    <MenuItem value="2pm_3pm">2:00pm-3:00pm</MenuItem>
-                                                    <MenuItem value="3pm_4pm">3:00pm-4:00pm</MenuItem>
-                                                    <MenuItem value="other">Other</MenuItem>
+                                                <Select id="deliveryTime" label="Delivery Time" defaultValue="Select" onChange={handleChange('deliveryTime')}
+                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                    <MenuItem value="Select" disabled>Select Delivery Time</MenuItem>
+                                                    <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
+                                                    <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
+                                                    <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
+                                                    <MenuItem value="1:00pm-2:00pm">1:00pm-2:00pm</MenuItem>
+                                                    <MenuItem value="2:00pm-3:00pm">2:00pm-3:00pm</MenuItem>
+                                                    <MenuItem value="3:00pm-4:00pm">3:00pm-4:00pm</MenuItem>
+                                                    <MenuItem value="Other">Other</MenuItem>
                                                 </Select>
                                             </FormControl>
                                             <div style = {{ marginTop: 20 }}>
                                                 {
-                                                    values.deliveryTime === 'other'
+                                                    values.deliveryTime === 'Other'
                                                     ? (<TextField 
                                                         id = "deliveryTimeOther"
                                                         label = "Other Delivery Time"
@@ -264,9 +264,9 @@ export class CustomerDetails extends Component {
                                                 <Grid>
                                                     <InputLabel id="deliveryState">Delivery State</InputLabel>
                                                 </Grid>
-                                                <Select id="deliveryState" label="Delivery State" defaultValue="select" onChange={handleChange('deliveryState')}
-                                                        MenuProps={{ anchorOrigin: { vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                    <MenuItem value="select" disabled>Select Delivery State</MenuItem>
+                                                <Select id="deliveryState" label="Delivery State" defaultValue="Select" onChange={handleChange('deliveryState')}
+                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                    <MenuItem value="Select" disabled>Select Delivery State</MenuItem>
                                                     <MenuItem value="DC">District of Columbia (DC)</MenuItem>
                                                     <MenuItem value="MD">Maryland (MD)</MenuItem>
                                                     <MenuItem value="VA">Virginia (VA)</MenuItem>
@@ -300,12 +300,12 @@ export class CustomerDetails extends Component {
                                     <Grid>
                                         <InputLabel id="paymentMethod">Payment Method</InputLabel>
                                     </Grid>
-                                    <Select id="paymentMethod" label="Enter Payment Method" defaultValue="select" onChange={handleChange('paymentMethod')}
-                                            MenuProps={{ anchorOrigin: { vertical: "bottom" }, getContentAnchorEl: null }}>
-                                        <MenuItem value="select" disabled>Select Payment Method</MenuItem>
-                                        <MenuItem value="venmo">Venmo</MenuItem>
-                                        <MenuItem value="zelle">Zelle</MenuItem>
-                                        <MenuItem value="cash">Cash</MenuItem>
+                                    <Select id="paymentMethod" label="Enter Payment Method" defaultValue="Select" onChange={handleChange('paymentMethod')}
+                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                        <MenuItem value="Select" disabled>Select Payment Method</MenuItem>
+                                        <MenuItem value="Venmo">Venmo (Preferred)</MenuItem>
+                                        <MenuItem value="Zelle">Zelle</MenuItem>
+                                        <MenuItem value="Cash">Cash</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>

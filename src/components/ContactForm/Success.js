@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
+const muiTheme = createMuiTheme({
+    overrides: {
+    }
+});
+
 export class Success extends Component {
     render() {
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider theme={muiTheme}>
                 <React.Fragment>
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Contact Form</h1>

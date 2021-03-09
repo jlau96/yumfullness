@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+
+const muiTheme = createMuiTheme({
+    overrides: {
+    }
+});
 
 export class Testimonials extends Component {
     render() {
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider theme={muiTheme}>
                 <React.Fragment>
                     <Grid container spacing={1} style = {{ marginTop: 100, justifyContent:'center', alignItems: 'center' }}>
                         <h1>Testimonials</h1>
