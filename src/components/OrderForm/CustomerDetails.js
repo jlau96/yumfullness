@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme, InputLabel, MenuItem, Typography  } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -8,7 +8,11 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
@@ -40,7 +44,14 @@ export class CustomerDetails extends Component {
         e.preventDefault();
         this.props.prevStep();
     }
-    
+
+    // isValid = (value) => {
+    //     if (!!value) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
     render() {
         const { values, handleChange, handleDateChange } = this.props;
 
@@ -76,6 +87,7 @@ export class CustomerDetails extends Component {
                                     size = "small"
                                     onChange = { handleChange('firstName') }
                                     defaultValue = { values.firstName }
+                                    // error={!this.isValid(values.firstName)}
                                 />
                             </Grid>
                             <Grid item xs={12} style = {{ marginTop: -5 }}>
@@ -84,7 +96,6 @@ export class CustomerDetails extends Component {
                                     label = "Last Name"
                                     placeholder = "Enter Last Name"
                                     required
-                                    autoFocus
                                     margin = "normal"
                                     InputLabelProps={{
                                         shrink: true,
@@ -120,7 +131,7 @@ export class CustomerDetails extends Component {
                                     <FormLabel component="legend">Pick-Up or Delivery</FormLabel>
                                     <RadioGroup aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue="Pick-Up">
                                         <FormControlLabel value="Pick-Up" control={<Radio color="primary"/>} label="Pick-Up" />
-                                        <FormControlLabel value="Delivery" control={<Radio color="primary"/>} label="Delivery (+$10)" style={{marginTop: -10}}/>
+                                        <FormControlLabel value="Delivery" control={<Radio color="primary"/>} label="Nearby Delivery (+$10)" style={{marginTop: -10}}/>
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
@@ -147,11 +158,11 @@ export class CustomerDetails extends Component {
                                             <Grid item xs={12} style = {{ marginTop: 20 }}>
                                                 <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275, marginBottom: 10 }}>
                                                     <Grid>
-                                                        <InputLabel id="pickUpTime">Pick-Up Time</InputLabel>
+                                                        <InputLabel id="pickUpTime">Pick-Up Time Frame</InputLabel>
                                                     </Grid>
-                                                    <Select id="pickUpTime" label="Pick-Up Time" defaultValue="Select" onChange={handleChange('pickUpTime')}
+                                                    <Select id="pickUpTime" label="Pick-Up Time Frame" defaultValue="Select" onChange={handleChange('pickUpTime')}
                                                             MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                        <MenuItem value="Select" disabled>Select Pick-Up Time</MenuItem>
+                                                        <MenuItem value="Select" disabled>Select Pick-Up Time Frame</MenuItem>
                                                         <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
                                                         <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
                                                         <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
@@ -207,11 +218,11 @@ export class CustomerDetails extends Component {
                                         <Grid item xs={12} style = {{ marginTop: 20, marginBottom: -10 }}>
                                             <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275 }}>
                                                 <Grid>
-                                                    <InputLabel id="deliveryTime">Delivery Time</InputLabel> 
+                                                    <InputLabel id="deliveryTime">Delivery Time Frame</InputLabel> 
                                                 </Grid>
-                                                <Select id="deliveryTime" label="Delivery Time" defaultValue="Select" onChange={handleChange('deliveryTime')}
+                                                <Select id="deliveryTime" label="Delivery Time Frame" defaultValue="Select" onChange={handleChange('deliveryTime')}
                                                         MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                    <MenuItem value="Select" disabled>Select Delivery Time</MenuItem>
+                                                    <MenuItem value="Select" disabled>Select Delivery Time Frame</MenuItem>
                                                     <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
                                                     <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
                                                     <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
@@ -296,7 +307,14 @@ export class CustomerDetails extends Component {
 
                             <hr/><br/>
                             <Grid item xs={12}>
-                                <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275, marginBottom: 10 }}>
+                                <Grid style = {{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}>
+                                    <p style = {{ fontWeight: 600, fontSize: '15px' }}>Non-refundable deposit required: </p>
+                                    <List style = {{ fontSize: 5 }}>
+                                        <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Pick-up (Pentagon City): 50% Deposit</Typography>} />
+                                        <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Nearby Delivery (+$10): Full Deposit</Typography>}/>
+                                    </List>
+                                </Grid>
+                                <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275, marginBottom: 10 }}>                                    
                                     <Grid>
                                         <InputLabel id="paymentMethod">Payment Method</InputLabel>
                                     </Grid>

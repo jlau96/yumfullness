@@ -10,6 +10,7 @@ import NotFound from '../NotFound/NotFound';
 import CustomerDetails from './CustomerDetails';
 import { Confirm } from './Confirm';
 import './OrderForm.css'
+import { MenuForm } from './MenuForm';
 
 const muiTheme = createMuiTheme({
     overrides: {
@@ -138,6 +139,8 @@ export class OrderForm extends Component {
                                             </Typography>)
                                     }
                                 </div>
+
+                                <MenuForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
             
                                 <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
                                     { activeStep === steps.length 

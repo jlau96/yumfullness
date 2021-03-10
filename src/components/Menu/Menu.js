@@ -12,11 +12,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Link } from 'react-scroll';
 
-import NumberCake from './menuImages/number_cake.jpg';
-import LetterCake from './menuImages/letter_cake.jpg';
-import BreakableHeart from './menuImages/breakable_heart.jpg';
-import CakeHeart from './menuImages/cake_hearts.jpg';
-import ChocoStraw from './menuImages/choco_straw.jpg';
+import NumberCake from './MenuImages/number_cake.jpg';
+import LetterCake from './MenuImages/letter_cake.jpg';
+import BreakableHeart from './MenuImages/breakable_heart.jpg';
+import CakeHeart from './MenuImages/cake_hearts.jpg';
+import ChocoStraw from './MenuImages/choco_straw.jpg';
 
 const muiTheme = createMuiTheme({
     overrides: {
