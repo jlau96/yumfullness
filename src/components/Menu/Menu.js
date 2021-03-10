@@ -12,7 +12,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Link } from 'react-scroll';
 
-import NumberCake from './MenuImages/number_cake.jpg';
+import NumberCake from './MenuImages/25_number_cake.jpg';
 import LetterCake from './MenuImages/letter_cake.jpg';
 import BreakableHeart from './MenuImages/breakable_heart.jpg';
 import CakeHeart from './MenuImages/cake_hearts.jpg';
