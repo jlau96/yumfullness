@@ -38,13 +38,15 @@ const muiTheme = createMuiTheme({
     }
 });
 
-export class MenuForm extends Component {
+export class MenuForm extends Component {    
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
     }
 
     render() {
+        const { values, handleChange, handleCheckboxChange } = this.props;
+
         return(
             <MuiThemeProvider theme={muiTheme}>
                 <React.Fragment>
@@ -63,118 +65,177 @@ export class MenuForm extends Component {
                             }}
                         >
                             <img alt="" src={SingleLetterCake} style = {{ height: '225px', width: '225px', marginTop: 20, marginLeft: 30, marginBottom: -10, borderRadius: '25px' }}/>
-                            <FormControlLabel control={ <Checkbox onChange={null} color="primary" /> }
+                            <FormControlLabel control={ <Checkbox onChange={handleCheckboxChange('singleCake')} color="primary" /> }
                                               label={<Typography style = {{ marginTop: 20 }}>1 Number/Letter Cake <br/>(or any shape) - $75+</Typography>}
                             />
-                                <RadioGroup style = {{ marginLeft: 35 }}/*aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue="Pick-Up"*/>
-                                    <FormControlLabel value="Strawberry Crunch" control={<Radio color="primary"/>} label="Starberry Crunch" />
-                                    <FormControlLabel value="Oreo" control={<Radio color="primary"/>} label="Oreo" style={{marginTop: -10}} />
-                                    <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
-                                </RadioGroup>
                                 <div>
                                     {
-                                        <TextField 
-                                            placeholder = "Enter Message"
-                                            required
-                                            margin = "normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            variant = "outlined"
-                                            style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
-                                            multiline
-                                            rows = { 3 }
-                                            // onChange = { handleChange('message') }
-                                        />
+                                        values.singleCake === true
+                                        ? (<div>
+                                                <RadioGroup style = {{ marginLeft: 35 }} aria-label="singleCakeType" name="singleCakeType" onChange={handleChange('singleCakeType')}>
+                                                    <FormControlLabel value="Strawberry Crunch" control={<Radio color="primary"/>} label="Starberry Crunch" />
+                                                    <FormControlLabel value="Oreo" control={<Radio color="primary"/>} label="Oreo" style={{marginTop: -10}} />
+                                                    <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
+                                                </RadioGroup>
+                                            <div>
+                                                {
+                                                    values.singleCakeType === 'Other'
+                                                    ? (<TextField 
+                                                        placeholder = "Enter customization"
+                                                        required
+                                                        margin = "normal"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        variant = "outlined"
+                                                        style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
+                                                        multiline
+                                                        rows = { 3 }
+                                                        onChange = { handleChange('singleCakeCustom') }
+                                                    />)
+                                                    : null
+                                                }
+                                            </div>
+                                            </div>)
+                                        : null
                                     }
                                 </div>
-                            
+                                
                             <br/><hr/><br/>
                             <img alt="" src={DoubleNumberCake} style = {{ height: '225px', width: '225px', marginTop: 10, marginLeft: 30, marginBottom: -10, borderRadius: '25px' }}/>
-                            <FormControlLabel control={ <Checkbox onChange={null} color="primary" /> }
+                            <FormControlLabel control={ <Checkbox onChange={handleCheckboxChange('doubleCake')} color="primary" /> }
                                               label={<Typography style = {{ marginTop: 20 }}>2 Number/Letter Cake <br/>(or any shape) - $100+</Typography>}
                             />
-                                <RadioGroup style = {{ marginLeft: 35 }}/*aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue="Pick-Up"*/>
-                                    <FormControlLabel value="Strawberry Crunch" control={<Radio color="primary"/>} label="Starberry Crunch" />
-                                    <FormControlLabel value="Oreo" control={<Radio color="primary"/>} label="Oreo" style={{marginTop: -10}} />
-                                    <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
-                                </RadioGroup>
                                 <div>
                                     {
-                                        <TextField 
-                                            placeholder = "Enter Message"
-                                            required
-                                            margin = "normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            variant = "outlined"
-                                            style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
-                                            multiline
-                                            rows = { 3 }
-                                            // onChange = { handleChange('message') }
-                                        />
+                                        values.doubleCake === true
+                                        ? (<div>
+                                            <RadioGroup style = {{ marginLeft: 35 }} aria-label="doubleCakeType" name="doubleCakeType" onChange={handleChange('doubleCakeType')}>
+                                                <FormControlLabel value="Strawberry Crunch" control={<Radio color="primary"/>} label="Starberry Crunch" />
+                                                <FormControlLabel value="Oreo" control={<Radio color="primary"/>} label="Oreo" style={{marginTop: -10}} />
+                                                <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
+                                            </RadioGroup>
+                                            <div>
+                                                {
+                                                    values.doubleCakeType === 'Other'
+                                                    ? (<TextField 
+                                                        placeholder = "Enter customization"
+                                                        required
+                                                        margin = "normal"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        variant = "outlined"
+                                                        style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
+                                                        multiline
+                                                        rows = { 3 }
+                                                        onChange = { handleChange('doubleCakeCustom') }
+                                                    />)
+                                                    : null                                                    
+                                                }
+                                            </div>
+                                            </div>)
+                                        : null
                                     }
                                 </div>
+                                
                             
                             <br/><hr/><br/>
                             <img alt="" src={BreakableHeart} style = {{ height: '225px', width: '225px', marginTop: 10, marginLeft: 30, marginBottom: -10, borderRadius: '25px' }}/>
-                            <FormControlLabel control={ <Checkbox onChange={null} color="primary" /> }
+                            <FormControlLabel control={ <Checkbox onChange={handleCheckboxChange('breakableHeart')} color="primary" /> }
                                               label={<Typography style = {{ marginTop: 20 }}>Breakable Heart (w/ brownie &#38; pretezel twist filling) - $30+</Typography>}
                             />
-                                <RadioGroup style = {{ marginLeft: 35 }}/*aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue="Pick-Up"*/>
-                                    <FormControlLabel value="Milk Chocolate" control={<Radio color="primary"/>} label="Milk Chocolate" />
-                                    <FormControlLabel value="White Chocolate" control={<Radio color="primary"/>} label="White Chocolate" style={{marginTop: -10}} />
-                                    <FormControlLabel value="Other Color/Customization" control={<Radio color="primary"/>} label="Other Color/Customization" style={{marginTop: -10}}/>
-                                    <FormControlLabel value="Other Filling" control={<Radio color="primary"/>} label="Other Filling" style={{marginTop: -10}}/>
-                                </RadioGroup>
                                 <div>
-                                    {
-                                        <TextField 
-                                            placeholder = "Enter Message"
-                                            required
-                                            margin = "normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            variant = "outlined"
-                                            style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
-                                            multiline
-                                            rows = { 3 }
-                                            // onChange = { handleChange('message') }
-                                        />
+                                    { 
+                                        values.breakableHeart === true
+                                        ? (<div>
+                                            <RadioGroup style = {{ marginLeft: 35 }} aria-label="breakableHeartType" name="breakableHeartType" onChange={handleChange('breakableHeartType')}>
+                                                <FormControlLabel value="Milk Chocolate" control={<Radio color="primary"/>} label="Milk Chocolate" />
+                                                <FormControlLabel value="White Chocolate" control={<Radio color="primary"/>} label="White Chocolate" style={{marginTop: -10}} />
+                                                <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
+                                            </RadioGroup>
+                                            <div>
+                                                {
+                                                    values.breakableHeartType === 'Other'
+                                                    ? (<TextField 
+                                                            placeholder = "Enter other color, filling, or customization"
+                                                            required
+                                                            margin = "normal"
+                                                            InputLabelProps={{
+                                                                shrink: true,
+                                                            }}
+                                                            variant = "outlined"
+                                                            style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
+                                                            multiline
+                                                            rows = { 3 }
+                                                            onChange = { handleChange('breakableHeartCustom') }
+                                                        />)
+                                                    : null
+                                                }
+                                            </div>
+                                            </div>)
+                                        : null
                                     }
                                 </div>
+                                
                             
                             <br/><hr/><br/>
                             <img alt="" src={CakeHeart} style = {{ height: '225px', width: '225px', marginTop: 10, marginLeft: 30, marginBottom: -10, borderRadius: '25px' }}/>
-                            <FormControlLabel control={ <Checkbox onChange={null} color="primary" /> }
+                            <FormControlLabel control={ <Checkbox onChange={handleCheckboxChange('cakeHeart')} color="primary" /> }
                                               label={<Typography>Cake Hearts - 8 for $20</Typography>}
                                               style = {{ marginTop: 10 }}
                             />
-                                <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginBottom: 10 }}>
-                                    <Grid>
-                                        <InputLabel id="chocolateCoating">Chocolate Coating</InputLabel>
-                                    </Grid>
-                                    <Select /*id="pickUpTime" label="Pick-Up Time Frame" defaultValue="Select" onChange={handleChange('pickUpTime')}*/
-                                            /*MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}*/>
-                                        <MenuItem value="Select" disabled>Select Chocolate Coating</MenuItem>
-                                        <MenuItem value="Milk Chocolate">Milk Chocolate</MenuItem>
-                                        <MenuItem value="White Chocolate">White Chocolate</MenuItem>
-                                        <MenuItem value="Other Color">Other Color</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginBottom: 10 }}>
-                                    <Grid>
-                                        <InputLabel id="cakeFilling">Cake Filling</InputLabel>
-                                    </Grid>
-                                    <Select /*id="pickUpTime" label="Pick-Up Time Frame" defaultValue="Select" onChange={handleChange('pickUpTime')}*/
-                                            /*MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}*/>
-                                        <MenuItem value="Select" disabled>Select Cake Filling</MenuItem>
-                                        <MenuItem value="Chocolate Cake">Chocolate Cake</MenuItem>
-                                        <MenuItem value="Confetti Cake">Confetti Cake</MenuItem>
-                                    </Select>
-                                </FormControl>
+                                <div>
+                                    {
+                                        values.cakeHeart === true 
+                                        ? (<div>
+                                            <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 5, marginBottom: 10 }}>
+                                                <Grid>
+                                                    <InputLabel id="chocolateCoating">Chocolate Coating</InputLabel>
+                                                </Grid>
+                                                <Select id="chocolateCoating" label="Chocolate Coating" defaultValue="Select" onChange={handleChange('cakeHeartCoating')}
+                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                    <MenuItem value="Select" disabled>Select Chocolate Coating</MenuItem>
+                                                    <MenuItem value="Milk Chocolate">Milk Chocolate</MenuItem>
+                                                    <MenuItem value="White Chocolate">White Chocolate</MenuItem>
+                                                    <MenuItem value="Other">Other Color</MenuItem>
+                                                </Select>
+                                                <div>
+                                                    {
+                                                        values.cakeHeartCoating === 'Other'
+                                                        ? (<TextField 
+                                                                placeholder = "Enter Color"
+                                                                required
+                                                                margin = "normal"
+                                                                InputLabelProps={{
+                                                                    shrink: true,
+                                                                }}
+                                                                variant = "outlined"
+                                                                style = {{ width: "300px", marginLeft: 0, marginTop: 5 }}
+                                                                rows = { 1 }
+                                                                onChange = { handleChange('cakeHeartCustomCoating') }
+                                                            />)
+                                                        : null
+                                                    }
+                                                </div>
+                                                
+                                            </FormControl>
+                                            <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 5, marginBottom: 10 }}>
+                                                <Grid>
+                                                    <InputLabel id="cakeFilling">Cake Filling</InputLabel>
+                                                </Grid>
+                                                <Select id="cakeFilling" label="Cake Filling" defaultValue="Select" onChange={handleChange("cakeHeartFilling")}
+                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                    <MenuItem value="Select" disabled>Select Cake Filling</MenuItem>
+                                                    <MenuItem value="Chocolate Cake">Chocolate Cake</MenuItem>
+                                                    <MenuItem value="Confetti Cake">Confetti Cake</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                            </div>)
+                                        : null
+                                    }
+                                </div>
+                                
                         </Grid>
                     </Box>
                 </React.Fragment>

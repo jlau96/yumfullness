@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cardMedia: {
         height: 300,
+        width: 300
     }
   }));
 
@@ -72,17 +73,17 @@ export default function Menu() {
                     </Grid>
                     
                     <List className={classes.pageNavBar}>
-                        <ListItem button className={classes.menuItem} key="cakes">
+                        <ListItem button className={classes.menuItem} key="cakes" style = {{ textAlign: 'center' }}>
                             <Link activeClass="active" to="cakes" spy={true} smooth={true} offset={-70} duration={500}>
                                 Cakes
                             </Link>
                         </ListItem>
-                        <ListItem button className={classes.menuItem} key="breakableHearts">
+                        <ListItem button className={classes.menuItem} key="breakableHearts" style = {{ textAlign: 'center' }}>
                             <Link activeClass="active" to="breakableHearts" spy={true} smooth={true} offset={-70} duration={1000}>
                                 Breakable Hearts
                             </Link>
                         </ListItem>
-                        <ListItem button className={classes.menuItem} key="sweetTreats">
+                        <ListItem button className={classes.menuItem} key="sweetTreats" style = {{ textAlign: 'center' }}>
                             <Link activeClass="active" to="sweetTreats" spy={true} smooth={true} offset={-70} duration={1000}>
                                 Sweet Treats
                             </Link>
@@ -91,8 +92,8 @@ export default function Menu() {
 
                     <div className="sectionContent" id="cakes" style = {{ marginTop: 10 }}>
                         <div className={classes.sectionHeader} style={{ textAlign: 'center'}}>Cakes</div>
-                        <Grid container spacing={3} display="flex" justify="center">
-                            <Grid item xs={6} sm={3}>
+                        <Grid container spacing={1} direction="column" display="flex" justify="center" alignItems="center">
+                            <Grid item>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={NumberCake} title="Number Cake" />
@@ -107,7 +108,7 @@ export default function Menu() {
                                     </CardActionArea>
                                 </Card>
                             </Grid>
-                            <Grid item xs={6} sm={3}>
+                            <Grid item>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={LetterCake} title="Letter Cake" />
@@ -126,8 +127,8 @@ export default function Menu() {
                     </div>
                     <div className="sectionContent" id="breakableHearts" style = {{ marginTop: 30 }}>
                         <div className={classes.sectionHeader} style={{ textAlign: 'center'}}>Breakable Hearts</div>
-                        <Grid container spacing={3} display="flex" justify="center">
-                            <Grid item xs={6}>
+                        <Grid container spacing={1} direction="column" display="flex" justify="center" alignItems="center">
+                            <Grid item>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={BreakableHeart} title="Breakable Heart" />
@@ -146,8 +147,8 @@ export default function Menu() {
                     </div>
                     <div className="sectionContent" id="sweetTreats" style = {{ marginTop: 30 }}>
                         <div className={classes.sectionHeader} style={{ textAlign: 'center'}}>Sweet Treats</div>
-                        <Grid container spacing={3} display="flex" justify="center">
-                            <Grid item xs={6} sm={3}>
+                        <Grid container spacing={1} direction="column" display="flex" justify="center" alignItems="center">
+                            <Grid item>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={CakeHeart} title="Cake Hearts" />
@@ -162,7 +163,7 @@ export default function Menu() {
                                     </CardActionArea>
                                 </Card>
                             </Grid>
-                            <Grid item xs={6} sm={3}>
+                            <Grid item>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={ChocoStraw} title="Chocolate Covered Strawberries" />

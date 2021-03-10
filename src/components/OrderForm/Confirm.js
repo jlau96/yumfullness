@@ -50,6 +50,10 @@ export class Confirm extends Component {
                                 borderRadius: "6px"
                             }}
                         >
+                            <h3 style = {{ marginTop: 10, marginBottom: -10 }}>Order Details</h3>
+                            
+                            <br/><hr/>
+                            <h3 style = {{ marginTop: 10, marginBottom: -10 }}>Customer Details</h3>
                             <List>
                                 <ListItemText primary = { "First Name" } secondary = { firstName } style = {{ margin: 15, whiteSpace: 'normal' }} />
                                 <ListItemText primary = { "Last Name" } secondary = { lastName } style = {{ margin: 15, whiteSpace: 'normal' }} />

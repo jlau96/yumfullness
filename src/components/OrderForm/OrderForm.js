@@ -35,6 +35,19 @@ const muiTheme = createMuiTheme({
 export class OrderForm extends Component {
     state = {
         activeStep: 0,
+        singleCake: false,
+        singleCakeType: null,
+        singleCakeCustom: null,
+        doubleCake: false,
+        doubleCakeCustom: null,
+        doubleCakeMsg: null,
+        breakableHeart: false,
+        breakableHeartType: null,
+        breakableHeartCustom: null, 
+        cakeHeart: false,
+        cakeHeartCoating: null,
+        cakeHeartCustomCoating: null,
+        cakeHeartFilling: null,
         firstName: '',
         lastName: '',
         email: '',
@@ -91,13 +104,19 @@ export class OrderForm extends Component {
     handleDateChange = (input) => e => {
         this.setState({ [input]: e });
     }
+
+    handleCheckboxChange = (input) => e => {
+        this.setState({ [input]: e.target.checked });
+    }
     
     render() {
         const steps = this.getSteps();
 
-        const { activeStep, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
+        const { activeStep, singleCake, singleCakeType, singleCakeCustom, doubleCake, doubleCakeType, doubleCakeCustom, breakableHeart, breakableHeartType, breakableHeartCustom, cakeHeart, cakeHeartCoating, 
+                cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
                 deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
-        const values = { activeStep, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
+        const values = { activeStep, singleCake, singleCakeType, singleCakeCustom, doubleCake, doubleCakeType, doubleCakeCustom, breakableHeart, breakableHeartType, breakableHeartCustom, cakeHeart, 
+                         cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
                          deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod };
 
         switch(activeStep) {
@@ -140,7 +159,7 @@ export class OrderForm extends Component {
                                     }
                                 </div>
 
-                                <MenuForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                                <MenuForm nextStep={this.nextStep} handleChange={this.handleChange} handleCheckboxChange={this.handleCheckboxChange} values={values}/>
             
                                 <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
                                     { activeStep === steps.length 
