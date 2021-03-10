@@ -12,7 +12,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Link } from 'react-scroll';
 
-import NumberCake from './MenuImages/25_number_cake.jpg';
+// import NumberCake from './MenuImages/25_number_cake.jpg';
 import LetterCake from './MenuImages/letter_cake.jpg';
 import BreakableHeart from './MenuImages/breakable_heart.jpg';
 import CakeHeart from './MenuImages/cake_hearts.jpg';
@@ -95,7 +95,7 @@ export default function Menu() {
                             <Grid item xs={6} sm={3}>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
-                                        <CardMedia className={classes.cardMedia} image={NumberCake} title="Number Cake" />
+                                        <CardMedia className={classes.cardMedia} image={null} title="Number Cake" />
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 Number Cake
