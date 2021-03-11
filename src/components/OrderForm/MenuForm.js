@@ -82,7 +82,7 @@ export class MenuForm extends Component {
                                                 {
                                                     values.singleCakeFlavor === 'Other'
                                                     ? (<TextField 
-                                                        placeholder = "Enter customization"
+                                                        placeholder = "Enter flavor customization"
                                                         required
                                                         margin = "normal"
                                                         InputLabelProps={{
@@ -90,8 +90,6 @@ export class MenuForm extends Component {
                                                         }}
                                                         variant = "outlined"
                                                         style = {{ width: "250px", marginLeft: 25, marginTop: -2 }}
-                                                        multiline
-                                                        rows = { 3 }
                                                         onChange = { handleChange('singleCakeCustomFlavor') }
                                                         />)
                                                     : null
@@ -140,7 +138,7 @@ export class MenuForm extends Component {
                                                 {
                                                     values.doubleCakeFlavor === 'Other'
                                                     ? (<TextField 
-                                                        placeholder = "Enter customization"
+                                                        placeholder = "Enter flavor customization"
                                                         required
                                                         margin = "normal"
                                                         InputLabelProps={{
@@ -148,8 +146,6 @@ export class MenuForm extends Component {
                                                         }}
                                                         variant = "outlined"
                                                         style = {{ width: "200px", marginLeft: 25, marginTop: -2 }}
-                                                        multiline
-                                                        rows = { 3 }
                                                         onChange = { handleChange('doubleCakeCustomFlavor') }
                                                         />)
                                                     : null                                                    
@@ -207,25 +203,21 @@ export class MenuForm extends Component {
                                                             }}
                                                             variant = "outlined"
                                                             style = {{ width: "225px", marginLeft: 25, marginTop: -2 }}
-                                                            multiline
-                                                            rows = { 3 }
                                                             onChange = { handleChange('breakableHeartCustomColor') }
                                                         />)
                                                     : null
                                                 }
                                             </div>
                                             <TextField 
-                                                label = "Heart Lettering (Optional)"
-                                                placeholder = "Enter lettering on heart"
+                                                label = "Heart Letters (Optional)"
+                                                placeholder = "Enter letters or phrase on heart"
                                                 margin = "normal"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 variant = "outlined"
                                                 style = {{ width: "300px", marginLeft: 25, marginTop: 5 }}
-                                                multiline
-                                                rows = { 3 }
-                                                onChange = { handleChange('breakableHeartLettering') }
+                                                onChange = { handleChange('breakableHeartLetters') }
                                             />
                                             <TextField 
                                                 label = "Other Customization (Optional)"
@@ -256,6 +248,20 @@ export class MenuForm extends Component {
                                     {
                                         values.cakeHeart === true 
                                         ? (<div>
+                                            <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 5, marginBottom: 10 }}>
+                                                <Grid>
+                                                    <InputLabel id="cakeHeartQty">Quantity</InputLabel>
+                                                </Grid>
+                                                <Select id="cakeHeartQty" label="Quantity" defaultValue="Select" onChange={handleChange("cakeHeartQty")}
+                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                    <MenuItem value="Select" disabled>Select Quantity</MenuItem>
+                                                    <MenuItem value="1">1 - 8 Hearts - $20</MenuItem>
+                                                    <MenuItem value="2">2 - 16 Hearts - $38</MenuItem>
+                                                    <MenuItem value="3">3 - 24 Hearts - $55</MenuItem>
+                                                    <MenuItem value="4">4 - 32 Hearts - $70</MenuItem>
+                                                    <MenuItem value="5">5 - 40 Hearts - $85</MenuItem>
+                                                </Select>
+                                            </FormControl>
                                             <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 5, marginBottom: 10 }}>
                                                 <Grid>
                                                     <InputLabel id="chocolateCoating">Chocolate Coating</InputLabel>

@@ -30,8 +30,9 @@ export class Confirm extends Component {
     }
 
     render() {
-        const { values: { firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
-            deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod } } = this.props;
+        const { values: { singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, breakableHeartColor, 
+            breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, 
+            pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod } } = this.props;
 
         return (
             <MuiThemeProvider theme={muiTheme}>
@@ -51,7 +52,62 @@ export class Confirm extends Component {
                             }}
                         >
                             <h3 style = {{ marginTop: 10, marginBottom: -10 }}>Order Details</h3>
-                            
+                            <List>
+                                <div>
+                                    {
+                                        singleCake === true 
+                                        ? (<div>
+                                                <ListItemText primary = { "1 Number/Letter Cake" } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText secondary = { "Flavor: " + (singleCakeFlavor !== 'Other' ? singleCakeFlavor : singleCakeCustomFlavor) } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText  secondary = { "Shape: " + singleCakeShape } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                            </div>)
+                                        : null
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        doubleCake === true
+                                        ? (<div>
+                                                <ListItemText primary = { "2 Numbers/Letters Cake" } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText secondary = { "Flavor: " + (doubleCakeFlavor !== 'Other' ? doubleCakeFlavor : doubleCakeCustomFlavor) } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText  secondary = { "Shape: " + doubleCakeShape } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                            </div>)
+                                        : null
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        breakableHeart === true
+                                        ? (<div>
+                                                <ListItemText primary = { "Breakable Heart" } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText secondary = { "Chocolate: " + (breakableHeartColor !== 'Other' ? breakableHeartColor : breakableHeartCustomColor) } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText  secondary = { "Letters: " + breakableHeartLetters } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                <div>
+                                                    {
+                                                        breakableHeartCustom !== null 
+                                                        ? <ListItemText  secondary = { 'Customization: ' + breakableHeartCustom } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                        : <ListItemText  secondary = { 'No Customization' } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                    }
+                                                </div>
+                                            </div>)
+                                        : null
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        cakeHeart === true
+                                        ? (<div>
+                                                <ListItemText primary = { "Cake Hearts" } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText secondary = { "Quantity" + cakeHeartQty } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText secondary = { "Chocolate: " + (cakeHeartCoating !== 'Other' ? cakeHeartCoating: cakeHeartCustomCoating) } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText  secondary = { "Filling: " + cakeHeartFilling } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
+                                            </div>)
+                                    : null
+                                    }
+                                </div>
+                            </List>
+
+
                             <br/><hr/>
                             <h3 style = {{ marginTop: 10, marginBottom: -10 }}>Customer Details</h3>
                             <List>

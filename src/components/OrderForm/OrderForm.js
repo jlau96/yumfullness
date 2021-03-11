@@ -46,9 +46,10 @@ export class OrderForm extends Component {
         breakableHeart: false,
         breakableHeartColor: null,
         breakableHeartCustomColor: null,
-        breakableHeartLettering: null, 
+        breakableHeartLetters: null, 
         breakableHeartCustom: null, 
         cakeHeart: false,
+        cakeHeartQty: null,
         cakeHeartCoating: null,
         cakeHeartCustomCoating: null,
         cakeHeartFilling: null,
@@ -117,10 +118,10 @@ export class OrderForm extends Component {
         const steps = this.getSteps();
 
         const { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, breakableHeartColor, 
-                breakableHeartCustomColor, breakableHeartLettering, breakableHeartCustom, cakeHeart, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, 
-                pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
+                breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, 
+                transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
         const values = { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, 
-                         breakableHeartColor, breakableHeartCustomColor, breakableHeartLettering, breakableHeartCustom, cakeHeart, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, 
+                         breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, 
                          firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, 
                          paymentMethod, discoveryMethod };
 
@@ -158,10 +159,19 @@ export class OrderForm extends Component {
                                                 <br/>
                                                 Thanks for ordering from Yumfullness!
                                             </Typography>) 
-                                        : (<Typography className='instructions'>
+                                        : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
                                             </Typography>)
                                     }
+                                </div>
+
+                                <div>
+                                    <Typography style = {{ marginLeft: 11, marginRight: 11, marginBottom: 20, fontSize: 12, textAlign: 'center' }}>
+                                        *Items are not made in a gluten-free or nut-free environment*
+                                    </Typography>
+                                    <Typography style = {{ marginLeft: 25, marginRight: 25, marginBottom: 20, fontSize: 12, textAlign: 'center' }}>
+                                        Please reach out if you have any questions about the menu or you need a custom order!
+                                    </Typography>
                                 </div>
 
                                 <MenuForm nextStep={this.nextStep} handleChange={this.handleChange} handleCheckboxChange={this.handleCheckboxChange} values={values}/>
@@ -223,7 +233,7 @@ export class OrderForm extends Component {
                                                 <br/>
                                                 Thanks for ordering from Yumfullness!
                                             </Typography>) 
-                                        : (<Typography className='instructions'>
+                                        : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
                                             </Typography>)
                                     }
@@ -289,7 +299,7 @@ export class OrderForm extends Component {
                                                 <br/>
                                                 Thanks for ordering from Yumfullness!
                                             </Typography>) 
-                                        : (<Typography className='instructions'>
+                                        : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
                                             </Typography>)
                                     }
@@ -353,7 +363,7 @@ export class OrderForm extends Component {
                                                 <br/>
                                                 Thanks for ordering from Yumfullness!
                                             </Typography>) 
-                                        : (<Typography className='instructions'>
+                                        : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
                                             </Typography>)
                                     }
