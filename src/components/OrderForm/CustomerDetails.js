@@ -54,7 +54,7 @@ export class CustomerDetails extends Component {
 
     render() {
         const { values, handleChange, handleDateChange } = this.props;
-
+        console.log(values);
         return (
             <MuiThemeProvider theme={muiTheme}>
                 <React.Fragment>

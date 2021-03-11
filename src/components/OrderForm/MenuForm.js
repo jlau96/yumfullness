@@ -4,8 +4,6 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -22,17 +20,13 @@ const muiTheme = createMuiTheme({
         primary: { main: '#1976d2' }
     },
     overrides: {
-        MuiButtonBase: {
-            color: '#1976d2'
-        },
         MuiInputBase: {
             root: {
                 height: '50px',
                 width: '275px'
             },
             multiline: {
-                height: '75px',
-                width: '225px'
+                height: '75px'
             }
         }
     }
@@ -72,14 +66,21 @@ export class MenuForm extends Component {
                                     {
                                         values.singleCake === true
                                         ? (<div>
-                                                <RadioGroup style = {{ marginLeft: 35 }} aria-label="singleCakeType" name="singleCakeType" onChange={handleChange('singleCakeType')}>
-                                                    <FormControlLabel value="Strawberry Crunch" control={<Radio color="primary"/>} label="Starberry Crunch" />
-                                                    <FormControlLabel value="Oreo" control={<Radio color="primary"/>} label="Oreo" style={{marginTop: -10}} />
-                                                    <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
-                                                </RadioGroup>
+                                                <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
+                                                    <Grid>
+                                                        <InputLabel id="singleCakeFlavor">Cake Flavor</InputLabel>
+                                                    </Grid>
+                                                    <Select id="singleCakeFlavor" label="Single Cake Flavor" defaultValue="Select" onChange={handleChange('singleCakeFlavor')}
+                                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                        <MenuItem value="Select" disabled>Select Cake Flavor</MenuItem>
+                                                        <MenuItem value="Strawberry Crunch">Strawberry Crunch</MenuItem>
+                                                        <MenuItem value="Oreo">Oreo</MenuItem>
+                                                        <MenuItem value="Other">Other Flavor (Customized)</MenuItem>
+                                                    </Select>
+                                                </FormControl>
                                             <div>
                                                 {
-                                                    values.singleCakeType === 'Other'
+                                                    values.singleCakeFlavor === 'Other'
                                                     ? (<TextField 
                                                         placeholder = "Enter customization"
                                                         required
@@ -88,14 +89,27 @@ export class MenuForm extends Component {
                                                             shrink: true,
                                                         }}
                                                         variant = "outlined"
-                                                        style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
+                                                        style = {{ width: "250px", marginLeft: 25, marginTop: -2 }}
                                                         multiline
                                                         rows = { 3 }
-                                                        onChange = { handleChange('singleCakeCustom') }
-                                                    />)
+                                                        onChange = { handleChange('singleCakeCustomFlavor') }
+                                                        />)
                                                     : null
                                                 }
                                             </div>
+                                            <TextField 
+                                                label = "Cake Shape"
+                                                placeholder = "Enter number, letter, or shape"
+                                                required
+                                                margin = "normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                variant = "outlined"
+                                                style = {{ width: "300px", marginLeft: 25, marginTop: 5 }}
+                                                rows = { 1 }
+                                                onChange = { handleChange('singleCakeShape') }
+                                            />
                                             </div>)
                                         : null
                                     }
@@ -110,14 +124,21 @@ export class MenuForm extends Component {
                                     {
                                         values.doubleCake === true
                                         ? (<div>
-                                            <RadioGroup style = {{ marginLeft: 35 }} aria-label="doubleCakeType" name="doubleCakeType" onChange={handleChange('doubleCakeType')}>
-                                                <FormControlLabel value="Strawberry Crunch" control={<Radio color="primary"/>} label="Starberry Crunch" />
-                                                <FormControlLabel value="Oreo" control={<Radio color="primary"/>} label="Oreo" style={{marginTop: -10}} />
-                                                <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
-                                            </RadioGroup>
+                                                <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
+                                                    <Grid>
+                                                        <InputLabel id="doubleCakeFlavor">Cake Flavor</InputLabel>
+                                                    </Grid>
+                                                    <Select id="doubleCakeFlavor" label="Cake Flavor" defaultValue="Select" onChange={handleChange('doubleCakeFlavor')}
+                                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                        <MenuItem value="Select" disabled>Select Cake Flavor</MenuItem>
+                                                        <MenuItem value="Strawberry Crunch">Strawberry Crunch</MenuItem>
+                                                        <MenuItem value="Oreo">Oreo</MenuItem>
+                                                        <MenuItem value="Other">Other Flavor (Customized)</MenuItem>
+                                                    </Select>
+                                                </FormControl>
                                             <div>
                                                 {
-                                                    values.doubleCakeType === 'Other'
+                                                    values.doubleCakeFlavor === 'Other'
                                                     ? (<TextField 
                                                         placeholder = "Enter customization"
                                                         required
@@ -126,14 +147,27 @@ export class MenuForm extends Component {
                                                             shrink: true,
                                                         }}
                                                         variant = "outlined"
-                                                        style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
+                                                        style = {{ width: "200px", marginLeft: 25, marginTop: -2 }}
                                                         multiline
                                                         rows = { 3 }
-                                                        onChange = { handleChange('doubleCakeCustom') }
-                                                    />)
+                                                        onChange = { handleChange('doubleCakeCustomFlavor') }
+                                                        />)
                                                     : null                                                    
                                                 }
                                             </div>
+                                            <TextField 
+                                                label = "Cake Shape"
+                                                placeholder = "Enter number, letter, or shape"
+                                                required
+                                                margin = "normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                variant = "outlined"
+                                                style = {{ width: "300px", marginLeft: 25, marginTop: 5 }}
+                                                rows = { 1 }
+                                                onChange = { handleChange('doubleCakeShape') }
+                                            />
                                             </div>)
                                         : null
                                     }
@@ -149,30 +183,63 @@ export class MenuForm extends Component {
                                     { 
                                         values.breakableHeart === true
                                         ? (<div>
-                                            <RadioGroup style = {{ marginLeft: 35 }} aria-label="breakableHeartType" name="breakableHeartType" onChange={handleChange('breakableHeartType')}>
-                                                <FormControlLabel value="Milk Chocolate" control={<Radio color="primary"/>} label="Milk Chocolate" />
-                                                <FormControlLabel value="White Chocolate" control={<Radio color="primary"/>} label="White Chocolate" style={{marginTop: -10}} />
-                                                <FormControlLabel value="Other" control={<Radio color="primary"/>} label="Other (Customized)" style={{marginTop: -10}}/>
-                                            </RadioGroup>
+                                                <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
+                                                    <Grid>
+                                                        <InputLabel id="breakableHeartColor">Heart Chocolate</InputLabel>
+                                                    </Grid>
+                                                    <Select id="breakableHeartColor" label="Heart Chocolate" defaultValue="Select" onChange={handleChange('breakableHeartColor')}
+                                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                                        <MenuItem value="Select" disabled>Select Heart Chocolate</MenuItem>
+                                                        <MenuItem value="Milk Chocolate">Milk Chocolate</MenuItem>
+                                                        <MenuItem value="White Chocolate">White Chocolate</MenuItem>
+                                                        <MenuItem value="Other">Other Color Chocolate</MenuItem>
+                                                    </Select>
+                                                </FormControl>
                                             <div>
                                                 {
-                                                    values.breakableHeartType === 'Other'
+                                                    values.breakableHeartColor === 'Other'
                                                     ? (<TextField 
-                                                            placeholder = "Enter other color, filling, or customization"
+                                                            placeholder = "Enter chocolate color"
                                                             required
                                                             margin = "normal"
                                                             InputLabelProps={{
                                                                 shrink: true,
                                                             }}
                                                             variant = "outlined"
-                                                            style = {{ width: "225px", marginLeft: 60, marginTop: -2 }}
+                                                            style = {{ width: "225px", marginLeft: 25, marginTop: -2 }}
                                                             multiline
                                                             rows = { 3 }
-                                                            onChange = { handleChange('breakableHeartCustom') }
+                                                            onChange = { handleChange('breakableHeartCustomColor') }
                                                         />)
                                                     : null
                                                 }
                                             </div>
+                                            <TextField 
+                                                label = "Heart Lettering (Optional)"
+                                                placeholder = "Enter lettering on heart"
+                                                margin = "normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                variant = "outlined"
+                                                style = {{ width: "300px", marginLeft: 25, marginTop: 5 }}
+                                                multiline
+                                                rows = { 3 }
+                                                onChange = { handleChange('breakableHeartLettering') }
+                                            />
+                                            <TextField 
+                                                label = "Other Customization (Optional)"
+                                                placeholder = "Enter customization (filling, decoration, theme, etc.)"
+                                                margin = "normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                variant = "outlined"
+                                                style = {{ width: "300px", marginLeft: 25, marginTop: 5 }}
+                                                multiline
+                                                rows = { 3 }
+                                                onChange = { handleChange('breakableHeartCustom') }
+                                            />
                                             </div>)
                                         : null
                                     }

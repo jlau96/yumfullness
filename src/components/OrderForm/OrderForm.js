@@ -36,13 +36,17 @@ export class OrderForm extends Component {
     state = {
         activeStep: 0,
         singleCake: false,
-        singleCakeType: null,
-        singleCakeCustom: null,
+        singleCakeFlavor: null,
+        singleCakeCustomFlavor: null,
+        singleCakeShape: null,
         doubleCake: false,
-        doubleCakeCustom: null,
-        doubleCakeMsg: null,
+        doubleCakeFlavor: null,
+        doubleCakeCustomFlavor: null,
+        doubleCakeShape: null,
         breakableHeart: false,
-        breakableHeartType: null,
+        breakableHeartColor: null,
+        breakableHeartCustomColor: null,
+        breakableHeartLettering: null, 
         breakableHeartCustom: null, 
         cakeHeart: false,
         cakeHeartCoating: null,
@@ -112,12 +116,13 @@ export class OrderForm extends Component {
     render() {
         const steps = this.getSteps();
 
-        const { activeStep, singleCake, singleCakeType, singleCakeCustom, doubleCake, doubleCakeType, doubleCakeCustom, breakableHeart, breakableHeartType, breakableHeartCustom, cakeHeart, cakeHeartCoating, 
-                cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
-                deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
-        const values = { activeStep, singleCake, singleCakeType, singleCakeCustom, doubleCake, doubleCakeType, doubleCakeCustom, breakableHeart, breakableHeartType, breakableHeartCustom, cakeHeart, 
-                         cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
-                         deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod };
+        const { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, breakableHeartColor, 
+                breakableHeartCustomColor, breakableHeartLettering, breakableHeartCustom, cakeHeart, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, transferMethod, 
+                pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
+        const values = { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, 
+                         breakableHeartColor, breakableHeartCustomColor, breakableHeartLettering, breakableHeartCustom, cakeHeart, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, 
+                         firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, 
+                         paymentMethod, discoveryMethod };
 
         switch(activeStep) {
             case 0:
