@@ -83,6 +83,8 @@ export class OrderForm extends Component {
                 return 'Enter order information';
             case 2:
                 return 'Review and order';
+            case 3:
+                return 'Order is complete!';
             default:
                 return 'Unknown Step';
         }
@@ -90,9 +92,14 @@ export class OrderForm extends Component {
 
     nextStep = () => {
         const { activeStep } = this.state;
+        if (activeStep === 2) {
+            // TODO: LOGIC TO SUBMIT!
+            console.log("SUBMIT!");
+        }
         this.setState({
             activeStep: activeStep + 1
         });
+        
     }
 
     prevStep = () => {

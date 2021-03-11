@@ -35,16 +35,6 @@ const muiTheme = createMuiTheme({
 });
 
 export class CustomerDetails extends Component {
-    continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    }
-
-    back = e => {
-        e.preventDefault();
-        this.props.prevStep();
-    }
-
     // isValid = (value) => {
     //     if (!!value) {
     //         return true;
@@ -54,7 +44,7 @@ export class CustomerDetails extends Component {
 
     render() {
         const { values, handleChange, handleDateChange } = this.props;
-        console.log(values);
+
         return (
             <MuiThemeProvider theme={muiTheme}>
                 <React.Fragment>

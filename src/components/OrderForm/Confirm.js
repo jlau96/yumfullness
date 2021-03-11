@@ -12,18 +12,9 @@ const muiTheme = createMuiTheme({
     }
 });
 
+const CAKE_HEARTS_PER_ORDER = 8;
+
 export class Confirm extends Component {
-
-    continue = e => {
-        e.preventDefault();
-        /* LOGIC TO PROCESS FORM - SEND DATA TO API */
-        this.props.nextStep();
-    }
-
-    back = e => {
-        e.preventDefault();
-        this.props.prevStep();
-    }
 
     toDateStr = (date) => {
         return Moment(date).format("dddd, MMMM DD, YYYY");
@@ -98,7 +89,7 @@ export class Confirm extends Component {
                                         cakeHeart === true
                                         ? (<div>
                                                 <ListItemText primary = { "Cake Hearts" } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
-                                                <ListItemText secondary = { "Quantity" + cakeHeartQty } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                <ListItemText secondary = { "Quantity: " + cakeHeartQty*CAKE_HEARTS_PER_ORDER + " Hearts" } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
                                                 <ListItemText secondary = { "Chocolate: " + (cakeHeartCoating !== 'Other' ? cakeHeartCoating: cakeHeartCustomCoating) } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
                                                 <ListItemText  secondary = { "Filling: " + cakeHeartFilling } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
                                             </div>)

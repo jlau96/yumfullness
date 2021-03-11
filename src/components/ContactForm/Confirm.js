@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -7,16 +6,34 @@ import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
+import emailjs from 'emailjs-com';
 
 const muiTheme = createMuiTheme({
     overrides: {
     }
 });
 
+const emailJsKeys = {
+    USER_ID: 'user_LysXNUTBkPlLzkuwiEVB3',
+    TEMPLATE_ID: 'yumfullness_contact_form'
+}
+
+
 export class Confirm extends Component {
-    continue = e => {
+    
+    submit = e => {
         e.preventDefault();
-        /* LOGIC TO PROCESS FORM - SEND DATA TO API */
+
+        const { values: { name, email, subject, message } } = this.props;
+        var params = { name: name, email: email, subject: subject, message: message }
+
+        emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, params, emailJsKeys.USER_ID)
+            .then(function(response) {
+                console.log("Contact form email successfully sent!", response.status, response.text);
+            }, function(error) {
+                console.log("Contact form email failed to send...", error);
+            });
+
         this.props.nextStep();
     }
 
@@ -70,7 +87,7 @@ export class Confirm extends Component {
                                     color = "primary"
                                     size = "large"
                                     style = {{ margin: 15, backgroundColor: "#1976d2", color: "#ffffff"  }}
-                                    onClick = { this.continue }>
+                                    onClick = { this.submit }>
                                     Submit
                                 </Button>
                             </ButtonGroup>
