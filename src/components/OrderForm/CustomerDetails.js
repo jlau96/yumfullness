@@ -108,10 +108,27 @@ export class CustomerDetails extends Component {
                                         shrink: true,
                                     }}
                                     variant = "outlined"
-                                    style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
+                                    style = {{ marginLeft: 12, width: 275  }}
                                     size = "small"
                                     onChange = { handleChange('email') }
                                     defaultValue = { values.email }
+                                />
+                            </Grid>
+                            <Grid item xs={12} style = {{ marginTop: -5 }}>
+                                <TextField 
+                                    id = "phone"
+                                    label = "Phone (###-###-####)"
+                                    placeholder = "Enter Phone Number"
+                                    required
+                                    margin = "normal"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    variant = "outlined"
+                                    style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
+                                    size = "small"
+                                    onChange = { handleChange('phone') }
+                                    defaultValue = { values.phone }
                                 />
                             </Grid>
                             <hr/><br/>
@@ -260,6 +277,23 @@ export class CustomerDetails extends Component {
                                                 defaultValue = { values.deliveryAddress }
                                             />
                                         </Grid>
+                                        <Grid item xs={12} style = {{ marginTop: 0 }}>
+                                            <TextField 
+                                                id = "deliveryCity"
+                                                label = "Delivery City"
+                                                placeholder = "Enter Delivery City"
+                                                required
+                                                margin = "normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                variant = "outlined"
+                                                style = {{ marginLeft: 12, width: 275 }}
+                                                size = "small"
+                                                onChange = { handleChange('deliveryCity') }
+                                                defaultValue = { values.deliveryCity }
+                                            />
+                                        </Grid>
                                         <Grid item xs={12} style = {{ marginTop: 20 }}>
                                             <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275 }}>
                                                 <Grid>
@@ -308,7 +342,7 @@ export class CustomerDetails extends Component {
                                     <Grid>
                                         <InputLabel id="paymentMethod">Payment Method</InputLabel>
                                     </Grid>
-                                    <Select id="paymentMethod" label="Enter Payment Method" defaultValue="Select" onChange={handleChange('paymentMethod')}
+                                    <Select id="paymentMethod" label="Enter Payment Method" defaultValue="Select" onChange={handleChange('paymentMethod')} required
                                             MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
                                         <MenuItem value="Select" disabled>Select Payment Method</MenuItem>
                                         <MenuItem value="Venmo">Venmo (Preferred)</MenuItem>

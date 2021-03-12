@@ -11,6 +11,8 @@ import CustomerDetails from './CustomerDetails';
 import { Confirm } from './Confirm';
 import './OrderForm.css'
 import { MenuForm } from './MenuForm';
+import emailjs from 'emailjs-com';
+import Moment from 'moment';
 
 const muiTheme = createMuiTheme({
     overrides: {
@@ -32,43 +34,54 @@ const muiTheme = createMuiTheme({
     }
 });
 
+const emailJsKeys = {
+    USER_ID: 'user_LysXNUTBkPlLzkuwiEVB3',
+    TEMPLATE_ID: 'yumfullness_order_form'
+}
+
 export class OrderForm extends Component {
     state = {
         activeStep: 0,
         singleCake: false,
-        singleCakeFlavor: null,
+        singleCakeFlavor: "Select",
         singleCakeCustomFlavor: null,
         singleCakeShape: null,
+        singleCakeComments: null,
         doubleCake: false,
-        doubleCakeFlavor: null,
+        doubleCakeFlavor: "Select",
         doubleCakeCustomFlavor: null,
         doubleCakeShape: null,
+        doubleCakeComments: null,
         breakableHeart: false,
-        breakableHeartColor: null,
+        breakableHeartColor: "Select",
         breakableHeartCustomColor: null,
         breakableHeartLetters: null, 
         breakableHeartCustom: null, 
+        breakableHeartComments: null,
         cakeHeart: false,
-        cakeHeartQty: null,
-        cakeHeartCoating: null,
+        cakeHeartQty: "Select",
+        cakeHeartCoating: "Select",
         cakeHeartCustomCoating: null,
-        cakeHeartFilling: null,
-        firstName: '',
-        lastName: '',
-        email: '',
+        cakeHeartFilling: "Select",
+        cakeHeartLetters: null,
+        cakeHeartComments: null, 
+        firstName: null,
+        lastName: null,
+        email: null,
+        phone: null,
         transferMethod: 'pickUp',
         pickUpDate: null,
-        pickUpTime: '',
+        pickUpTime: null,
         pickUpTimeOther: null,
         deliveryDate: null,
-        deliveryTime: '',
+        deliveryTime: null,
         deliveryTimeOther: null,
-        deliveryAddress: '',
-        deliveryState: 'none',
-        deliveryZip: '',
-        paymentMethod: '',
-        discoveryMethod: ''
-
+        deliveryAddress: null,
+        deliveryCity: null, 
+        deliveryState: null,
+        deliveryZip: null,
+        paymentMethod: null,
+        discoveryMethod: null
     }
 
     getSteps = () => {
@@ -90,11 +103,11 @@ export class OrderForm extends Component {
         }
     }
 
-    nextStep = () => {
+    nextStep = e => {
         const { activeStep } = this.state;
         if (activeStep === 2) {
-            // TODO: LOGIC TO SUBMIT!
-            console.log("SUBMIT!");
+            e.preventDefault();
+            this.submit();
         }
         this.setState({
             activeStep: activeStep + 1
@@ -110,6 +123,7 @@ export class OrderForm extends Component {
     }
 
     handleChange = (input) => e => {
+        e.preventDefault();
         this.setState({ [input]: e.target.value });
     }
 
@@ -120,16 +134,78 @@ export class OrderForm extends Component {
     handleCheckboxChange = (input) => e => {
         this.setState({ [input]: e.target.checked });
     }
+
+    toDateStr = (date) => {
+        return Moment(date).format("dddd, MMMM DD, YYYY");
+    }
+
+    submit = () => {
+        const values = this.state;
+        const CAKE_HEARTS_PER_ORDER = 8;
+
+        var orderValues = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phone: values.phone,
+            transferMethod: values.transferMethod,
+            pickUpDate: values.transferMethod === "Pick-Up" ? this.toDateStr(values.pickUpDate) : "N/A",
+            pickUpTime: values.transferMethod === "Pick-Up" ? values.pickUpTime : "N/A",
+            pickUpTimeOther: values.pickUpTime === "Other" ? values.pickUpTimeOther : "N/A",
+            deliveryDate: values.transferMethod === "Delivery" ? this.toDateStr(values.deliveryDate) : "N/A",
+            deliveryTime: values.transferMethod === "Delivery" ? values.deliveryTime : "N/A",
+            deliveryAddress: values.transferMethod === "Delivery" ? (values.deliveryAddress + ", " + values.deliveryState + "," + values.deliveryState + " " + values.deliveryZip) : "N/A",
+            paymentMethod: values.paymentMethod,
+            discoveryMethod: values.discoveryMethod, 
+            singleCake: values.singleCake === true ? "ORDERED" : "NOT ORDERED",
+            singleCakeFlavor: values.singleCakeFlavor !== null ? (values.singleCakeFlavor !== "Select" ? values.singleCakeFlavor : "N/A") : "N/A",
+            singleCakeCustomFlavor: values.singleCakeCustomFlavor !== null ? values.singleCakeCustomFlavor : "N/A",
+            singleCakeShape: values.singleCakeShape !== null ? values.singleCakeShape : "N/A",
+            singleCakeComments: values.singleCakeComments !== null ? values.singleCakeComments: "N/A", 
+            doubleCake: values.doubleCake === true ? "ORDERED": "NOT ORDERED",
+            doubleCakeFlavor: values.doubleCakeFlavor !== null ? (values.doubleCakeFlavor !== "Select" ? values.doubleCakeFlavor : "N/A") : "N/A",
+            doubleCakeCustomFlavor: values.doubleCakeCustomFlavor != null ? values.doubleCakeCustomFlavor : "N/A",
+            doubleCakeShape: values.doubleCakeShape !== null ? values.doubleCakeShape : "N/A",
+            doubleCakeComments: values.doubleCakeComments !== null ? values.doubleCakeComments : "N/A", 
+            breakableHeart: values.breakableHeart === true ? "ORDERED" : "NOT ORDERED",
+            breakableHeartColor: values.breakableHeartColor !== null ? (values.breakableHeartColor !== "Select" ? values.breakableHeartColor : "N/A") : "N/A",
+            breakableHeartCustomColor: values.breakableHeartCustomColor !== null ? values.breakableHeartCustomColor : "N/A",
+            breakableHeartLetters: values.breakableHeartLetters !== null ? values.breakableHeartLetters : "N/A",
+            breakableHeartCustom: values.breakableHeartCustom !== null ? values.breakableHeartCustom : "N/A",
+            breakableHeartComments: values.breakableHeartComments !== null ? values.breakableHeartComments : "N/A", 
+            cakeHeart: values.cakeHeart === true ? "ORDERED" : "NOT ORDERED",
+            cakeHeartQty: values.cakeHeartQty !== null ? (values.cakeHeartQty !== "Select" ? values.cakeHeartQty*CAKE_HEARTS_PER_ORDER : "N/A") : "N/A",
+            cakeHeartCoating: values.cakeHeartCoating !== null ? (values.cakeHeartCoating !== "Select" ? values.cakeHeartCoating : "N/A") : "N/A",
+            cakeHeartCustomCoating: values.cakeHeartCustomCoating !== null ? values.cakeHeartCustomCoating : "N/A",
+            cakeHeartFilling: values.cakeHeartFilling !== null ? (values.cakeHeartFilling !== "Select" ? values.cakeHeartFilling : "N/A") : "N/A",
+            cakeHeartLetters: values.cakeHeartLetters !== null ? values.cakeHeartLetters : "N/A",
+            cakeHeartComments: values.cakeHeartComments !== null ? values.cakeHeartComments : "N/A"     
+        }
+
+        // emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, orderValues, emailJsKeys.USER_ID)
+        //     .then(function(response) {
+        //         console.log("Order form email successfully sent!", response.status, response.text);
+        //     }, function(error) {
+        //         console.log("Order form email failed to send...", error);
+        //     });
+    }
     
     render() {
         const steps = this.getSteps();
 
-        const { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, breakableHeartColor, 
-                breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, firstName, lastName, email, 
-                transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
-        const values = { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, breakableHeart, 
-                         breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, 
-                         firstName, lastName, email, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, deliveryAddress, deliveryState, deliveryZip, 
+        const { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, singleCakeComments,
+                doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, doubleCakeComments,
+                breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
+                cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartLetters, cakeHeartComments, 
+                firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
+                deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
+
+        const values = { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, singleCakeComments, 
+                         doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, doubleCakeComments, 
+                         breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
+                         cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartComments, 
+                         cakeHeartLetters, firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
+                         deliveryTimeOther, deliveryAddress, deliveryCity, deliveryState, deliveryZip, 
                          paymentMethod, discoveryMethod };
 
         switch(activeStep) {
@@ -173,11 +249,8 @@ export class OrderForm extends Component {
                                 </div>
 
                                 <div>
-                                    <Typography style = {{ marginLeft: 11, marginRight: 11, marginBottom: 20, fontSize: 12, textAlign: 'center' }}>
-                                        *Items are not made in a gluten-free or nut-free environment*
-                                    </Typography>
-                                    <Typography style = {{ marginLeft: 25, marginRight: 25, marginBottom: 20, fontSize: 12, textAlign: 'center' }}>
-                                        Please reach out if you have any questions about the menu or you need a custom order!
+                                    <Typography style = {{ marginLeft: 25, marginRight: 25, marginBottom: 20, fontSize: 15, textAlign: 'center' }}>
+                                        Please reach out if you have any questions about the menu or need a custom order!
                                     </Typography>
                                 </div>
 

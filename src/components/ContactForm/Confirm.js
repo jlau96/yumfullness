@@ -18,16 +18,12 @@ const emailJsKeys = {
     TEMPLATE_ID: 'yumfullness_contact_form'
 }
 
-
 export class Confirm extends Component {
     
     submit = e => {
         e.preventDefault();
 
-        const { values: { name, email, subject, message } } = this.props;
-        var params = { name: name, email: email, subject: subject, message: message }
-
-        emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, params, emailJsKeys.USER_ID)
+        emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, this.props.values, emailJsKeys.USER_ID)
             .then(function(response) {
                 console.log("Contact form email successfully sent!", response.status, response.text);
             }, function(error) {
@@ -64,8 +60,7 @@ export class Confirm extends Component {
                                 minHeight: "300px",
                                 padding: "5px 20px 30px 20px",
                                 borderRadius: "6px"
-                            }}
-                        >
+                            }} >
                             <List>
                                 <ListItemText primary = { "Name" } secondary = { name } style = {{ margin: 15, whiteSpace: 'normal' }} />
                                 <ListItemText primary = { "Email" } secondary = { email } style = {{ margin: 15, whiteSpace: 'normal' }} />
