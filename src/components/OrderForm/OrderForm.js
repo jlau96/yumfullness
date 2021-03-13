@@ -13,6 +13,7 @@ import './OrderForm.css'
 import { MenuForm } from './MenuForm';
 import emailjs from 'emailjs-com';
 import Moment from 'moment';
+import InstagramSticker from './follow_me_instagram.jpg';
 
 const muiTheme = createMuiTheme({
     overrides: {
@@ -238,9 +239,15 @@ export class OrderForm extends Component {
                                         ? (<Typography className='instructions'>
                                                 You&apos;re order is completed! 
                                                 <br/>
-                                                I will confirm the order within 24 hours! 
                                                 <br/>
-                                                Thanks for ordering from Yumfullness!
+                                                I will confirm the order within 24 hours. 
+                                                <br/>
+                                                <br/>
+                                                Thanks for ordering from Yumfullness.
+                                                <br/>
+                                                I am excited to share my treats with you.
+                                                <br/>
+                                                Talk to you soon!
                                             </Typography>) 
                                         : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
@@ -249,7 +256,7 @@ export class OrderForm extends Component {
                                 </div>
 
                                 <div>
-                                    <Typography style = {{ marginLeft: 25, marginRight: 25, marginBottom: 20, fontSize: 15, textAlign: 'center' }}>
+                                    <Typography className="instructions" style = {{ marginLeft: 25, marginRight: 25, marginBottom: 20, fontSize: 14 }}>
                                         Please reach out if you have any questions about the menu or need a custom order!
                                     </Typography>
                                 </div>
@@ -260,7 +267,7 @@ export class OrderForm extends Component {
                                     { activeStep === steps.length 
                                         ? (<Grid container justify="center">
                                                 <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
                                                     Return Home
                                                 </Button>
                                             </Grid>) 
@@ -309,9 +316,15 @@ export class OrderForm extends Component {
                                         ? (<Typography classes='instructions'>
                                                 You&apos;re order is completed! 
                                                 <br/>
-                                                I will confirm the order within 24 hours! 
                                                 <br/>
-                                                Thanks for ordering from Yumfullness!
+                                                I will confirm the order within 24 hours. 
+                                                <br/>
+                                                <br/>
+                                                Thanks for ordering from Yumfullness.
+                                                <br/>
+                                                I am excited to share my treats with you.
+                                                <br/>
+                                                Talk to you soon!
                                             </Typography>) 
                                         : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
@@ -326,7 +339,7 @@ export class OrderForm extends Component {
                                     { activeStep === steps.length 
                                         ? (<Grid container justify="center">
                                                 <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
                                                     Return Home
                                                 </Button>
                                             </Grid>) 
@@ -375,9 +388,15 @@ export class OrderForm extends Component {
                                         ? (<Typography className='instructions'>
                                                 You&apos;re order is completed! 
                                                 <br/>
-                                                I will confirm the order within 24 hours! 
                                                 <br/>
-                                                Thanks for ordering from Yumfullness!
+                                                I will confirm the order within 24 hours. 
+                                                <br/>
+                                                <br/>
+                                                Thanks for ordering from Yumfullness.
+                                                <br/>
+                                                I am excited to share my treats with you.
+                                                <br/>
+                                                Talk to you soon!
                                             </Typography>) 
                                         : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
@@ -391,7 +410,7 @@ export class OrderForm extends Component {
                                     { activeStep === steps.length 
                                         ? (<Grid container justify="center">
                                                 <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
                                                     Return Home
                                                 </Button>
                                             </Grid>) 
@@ -436,13 +455,25 @@ export class OrderForm extends Component {
             
                                 <div style = {{ marginBottom: 20, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     { activeStep === steps.length 
-                                        ? (<Typography className='instructions'>
-                                                You&apos;re order is completed! 
-                                                <br/>
-                                                I will confirm the order within 24 hours! 
-                                                <br/>
-                                                Thanks for ordering from Yumfullness!
-                                            </Typography>) 
+                                        ? (<div>
+                                                <Typography className='instructions' fontWeight="600px">
+                                                    You&apos;re order is completed!
+                                                </Typography> 
+                                                <Typography className="instructions">
+                                                    <br/>
+                                                    I will confirm the order within 24 hours. 
+                                                    <br/>
+                                                    <br/>
+                                                    Thanks for ordering from Yumfullness.
+                                                    <br/>
+                                                    I am excited to share my treats with you.
+                                                    <br/>
+                                                    Talk to you soon!
+                                                </Typography>
+                                                <Grid style = {{ display: 'flex', justifyContent: 'center', marginTop: 10 }}> 
+                                                    <a href="https://www.instagram.com/yumfullness/"><img src={InstagramSticker} alt="" style = {{ width:'175px' }} /></a>
+                                                </Grid>
+                                            </div>) 
                                         : (<Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                 { this.getStepContent(activeStep) }
                                             </Typography>)
@@ -453,7 +484,7 @@ export class OrderForm extends Component {
                                     { activeStep === steps.length 
                                         ? (<Grid container justify="center">
                                                 <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, marginLeft: 20, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
                                                     Return Home
                                                 </Button>
                                             </Grid>) 
@@ -474,9 +505,7 @@ export class OrderForm extends Component {
                 )
             default:
                 return <NotFound />
-        }
-
-        
+        } 
     }
     
 }

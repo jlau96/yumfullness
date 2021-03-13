@@ -66,7 +66,9 @@ export default function Homepage() {
                         }
                     </Carousel>
                 </Grid>
-                <hr/>
+                <div style = {{ display: "flex", justifyContent: "center" }} > 
+                    <hr width="300px"/>
+                </div>
                 <Grid container spacing={3} direction="row" style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
                     <Grid container item sm alignItems="center" justify="center" direction="column">
                         <h1 style = {{ marginBottom: 10, textAlign: "center"}}>About Me</h1>

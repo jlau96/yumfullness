@@ -332,8 +332,8 @@ export class CustomerDetails extends Component {
                             <hr/><br/>
                             <Grid item xs={12}>
                                 <Grid style = {{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}>
-                                    <p style = {{ fontWeight: 600, fontSize: '15px' }}>Non-refundable deposit required: </p>
-                                    <List style = {{ fontSize: 5 }}>
+                                    <Typography style = {{ fontWeight: 600, fontSize: '15px', textAlign: 'center' }}>Non-refundable deposit required: </Typography>
+                                    <List style = {{ marginTop: -8, fontSize: 5, textAlign: 'center' }}>
                                         <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Pick-up (Pentagon City): 50% Deposit</Typography>} />
                                         <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Nearby Delivery (+$10): Full Deposit</Typography>}/>
                                     </List>

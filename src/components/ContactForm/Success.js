@@ -32,9 +32,9 @@ export class Success extends Component {
                                 padding: "5px 20px 30px 20px",
                                 borderRadius: "6px"
                             }}>
-                            <h3 style = {{ textAlign: "center", padding: "50px 0px 10px 0px" }}>Thank you for getting in touch!</h3>
-                            <p style = {{ textAlign: "center", padding: "15px 0px 5px 0px" }}>I will get back to you ASAP.</p>
-                            <p style = {{ textAlign: "center"}}>Have a great day!</p>
+                            <h3 style = {{ textAlign: "center", padding: "50px 0px 10px 0px" }}>Thank you for reaching out!</h3>
+                            <p style = {{ textAlign: "center", padding: "15px 0px 5px 0px" }}>I will do my best to respond <br/>within 24 hours.</p>
+                            <p style = {{ textAlign: "center"}}>Look forward to speaking with you!</p>
                             <ButtonGroup style = {{ justifyContent: "center" }}>
                                 <Button
                                     href = "/"
