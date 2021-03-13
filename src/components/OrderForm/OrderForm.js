@@ -104,10 +104,9 @@ export class OrderForm extends Component {
         }
     }
 
-    nextStep = e => {
+    nextStep = () => {
         const { activeStep } = this.state;
         if (activeStep === 2) {
-            e.preventDefault();
             this.submit();
         }
         this.setState({
@@ -261,27 +260,9 @@ export class OrderForm extends Component {
                                     </Typography>
                                 </div>
 
-                                <MenuForm nextStep={this.nextStep} handleChange={this.handleChange} handleCheckboxChange={this.handleCheckboxChange} values={values}/>
-            
-                                <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
-                                    { activeStep === steps.length 
-                                        ? (<Grid container justify="center">
-                                                <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
-                                                    Return Home
-                                                </Button>
-                                            </Grid>) 
-                                        : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
-                                                <Button disabled={activeStep === 0} onClick={this.prevStep} className='button' variant="contained">
-                                                        Back
-                                                    </Button>
-                                                <Button variant="contained" color="primary" onClick={this.nextStep} className='button'
-                                                        style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
-                                                    { activeStep === steps.length - 1 ? 'Order!' : 'Next' }
-                                                </Button>
-                                            </div>)
-                                    }
-                                </div>
+                                <MenuForm steps={this.getSteps()} nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} 
+                                          handleCheckboxChange={this.handleCheckboxChange} values={values}/>
+
                             </div>
                         </React.Fragment>
                     </MuiThemeProvider>
@@ -332,28 +313,9 @@ export class OrderForm extends Component {
                                     }
                                 </div>
 
-                                <CustomerDetails nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} handleDateChange={this.handleDateChange} 
-                                                 values={values}/>
+                                <CustomerDetails steps={this.getSteps()} nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} 
+                                                 handleDateChange={this.handleDateChange} values={values}/>
             
-                                <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
-                                    { activeStep === steps.length 
-                                        ? (<Grid container justify="center">
-                                                <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
-                                                    Return Home
-                                                </Button>
-                                            </Grid>) 
-                                        : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
-                                                <Button disabled={activeStep === 0} onClick={this.prevStep} className='button' variant="contained">
-                                                        Back
-                                                    </Button>
-                                                <Button variant="contained" color="primary" onClick={this.nextStep} className='button'
-                                                        style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
-                                                    { activeStep === steps.length - 1 ? 'Order!' : 'Next' }
-                                                </Button>
-                                            </div>)
-                                    }
-                                </div>
                             </div>
                         </React.Fragment>
                     </MuiThemeProvider>
@@ -404,27 +366,8 @@ export class OrderForm extends Component {
                                     }
                                 </div>
 
-                                <Confirm nextStep={this.nextStep} prevStep={this.prevStep} values={values}/>
-            
-                                <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
-                                    { activeStep === steps.length 
-                                        ? (<Grid container justify="center">
-                                                <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
-                                                    Return Home
-                                                </Button>
-                                            </Grid>) 
-                                        : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
-                                                <Button disabled={activeStep === 0} onClick={this.prevStep} className='button' variant="contained">
-                                                        Back
-                                                    </Button>
-                                                <Button variant="contained" color="primary" onClick={this.nextStep} className='button'
-                                                        style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
-                                                    { activeStep === steps.length - 1 ? 'Order!' : 'Next' }
-                                                </Button>
-                                            </div>)
-                                    }
-                                </div>
+                                <Confirm steps={this.getSteps()} nextStep={this.nextStep} prevStep={this.prevStep} values={values}/>
+
                             </div>
                         </React.Fragment>
                     </MuiThemeProvider>
@@ -456,7 +399,7 @@ export class OrderForm extends Component {
                                 <div style = {{ marginBottom: 20, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     { activeStep === steps.length 
                                         ? (<div>
-                                                <Typography className='instructions' fontWeight="600px">
+                                                <Typography className='instructions' fontWeight="600px" style = {{ fontWeight: "600px" }}>
                                                     You&apos;re order is completed!
                                                 </Typography> 
                                                 <Typography className="instructions">

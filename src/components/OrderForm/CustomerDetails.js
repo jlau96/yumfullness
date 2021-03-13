@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -35,15 +36,11 @@ const muiTheme = createMuiTheme({
 });
 
 export class CustomerDetails extends Component {
-    // isValid = (value) => {
-    //     if (!!value) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+
+    
 
     render() {
-        const { values, handleChange, handleDateChange } = this.props;
+        const { steps, nextStep, prevStep, values, handleChange, handleDateChange } = this.props;
 
         return (
             <MuiThemeProvider theme={muiTheme}>
@@ -368,6 +365,25 @@ export class CustomerDetails extends Component {
                                     defaultValue = { values.discoveryrMethod }
                                 />
                             </Grid>
+                            <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
+                                { values.activeStep === steps.length 
+                                    ? (<Grid container justify="center">
+                                            <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
+                                                style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                Return Home
+                                            </Button>
+                                        </Grid>) 
+                                    : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
+                                            <Button disabled={values.activeStep === 0} onClick={prevStep} className='button' variant="contained">
+                                                    Back
+                                                </Button>
+                                            <Button variant="contained" color="primary" onClick={nextStep} className='button'
+                                                    style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
+                                                { values.activeStep === steps.length - 1 ? 'Order!' : 'Next' }
+                                            </Button>
+                                        </div>)
+                                }
+                            </div>
                         </Grid>
                     </Box>
                 </React.Fragment> 

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import Moment from 'moment';
@@ -27,6 +28,7 @@ export class Confirm extends Component {
                           cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartLetters, cakeHeartComments, 
                           firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
                           deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod } } = this.props;
+        const { steps, nextStep, prevStep, values } = this.props;
 
         return (
             <MuiThemeProvider theme={muiTheme}>
@@ -132,6 +134,25 @@ export class Confirm extends Component {
                                 </div>
                                 <ListItemText primary = { "Payment Method" } secondary = { paymentMethod } style = {{ margin: 15, whiteSpace: 'normal' }} />
                             </List>
+                            <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
+                                { values.activeStep === steps.length 
+                                    ? (<Grid container justify="center">
+                                            <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
+                                                style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                Return Home
+                                            </Button>
+                                        </Grid>) 
+                                    : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
+                                            <Button disabled={values.activeStep === 0} onClick={prevStep} className='button' variant="contained">
+                                                    Back
+                                                </Button>
+                                            <Button variant="contained" color="primary" onClick={nextStep} className='button'
+                                                    style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
+                                                { values.activeStep === steps.length - 1 ? 'Order!' : 'Next' }
+                                            </Button>
+                                        </div>)
+                                }
+                            </div>
                         </Grid>
                     </Box>
                 </React.Fragment>

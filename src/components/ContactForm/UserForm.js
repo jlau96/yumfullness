@@ -8,8 +8,9 @@ export class UserForm extends Component {
     state = {
         step: 1,
         name: '',
+        methodOfContact: '',
         email: '',
-        subject: '',
+        phone: '',
         message: ''
     }
 
@@ -35,8 +36,8 @@ export class UserForm extends Component {
     }
 
     render() {
-        const { step, name, email, subject, message } = this.state;
-        const values = { step, name, email, subject, message };
+        const { step, name, methodOfContact, email, phone, message } = this.state;
+        const values = { step, name, methodOfContact, email, phone, message };
 
         switch(step) {
             case 1:

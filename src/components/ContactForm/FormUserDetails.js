@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
 
 const muiTheme = createMuiTheme({
     overrides: {
@@ -61,7 +63,7 @@ export class FormUserDetails extends Component {
                                         }}
                                         variant = "outlined"
                                         style = {{ margin: 12, marginTop: 30, width: 275 }}
-                                        size = "small"
+                                        size = "medium"
                                         onChange = { handleChange('name') }
                                         value = { values.name }
                                         validators = { ['required'] }
@@ -69,42 +71,58 @@ export class FormUserDetails extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextValidator 
-                                        id = "email"
-                                        label = "Email"
-                                        placeholder = "Enter Email Address"
-                                        required
-                                        margin = "normal"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        variant = "outlined"
-                                        style = {{ margin: 12, width: 275  }}
-                                        size = "small"
-                                        onChange = { handleChange('email') }
-                                        value = { values.email }
-                                        validators = { ['required', 'isEmail'] }
-                                        errorMessages = { ['Required field', 'Invalid email'] }
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextValidator 
-                                        id = "subject"
-                                        label = "Subject"
-                                        placeholder = "Enter Subject"
-                                        required
-                                        margin = "normal"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        variant = "outlined"
-                                        style = {{ margin: 12, width: 275 }}
-                                        size = "small"
-                                        onChange = { handleChange('subject') }
-                                        value = { values.subject }
-                                        validators = { ['required'] }
-                                        errorMessages = { ['Required field'] }
-                                    />
+                                    <InputLabel style = {{ fontSize: 12, marginLeft: 20, marginBottom: -10 }}>Method of Contact</InputLabel>
+                                    <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginTop: 15, marginBottom: 10 }}>
+                                        <SelectValidator id="methodOfContact" label="Method of Contact" defaultValue={values.methodOfContact} value={values.methodOfContact}
+                                                onChange={handleChange('methodOfContact')} validators={['required']} errorMessages={['Required field']}
+                                                variant="outlined"  style = {{ width: 275 }} 
+                                                MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
+                                            <MenuItem value="" disabled>Select Method of Contact</MenuItem>
+                                            <MenuItem value="Phone">Phone</MenuItem>
+                                            <MenuItem value="Email">Email</MenuItem>
+                                        </SelectValidator>
+                                    </FormControl>
+                                    <div>
+                                        {
+                                            values.methodOfContact === 'Email'
+                                            ? (<TextValidator 
+                                                    id = "email"
+                                                    label = "Email"
+                                                    placeholder = "Enter Email Address"
+                                                    required
+                                                    margin = "normal"
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                    variant = "outlined"
+                                                    style = {{ margin: 12, width: 275  }}
+                                                    size = "medium"
+                                                    onChange = { handleChange('email') }
+                                                    value = { values.email }
+                                                    validators = { ['required', 'isEmail'] }
+                                                    errorMessages = { ['Required field', 'Invalid email'] }
+                                                />)
+                                            : (values.methodOfContact === 'Phone' 
+                                                ? (<TextValidator 
+                                                        id = "phone"
+                                                        label = "Phone Number"
+                                                        placeholder = "Enter Phone Number"
+                                                        required
+                                                        margin = "normal"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        variant = "outlined"
+                                                        style = {{ margin: 12, width: 275 }}
+                                                        size = "medium"
+                                                        onChange = { handleChange('phone') }
+                                                        value = { values.phone }
+                                                        validators = { ['required'] }
+                                                        errorMessages = { ['Required field'] }
+                                                    />) 
+                                                : null)
+                                        }
+                                    </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextValidator
