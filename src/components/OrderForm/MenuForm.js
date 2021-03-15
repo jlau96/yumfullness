@@ -10,7 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
+import Alert from '@material-ui/lab/Alert';
 
 import SingleLetterCake from './MenuImages/single_letter_cake.jpg';
 import DoubleNumberCake from './MenuImages/double_number_cake.jpg';
@@ -391,9 +391,19 @@ export class MenuForm extends Component {
                                 I cannot guarantee allergen-free, gluten-free, or nut-free baked goods.
                             </Typography>
                             <FormControl component="fieldset">
-                                <FormControlLabel control={ <Radio color="primary"/> } 
+                                <FormControlLabel control={ <Checkbox color="primary" onChange={handleCheckboxChange('orderCertification')}/> }
+                                                  checked = { values.orderCertification } 
                                                   label= { <Typography style = {{ fontSize: 14 }}>I understand and will still love to order!</Typography> } />
                             </FormControl>
+
+                            <div>
+                                {
+                                    values.orderCertification === false 
+                                        ? <Alert variant="outlined" severity="error"><Typography style = {{ fontSize: 12 }}>Must certify statement to continue order</Typography></Alert> 
+                                        : null
+                                }
+                            </div>
+
                             <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>
                                 { 
                                     values.activeStep === steps.length 
@@ -407,8 +417,8 @@ export class MenuForm extends Component {
                                             <Button disabled={values.activeStep === 0} onClick={prevStep} className='button' variant="contained">
                                                     Back
                                                 </Button>
-                                            <Button variant="contained" color="primary" onClick={nextStep} className='button'
-                                                    style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
+                                            <Button variant="contained" color="primary" onClick={nextStep} className='button' style = {{ margin: 15 }} 
+                                                    disabled = { values.orderCertification === false} >
                                                 { values.activeStep === steps.length - 1 ? 'Order!' : 'Next' }
                                             </Button>
                                         </div>)

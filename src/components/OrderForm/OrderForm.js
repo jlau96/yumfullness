@@ -66,23 +66,24 @@ export class OrderForm extends Component {
         cakeHeartFilling: "Select",
         cakeHeartLetters: null,
         cakeHeartComments: null, 
-        firstName: null,
-        lastName: null,
-        email: null,
-        phone: null,
-        transferMethod: 'pickUp',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        transferMethod: '',
         pickUpDate: null,
-        pickUpTime: null,
-        pickUpTimeOther: null,
+        pickUpTime: '',
+        pickUpTimeOther: '',
         deliveryDate: null,
-        deliveryTime: null,
-        deliveryTimeOther: null,
-        deliveryAddress: null,
-        deliveryCity: null, 
-        deliveryState: null,
-        deliveryZip: null,
-        paymentMethod: null,
-        discoveryMethod: null
+        deliveryTime: '',
+        deliveryTimeOther: '',
+        deliveryAddress: '',
+        deliveryCity: '', 
+        deliveryState: '',
+        deliveryZip: '',
+        paymentMethod: '',
+        discoveryMethod: '',
+        orderCertification: false
     }
 
     getSteps = () => {
@@ -198,15 +199,14 @@ export class OrderForm extends Component {
                 breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
                 cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartLetters, cakeHeartComments, 
                 firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
-                deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod, discoveryMethod } = this.state;
+                deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod, discoveryMethod, orderCertification } = this.state;
 
         const values = { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, singleCakeComments, 
                          doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, doubleCakeComments, 
                          breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
                          cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartComments, 
                          cakeHeartLetters, firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
-                         deliveryTimeOther, deliveryAddress, deliveryCity, deliveryState, deliveryZip, 
-                         paymentMethod, discoveryMethod };
+                         deliveryTimeOther, deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod, discoveryMethod, orderCertification };
 
         switch(activeStep) {
             case 0:
@@ -399,7 +399,7 @@ export class OrderForm extends Component {
                                 <div style = {{ marginBottom: 20, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     { activeStep === steps.length 
                                         ? (<div>
-                                                <Typography className='instructions' fontWeight="600px" style = {{ fontWeight: "600px" }}>
+                                                <Typography className='instructions' style = {{ fontWeight: 600 }}>
                                                     You&apos;re order is completed!
                                                 </Typography> 
                                                 <Typography className="instructions">

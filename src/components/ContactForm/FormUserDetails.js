@@ -51,9 +51,9 @@ export class FormUserDetails extends Component {
                             }}>
                             <ValidatorForm ref="form" onSubmit={this.continue}>
                                 <Grid item xs={12}>
+                                    <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 15, marginTop: 20, marginBottom: -25 }}>Name</InputLabel>
                                     <TextValidator 
                                         id = "name"
-                                        label = "Name"
                                         placeholder = "Enter Full Name"
                                         required
                                         autoFocus
@@ -71,9 +71,9 @@ export class FormUserDetails extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <InputLabel style = {{ fontSize: 12, marginLeft: 20, marginBottom: -10 }}>Method of Contact</InputLabel>
+                                    <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 15, marginBottom: -10 }}>Method of Contact</InputLabel>
                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginTop: 15, marginBottom: 10 }}>
-                                        <SelectValidator id="methodOfContact" label="Method of Contact" defaultValue={values.methodOfContact} value={values.methodOfContact}
+                                        <SelectValidator id="methodOfContact" defaultValue={values.methodOfContact} value={values.methodOfContact}
                                                 onChange={handleChange('methodOfContact')} validators={['required']} errorMessages={['Required field']}
                                                 variant="outlined"  style = {{ width: 275 }} 
                                                 MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
@@ -85,49 +85,53 @@ export class FormUserDetails extends Component {
                                     <div>
                                         {
                                             values.methodOfContact === 'Email'
-                                            ? (<TextValidator 
-                                                    id = "email"
-                                                    label = "Email"
-                                                    placeholder = "Enter Email Address"
-                                                    required
-                                                    margin = "normal"
-                                                    InputLabelProps={{
-                                                        shrink: true,
-                                                    }}
-                                                    variant = "outlined"
-                                                    style = {{ margin: 12, width: 275  }}
-                                                    size = "medium"
-                                                    onChange = { handleChange('email') }
-                                                    value = { values.email }
-                                                    validators = { ['required', 'isEmail'] }
-                                                    errorMessages = { ['Required field', 'Invalid email'] }
-                                                />)
-                                            : (values.methodOfContact === 'Phone' 
-                                                ? (<TextValidator 
-                                                        id = "phone"
-                                                        label = "Phone Number"
-                                                        placeholder = "Enter Phone Number"
+                                            ? (<div>
+                                                    <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 20, marginBottom: -10 }}>Email</InputLabel>
+                                                    <TextValidator 
+                                                        id = "email"
+                                                        placeholder = "Enter Email Address"
                                                         required
                                                         margin = "normal"
                                                         InputLabelProps={{
                                                             shrink: true,
                                                         }}
                                                         variant = "outlined"
-                                                        style = {{ margin: 12, width: 275 }}
+                                                        style = {{ margin: 12, width: 275  }}
                                                         size = "medium"
-                                                        onChange = { handleChange('phone') }
-                                                        value = { values.phone }
-                                                        validators = { ['required'] }
-                                                        errorMessages = { ['Required field'] }
-                                                    />) 
+                                                        onChange = { handleChange('email') }
+                                                        value = { values.email }
+                                                        validators = { ['required', 'isEmail'] }
+                                                        errorMessages = { ['Required field', 'Invalid email'] }
+                                                    />
+                                                </div>)
+                                            : (values.methodOfContact === 'Phone' 
+                                                ? (<div>
+                                                        <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 20, marginBottom: -10 }}>Phone</InputLabel>
+                                                        <TextValidator 
+                                                            id = "phone"
+                                                            placeholder = "Enter Phone Number"
+                                                            required
+                                                            margin = "normal"
+                                                            InputLabelProps={{
+                                                                shrink: true,
+                                                            }}
+                                                            variant = "outlined"
+                                                            style = {{ margin: 12, width: 275 }}
+                                                            size = "medium"
+                                                            onChange = { handleChange('phone') }
+                                                            value = { values.phone }
+                                                            validators = { ['required'] }
+                                                            errorMessages = { ['Required field'] }
+                                                        />
+                                                    </div>) 
                                                 : null)
                                         }
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 20, marginBottom: -10 }}>Message</InputLabel>
                                     <TextValidator
                                         id = "message"
-                                        label = "Message"
                                         placeholder = "Enter Message"
                                         required
                                         margin = "normal"

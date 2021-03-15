@@ -146,8 +146,7 @@ export class Confirm extends Component {
                                             <Button disabled={values.activeStep === 0} onClick={prevStep} className='button' variant="contained">
                                                     Back
                                                 </Button>
-                                            <Button variant="contained" color="primary" onClick={nextStep} className='button'
-                                                    style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
+                                            <Button variant="contained" color="primary" onClick={nextStep} className='button' style = {{ margin: 15 }}>
                                                 { values.activeStep === steps.length - 1 ? 'Order!' : 'Next' }
                                             </Button>
                                         </div>)

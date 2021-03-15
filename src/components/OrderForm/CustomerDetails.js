@@ -4,19 +4,18 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
+import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
+import './CustomerDetails.css'
 
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
+import moment from 'moment';
 
 const muiTheme = createMuiTheme({
     palette: {
@@ -36,11 +35,25 @@ const muiTheme = createMuiTheme({
 });
 
 export class CustomerDetails extends Component {
+    formState = {
+        validForm: false
+    }
 
-    
+    continue = e => {
+        e.preventDefault();
+        this.setState({ validForm: true });
+        this.props.nextStep();
+    }
+
+    disableDate(date) {
+        return date.isSame(moment('2021-04-09')) ||
+               date.isSame(moment('2021-04-10')) ||
+               date.isSame(moment('2021-04-11'))
+    }
 
     render() {
-        const { steps, nextStep, prevStep, values, handleChange, handleDateChange } = this.props;
+        const { steps, /*nextStep,*/ prevStep, values, handleChange, handleDateChange } = this.props;
+        const { validForm } = this.formState;
 
         return (
             <MuiThemeProvider theme={muiTheme}>
@@ -58,191 +71,240 @@ export class CustomerDetails extends Component {
                                 padding: "5px 20px 30px 20px",
                                 borderRadius: "6px"
                             }}>
-                            <Grid item xs={12}>
-                                <TextField 
-                                    id = "firstName"
-                                    label = "First Name"
-                                    placeholder = "Enter First Name"
-                                    required
-                                    autoFocus
-                                    margin = "normal"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    variant = "outlined"
-                                    style = {{ marginLeft: 12, marginTop: 30, width: 275 }}
-                                    size = "small"
-                                    onChange = { handleChange('firstName') }
-                                    defaultValue = { values.firstName }
-                                    // error={!this.isValid(values.firstName)}
-                                />
-                            </Grid>
-                            <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                <TextField 
-                                    id = "lastName"
-                                    label = "Last Name"
-                                    placeholder = "Enter Last Name"
-                                    required
-                                    margin = "normal"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    variant = "outlined"
-                                    style = {{ marginLeft: 12, width: 275 }}
-                                    size = "small"
-                                    onChange = { handleChange('lastName') }
-                                    defaultValue = { values.lastName }
-                                />
-                            </Grid>
-                            <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                <TextField 
-                                    id = "email"
-                                    label = "Email"
-                                    placeholder = "Enter Email Address"
-                                    required
-                                    margin = "normal"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    variant = "outlined"
-                                    style = {{ marginLeft: 12, width: 275  }}
-                                    size = "small"
-                                    onChange = { handleChange('email') }
-                                    defaultValue = { values.email }
-                                />
-                            </Grid>
-                            <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                <TextField 
-                                    id = "phone"
-                                    label = "Phone (###-###-####)"
-                                    placeholder = "Enter Phone Number"
-                                    required
-                                    margin = "normal"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    variant = "outlined"
-                                    style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
-                                    size = "small"
-                                    onChange = { handleChange('phone') }
-                                    defaultValue = { values.phone }
-                                />
-                            </Grid>
-                            <hr/><br/>
-                            
-                            <Grid item xs={12} style = {{ marginLeft: 15 }}>
-                                <FormControl component="fieldset">
-                                    <FormLabel component="legend">Pick-Up or Delivery</FormLabel>
-                                    <RadioGroup aria-label="transferMethod" name="transferMethod" onChange={handleChange('transferMethod')} defaultValue="Pick-Up">
-                                        <FormControlLabel value="Pick-Up" control={<Radio color="primary"/>} label="Pick-Up" />
-                                        <FormControlLabel value="Delivery" control={<Radio color="primary"/>} label="Nearby Delivery (+$10)" style={{marginTop: -10}}/>
-                                    </RadioGroup>
-                                </FormControl>
-                            </Grid>
-                            
-                            <div className="transferMethodOptions" style = {{ marginTop: -10, marginBottom: 10 }}>
-                                {   values.transferMethod !== 'Delivery'
-                                    ? (<div className="pickUpOptions" style = {{ marginTop: 5 }}>
-                                            <Grid item xs={12} style = {{ marginLeft: 12 }}>
-                                                <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                    <KeyboardDatePicker
-                                                        id="pickUpDate"
-                                                        label="Pick-Up Date"
-                                                        format="MM/DD/yyyy"
-                                                        margin="normal"
-                                                        inputVariant="outlined"
-                                                        value={ values.pickUpDate }
-                                                        onChange={ handleDateChange('pickUpDate') }
-                                                        KeyboardButtonProps={{
-                                                            'aria-label': 'change date',
-                                                        }}
-                                                    />
-                                                </MuiPickersUtilsProvider>
-                                            </Grid>
-                                            <Grid item xs={12} style = {{ marginTop: 20 }}>
-                                                <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275, marginBottom: 10 }}>
-                                                    <Grid>
-                                                        <InputLabel id="pickUpTime">Pick-Up Time Frame</InputLabel>
+                            <ValidatorForm ref="form" onSubmit={this.continue}>
+                                <Grid item xs={12}>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 20, marginBottom: -25 }}>First Name</InputLabel>
+                                    <TextValidator
+                                        id = "firstName"
+                                        placeholder = "Enter First Name"
+                                        required
+                                        autoFocus
+                                        margin = "normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        variant = "outlined"
+                                        style = {{ marginLeft: 12, marginTop: 30, width: 275 }}
+                                        size = "small"
+                                        onChange = { handleChange('firstName') }
+                                        value = { values.firstName }
+                                        validators = { ['required'] }
+                                        errorMessages = { ['Required field'] }
+                                    />
+                                </Grid>
+                                <Grid item xs={12} style = {{ marginTop: -5 }}>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Last Name</InputLabel>
+                                    <TextValidator 
+                                        id = "lastName"
+                                        placeholder = "Enter Last Name"
+                                        required
+                                        margin = "normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        variant = "outlined"
+                                        style = {{ marginLeft: 12, width: 275 }}
+                                        size = "small"
+                                        onChange = { handleChange('lastName') }
+                                        value = { values.lastName }
+                                        validators = { ['required'] }
+                                        errorMessages = { ['Required field'] }
+                                    />
+                                </Grid>
+                                <Grid item xs={12} style = {{ marginTop: -5 }}>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Email</InputLabel>
+                                    <TextValidator
+                                        id = "email"
+                                        placeholder = "Enter Email Address"
+                                        required
+                                        margin = "normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        variant = "outlined"
+                                        style = {{ marginLeft: 12, width: 275  }}
+                                        size = "small"
+                                        onChange = { handleChange('email') }
+                                        value = { values.email }
+                                        validators = { ['required', 'isEmail'] }
+                                        errorMessages = { ['Required field', 'Invalid email'] }
+                                    />
+                                </Grid>
+                                <Grid item xs={12} style = {{ marginTop: -5 }}>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Phone (XXX-XXX-XXXX)</InputLabel>
+                                    <TextValidator 
+                                        id = "phone"
+                                        placeholder = "Enter Phone Number"
+                                        required
+                                        margin = "normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        variant = "outlined"
+                                        style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
+                                        size = "small"
+                                        onChange = { handleChange('phone') }
+                                        value = { values.phone }
+                                        validators = { ['required'] }
+                                        errorMessages = { ['Required field'] }
+                                    />
+                                </Grid>
+                                <hr/><br/>
+                                
+                                <Grid item xs={12} style = {{ marginLeft: 12 }}>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginBottom: 5}}>Pick-Up or Delivery</InputLabel>
+                                    <FormControl variant="outlined" style = {{ width: 275, marginBottom: 5 }}>
+                                        <SelectValidator id="transferMethod" defaultValue={values.transferMethod} value={values.transferMethod}
+                                                onChange={handleChange('transferMethod')} required validators = { ['required'] } errorMessages = { ['Required field'] }
+                                                MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
+                                                variant="outlined">
+                                            <MenuItem value="" disabled>Select Pick-Up/Delivery</MenuItem>
+                                            <MenuItem value="Pick-Up">Pick-Up</MenuItem>
+                                            <MenuItem value="Delivery">Delivery</MenuItem>
+                                        </SelectValidator>
+                                    </FormControl>
+                                </Grid>
+                                
+                                <div className="transferMethodOptions" style = {{ marginBottom: 10 }}>
+                                    {   
+                                        values.transferMethod !== ""
+                                        ? (values.transferMethod !== 'Delivery'
+                                            ? (<div className="pickUpOptions" style = {{ marginTop: -5 }}>
+                                                    <Grid item xs={12} style = {{ marginLeft: 12 }}>
+                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginTop: 20, marginBottom: -10 }}>Pick-Up Date</InputLabel>
+                                                        <MuiPickersUtilsProvider utils={MomentUtils}>
+                                                            <KeyboardDatePicker
+                                                                id="pickUpDate"
+                                                                placeholder="Pick Pick-Up Date"
+                                                                format="MM/DD/yyyy"
+                                                                margin="normal"
+                                                                inputVariant="outlined"
+                                                                required
+                                                                value={ values.pickUpDate }
+                                                                onChange={ handleDateChange('pickUpDate') }
+                                                                KeyboardButtonProps={{
+                                                                    'aria-label': 'change date',
+                                                                }}
+                                                                disablePast
+                                                                shouldDisableDate={ this.disableDate }
+                                                            />
+                                                        </MuiPickersUtilsProvider>
                                                     </Grid>
-                                                    <Select id="pickUpTime" label="Pick-Up Time Frame" defaultValue="Select" onChange={handleChange('pickUpTime')}
-                                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                        <MenuItem value="Select" disabled>Select Pick-Up Time Frame</MenuItem>
-                                                        <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
-                                                        <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
-                                                        <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
-                                                        <MenuItem value="1:00pm-2:00pm">1:00pm-2:00pm</MenuItem>
-                                                        <MenuItem value="2:00pm-3:00pm">2:00pm-3:00pm</MenuItem>
-                                                        <MenuItem value="3:00pm-4:00pm">3:00pm-4:00pm</MenuItem>
-                                                        <MenuItem value="4:00pm-5:00pm">4:00pm-5:00pm</MenuItem>
-                                                        <MenuItem value="5:00pm-6:00pm">5:00pm-6:00pm</MenuItem>
-                                                        <MenuItem value="6:00pm-7:00pm">6:00pm-7:00pm</MenuItem>
-                                                        <MenuItem value="7:00pm-8:00pm">7:00pm-8:00pm</MenuItem>
-                                                        <MenuItem value="Other">Other</MenuItem>
-                                                    </Select>
-                                                </FormControl>
-                                                <div>
-                                                    {
-                                                        values.pickUpTime === 'Other'
-                                                        ? (<TextField 
-                                                            id = "pickUpTimeOther"
-                                                            label = "Other Pick-Up Time"
-                                                            placeholder = "Enter desired pick-up timeframe"
+                                                    <Grid item xs={12} style = {{ marginTop: 15 }}>
+                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Pick-Up Time Frame</InputLabel>
+                                                        <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginBottom: 10 }}>
+                                                            <SelectValidator id="pickUpTime" placeholder="Enter pick-up time frame" defaultValue='' value={values.pickUpTime} 
+                                                                    onChange={handleChange('pickUpTime')} required validators = { ['required'] } errorMessages = { ['Required field'] }
+                                                                    MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
+                                                                    variant="outlined">
+                                                                <MenuItem value="" disabled>Select Pick-Up Time Frame</MenuItem>
+                                                                <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
+                                                                <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
+                                                                <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
+                                                                <MenuItem value="1:00pm-2:00pm">1:00pm-2:00pm</MenuItem>
+                                                                <MenuItem value="2:00pm-3:00pm">2:00pm-3:00pm</MenuItem>
+                                                                <MenuItem value="3:00pm-4:00pm">3:00pm-4:00pm</MenuItem>
+                                                                <MenuItem value="4:00pm-5:00pm">4:00pm-5:00pm</MenuItem>
+                                                                <MenuItem value="5:00pm-6:00pm">5:00pm-6:00pm</MenuItem>
+                                                                <MenuItem value="6:00pm-7:00pm">6:00pm-7:00pm</MenuItem>
+                                                                <MenuItem value="7:00pm-8:00pm">7:00pm-8:00pm</MenuItem>
+                                                                <MenuItem value="Other">Other</MenuItem>
+                                                            </SelectValidator>
+                                                        </FormControl>
+                                                        <div>
+                                                            {
+                                                                values.pickUpTime === 'Other'
+                                                                ? ( <div>
+                                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Other Pick-Up Time</InputLabel>
+                                                                        <TextValidator
+                                                                            id = "pickUpTimeOther"
+                                                                            placeholder = "Enter Pick-Up Time Frame"
+                                                                            required
+                                                                            margin = "normal"
+                                                                            InputLabelProps={{
+                                                                                shrink: true,
+                                                                            }}
+                                                                            variant = "outlined"
+                                                                            style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
+                                                                            size = "small"
+                                                                            onChange = { handleChange('pickUpTimeOther') }
+                                                                            validators = { ['required'] } 
+                                                                            errorMessages = { ['Required field'] }
+                                                                            />
+                                                                    </div>)
+                                                                : null
+                                                            }
+                                                        </div>
+                                                    </Grid>
+                                            </div>)
+                                            : (<div className="deliveryOptions" style = {{ marginTop: 10 }}>
+                                                <Grid item xs={12} style = {{ marginLeft: 12 }}>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginTop: 15, marginBottom: -10 }}>Delivery Date</InputLabel>
+                                                    <MuiPickersUtilsProvider utils={MomentUtils}>
+                                                        <KeyboardDatePicker
+                                                            id="deliverypDate"
+                                                            placeholder="Pick Delivery Date"
                                                             required
-                                                            margin = "normal"
-                                                            InputLabelProps={{
-                                                                shrink: true,
+                                                            format="MM/DD/yyyy"
+                                                            margin="normal"
+                                                            inputVariant="outlined"
+                                                            value={ values.deliveryDate }
+                                                            onChange={ handleDateChange('deliveryDate') }
+                                                            KeyboardButtonProps={{
+                                                                'aria-label': 'change date',
                                                             }}
-                                                            variant = "outlined"
-                                                            style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
-                                                            size = "small"
-                                                            onChange = { handleChange('pickUpTimeOther') }
-                                                        />)
-                                                        : null
-                                                    }
-                                                </div>
-                                            </Grid>
-                                    </div>)
-                                    : (<div className="deliveryOptions" style = {{ marginTop: 5 }}>
-                                        <Grid item xs={12} style = {{ marginLeft: 12 }}>
-                                            <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                <KeyboardDatePicker
-                                                    id="deliverypDate"
-                                                    label="Delivery Date"
-                                                    format="MM/DD/yyyy"
-                                                    margin="normal"
-                                                    inputVariant="outlined"
-                                                    value={ values.deliveryDate }
-                                                    onChange={ handleDateChange('deliveryDate') }
-                                                    KeyboardButtonProps={{
-                                                        'aria-label': 'change date',
-                                                    }}
-                                                />
-                                            </MuiPickersUtilsProvider>
-                                        </Grid>
-                                        <Grid item xs={12} style = {{ marginTop: 20, marginBottom: -10 }}>
-                                            <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275 }}>
-                                                <Grid>
-                                                    <InputLabel id="deliveryTime">Delivery Time Frame</InputLabel> 
+                                                            disablePast
+                                                            shouldDisableDate={ this.disableDate }
+                                                        />
+                                                    </MuiPickersUtilsProvider>
                                                 </Grid>
-                                                <Select id="deliveryTime" label="Delivery Time Frame" defaultValue="Select" onChange={handleChange('deliveryTime')}
-                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                    <MenuItem value="Select" disabled>Select Delivery Time Frame</MenuItem>
-                                                    <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
-                                                    <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
-                                                    <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
-                                                    <MenuItem value="1:00pm-2:00pm">1:00pm-2:00pm</MenuItem>
-                                                    <MenuItem value="2:00pm-3:00pm">2:00pm-3:00pm</MenuItem>
-                                                    <MenuItem value="3:00pm-4:00pm">3:00pm-4:00pm</MenuItem>
-                                                    <MenuItem value="Other">Other</MenuItem>
-                                                </Select>
-                                            </FormControl>
-                                            <div style = {{ marginTop: 20 }}>
-                                                {
-                                                    values.deliveryTime === 'Other'
-                                                    ? (<TextField 
-                                                        id = "deliveryTimeOther"
-                                                        label = "Other Delivery Time"
-                                                        placeholder = "Enter desired delivery timeframe"
+                                                <Grid item xs={12} style = {{ marginTop: 5, marginBottom: -10 }}>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: 5 }}>Delivery Time Frame</InputLabel>
+                                                    <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275 }}>
+                                                        <SelectValidator id="deliveryTime" defaultValue={values.deliveryTime} value={values.deliveryTime} 
+                                                                onChange={handleChange('deliveryTime')} required validators = { ['required'] } errorMessages = { ['Required field'] }
+                                                                MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
+                                                                variant="outlined">
+                                                            <MenuItem value="" disabled>Select Delivery Time Frame</MenuItem>
+                                                            <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
+                                                            <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
+                                                            <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
+                                                            <MenuItem value="1:00pm-2:00pm">1:00pm-2:00pm</MenuItem>
+                                                            <MenuItem value="2:00pm-3:00pm">2:00pm-3:00pm</MenuItem>
+                                                            <MenuItem value="3:00pm-4:00pm">3:00pm-4:00pm</MenuItem>
+                                                            <MenuItem value="Other">Other</MenuItem>
+                                                        </SelectValidator>
+                                                    </FormControl>
+                                                    <div style = {{ marginTop: 20 }}>
+                                                        {
+                                                            values.deliveryTime === 'Other'
+                                                            ? (<div>
+                                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Other Delivery Time</InputLabel>
+                                                                    <TextValidator 
+                                                                        id = "deliveryTimeOther"
+                                                                        placeholder = "Enter Delivery Time Frame"
+                                                                        required
+                                                                        margin = "normal"
+                                                                        InputLabelProps={{
+                                                                            shrink: true,
+                                                                        }}
+                                                                        variant = "outlined"
+                                                                        style = {{ marginLeft: 12, width: 275, marginBottom: 0 }}
+                                                                        size = "small"
+                                                                        onChange = { handleChange('deliveryTimeOther') }
+                                                                        validators = { ['required'] } 
+                                                                        errorMessages = { ['Required field'] }
+                                                                    />
+                                                                </div>)
+                                                            : null
+                                                        }
+                                                    </div>
+                                                </Grid>
+                                                <Grid item xs={12} style = {{ marginTop: 20 }}>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 30, marginBottom: -10 }}>Delivery Address</InputLabel>
+                                                    <TextValidator
+                                                        id = "deliveryAddress"
+                                                        placeholder = "Enter Delivery Address"
                                                         required
                                                         margin = "normal"
                                                         InputLabelProps={{
@@ -251,139 +313,125 @@ export class CustomerDetails extends Component {
                                                         variant = "outlined"
                                                         style = {{ marginLeft: 12, width: 275 }}
                                                         size = "small"
-                                                        onChange = { handleChange('deliveryTimeOther') }
-                                                    />)
-                                                    : null
-                                                }
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={12} style = {{ marginTop: 20 }}>
-                                            <TextField 
-                                                id = "deliveryAddress"
-                                                label = "Delivery Address"
-                                                placeholder = "Enter Delivery Address"
-                                                required
-                                                margin = "normal"
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                                variant = "outlined"
-                                                style = {{ marginLeft: 12, width: 275 }}
-                                                size = "small"
-                                                onChange = { handleChange('deliveryAddress') }
-                                                defaultValue = { values.deliveryAddress }
-                                            />
-                                        </Grid>
-                                        <Grid item xs={12} style = {{ marginTop: 0 }}>
-                                            <TextField 
-                                                id = "deliveryCity"
-                                                label = "Delivery City"
-                                                placeholder = "Enter Delivery City"
-                                                required
-                                                margin = "normal"
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                                variant = "outlined"
-                                                style = {{ marginLeft: 12, width: 275 }}
-                                                size = "small"
-                                                onChange = { handleChange('deliveryCity') }
-                                                defaultValue = { values.deliveryCity }
-                                            />
-                                        </Grid>
-                                        <Grid item xs={12} style = {{ marginTop: 20 }}>
-                                            <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275 }}>
-                                                <Grid>
-                                                    <InputLabel id="deliveryState">Delivery State</InputLabel>
+                                                        onChange = { handleChange('deliveryAddress') }
+                                                        defaultValue = { values.deliveryAddress }
+                                                        validators = { ['required'] } 
+                                                        errorMessages = { ['Required field'] }
+                                                    />
                                                 </Grid>
-                                                <Select id="deliveryState" label="Delivery State" defaultValue="Select" onChange={handleChange('deliveryState')}
-                                                        MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                                    <MenuItem value="Select" disabled>Select Delivery State</MenuItem>
-                                                    <MenuItem value="DC">District of Columbia (DC)</MenuItem>
-                                                    <MenuItem value="MD">Maryland (MD)</MenuItem>
-                                                    <MenuItem value="VA">Virginia (VA)</MenuItem>
-                                                </Select>
-                                            </FormControl>
-                                        </Grid>
-                                        <Grid item xs={12} style = {{ marginTop: 13 }}>
-                                            <TextField 
-                                                id = "deliveryZip"
-                                                label = "Delivery Zip Code"
-                                                placeholder = "Enter Delivery Zip Code"
-                                                required
-                                                margin = "normal"
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                                variant = "outlined"
-                                                style = {{ marginLeft: 12, width: 275 }}
-                                                size = "small"
-                                                onChange = { handleChange('deliveryZip') }
-                                                defaultValue = { values.deliveryZip }
-                                            />
-                                        </Grid>
-                                    </div>)
-                                }
-                            </div>
+                                                <Grid item xs={12} style = {{ marginTop: 0 }}>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: -10 }}>Delivery City</InputLabel>
+                                                    <TextValidator
+                                                        id = "deliveryCity"
+                                                        placeholder = "Enter Delivery City"
+                                                        required
+                                                        margin = "normal"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        variant = "outlined"
+                                                        style = {{ marginLeft: 12, width: 275 }}
+                                                        size = "small"
+                                                        onChange = { handleChange('deliveryCity') }
+                                                        defaultValue = { values.deliveryCity }
+                                                        validators = { ['required'] } 
+                                                        errorMessages = { ['Required field'] }
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} style = {{ marginTop: 10 }}>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Delivery State</InputLabel>
+                                                    <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275 }}>
+                                                        <SelectValidator id="deliveryState" defaultValue={values.deliveryState} value={values.deliveryState} 
+                                                                onChange={handleChange('deliveryState')} validators = { ['required'] } errorMessages = { ['Required field'] }
+                                                                MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
+                                                                variant="outlined">
+                                                            <MenuItem value="" disabled>Select Delivery State</MenuItem>
+                                                            <MenuItem value="DC">District of Columbia (DC)</MenuItem>
+                                                            <MenuItem value="MD">Maryland (MD)</MenuItem>
+                                                            <MenuItem value="VA">Virginia (VA)</MenuItem>
+                                                        </SelectValidator>
+                                                    </FormControl>
+                                                </Grid>
+                                                <Grid item xs={12} style = {{ marginTop: 15 }}>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 20, marginBottom: -10 }}>Delivery Zip Code</InputLabel>
+                                                    <TextValidator 
+                                                        id = "deliveryZip"
+                                                        placeholder = "Enter Delivery Zip Code"
+                                                        required
+                                                        margin = "normal"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        variant = "outlined"
+                                                        style = {{ marginLeft: 12, width: 275 }}
+                                                        size = "small"
+                                                        onChange = { handleChange('deliveryZip') }
+                                                        defaultValue = { values.deliveryZip }
+                                                    />
+                                                </Grid>
+                                            </div>))
+                                        : null                                    
+                                    }
+                                </div>
 
-                            <hr/><br/>
-                            <Grid item xs={12}>
-                                <Grid style = {{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}>
-                                    <Typography style = {{ fontWeight: 600, fontSize: '15px', textAlign: 'center' }}>Non-refundable deposit required: </Typography>
-                                    <List style = {{ marginTop: -8, fontSize: 5, textAlign: 'center' }}>
-                                        <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Pick-up (Pentagon City): 50% Deposit</Typography>} />
-                                        <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Nearby Delivery (+$10): Full Deposit</Typography>}/>
-                                    </List>
-                                </Grid>
-                                <FormControl variant="outlined" style = {{ marginLeft: 10, width: 275, marginBottom: 10 }}>                                    
-                                    <Grid>
-                                        <InputLabel id="paymentMethod">Payment Method</InputLabel>
+                                <hr/><br/>
+                                <Grid item xs={12}>
+                                    <Grid style = {{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}>
+                                        <Typography style = {{ fontWeight: 600, fontSize: '15px', textAlign: 'center' }}>Non-refundable deposit required: </Typography>
+                                        <List style = {{ marginTop: -8, fontSize: 5, textAlign: 'center' }}>
+                                            <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Pick-up (Pentagon City): 50% Deposit</Typography>} />
+                                            <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Nearby Delivery (+$10): Full Deposit</Typography>}/>
+                                        </List>
                                     </Grid>
-                                    <Select id="paymentMethod" label="Enter Payment Method" defaultValue="Select" onChange={handleChange('paymentMethod')} required
-                                            MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                        <MenuItem value="Select" disabled>Select Payment Method</MenuItem>
-                                        <MenuItem value="Venmo">Venmo (Preferred)</MenuItem>
-                                        <MenuItem value="Zelle">Zelle</MenuItem>
-                                        <MenuItem value="Cash">Cash</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography style = {{ marginLeft: 14, marginBottom: -10, fontSize: 15 }}>How did you hear about @yumfullness?</Typography>
-                                <TextField 
-                                    id = "discoveryMethod"
-                                    placeholder = "Instagram, Facebook, Friend, Other"
-                                    required
-                                    margin = "normal"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    variant = "outlined"
-                                    style = {{ marginLeft: 10, resize: 5 }}
-                                    size = "small"
-                                    onChange = { handleChange('discoveryMethod') }
-                                    defaultValue = { values.discoveryrMethod }
-                                />
-                            </Grid>
-                            <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
-                                { values.activeStep === steps.length 
-                                    ? (<Grid container justify="center">
-                                            <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
-                                                style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
-                                                Return Home
-                                            </Button>
-                                        </Grid>) 
-                                    : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
-                                            <Button disabled={values.activeStep === 0} onClick={prevStep} className='button' variant="contained">
-                                                    Back
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: 5 }}>Payment Method</InputLabel>
+                                    <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginBottom: 10 }}>
+                                        <SelectValidator id="paymentMethod" defaultValue={values.paymentMethod} value={values.paymentMethod}
+                                                onChange={handleChange('paymentMethod')} required validators = { ['required'] } errorMessages = { ['Required field'] }
+                                                MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
+                                                variant="outlined">
+                                            <MenuItem value="" disabled>Select Payment Method</MenuItem>
+                                            <MenuItem value="Venmo">Venmo (Preferred)</MenuItem>
+                                            <MenuItem value="Zelle">Zelle</MenuItem>
+                                            <MenuItem value="Cash">Cash</MenuItem>
+                                        </SelectValidator>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: -10 }}>How did you hear about Yumfullness?</InputLabel>
+                                    <TextField 
+                                        id = "discoveryMethod"
+                                        placeholder = "Instagram, Facebook, Friend, Other"
+                                        required
+                                        margin = "normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        variant = "outlined"
+                                        style = {{ marginLeft: 12, resize: 5 }}
+                                        size = "small"
+                                        onChange = { handleChange('discoveryMethod') }
+                                        defaultValue = { values.discoveryrMethod }
+                                    />
+                                </Grid>
+                                <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>
+                                    { values.activeStep === steps.length 
+                                        ? (<Grid container justify="center">
+                                                <Button href="/" label="Submit" variant="contained" color="primary" size="medium"
+                                                    style = {{ marginTop: 10, backgroundColor: "#1976d2", color: "#ffffff" }}>
+                                                    Return Home
                                                 </Button>
-                                            <Button variant="contained" color="primary" onClick={nextStep} className='button'
-                                                    style = {{ backgroundColor: "#1976d2", color: "#ffffff", margin: 15 }}>
-                                                { values.activeStep === steps.length - 1 ? 'Order!' : 'Next' }
-                                            </Button>
-                                        </div>)
-                                }
-                            </div>
+                                            </Grid>) 
+                                        : (<div className="button-group" style = {{ justifyContent: 'center', alignItems: 'center' }}>
+                                                <Button disabled={values.activeStep === 0} onClick={prevStep} className='button' variant="contained">
+                                                        Back
+                                                    </Button>
+                                                <Button variant="contained" color="primary" className='button' style = {{ margin: 15 }} type = "submit" disabled = { validForm }>
+                                                    { values.activeStep === steps.length - 1 ? 'Order!' : 'Next' }
+                                                </Button>
+                                            </div>)
+                                    }
+                                </div>
+                            </ValidatorForm>
                         </Grid>
                     </Box>
                 </React.Fragment> 
