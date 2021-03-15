@@ -154,11 +154,12 @@ export class CustomerDetails extends Component {
                                 <Grid item xs={12} style = {{ marginLeft: 12 }}>
                                     <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginBottom: 5}}>Pick-Up or Delivery</InputLabel>
                                     <FormControl variant="outlined" style = {{ width: 275, marginBottom: 5 }}>
-                                        <SelectValidator id="transferMethod" defaultValue={values.transferMethod} value={values.transferMethod}
+                                        <InputLabel>{ values.transferMethod === '' ? 'Select Pick-Up/Delivery' : null}</InputLabel>
+                                        <SelectValidator id="transferMethod" value={values.transferMethod}
                                                 onChange={handleChange('transferMethod')} required validators = { ['required'] } errorMessages = { ['Required field'] }
                                                 MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
                                                 variant="outlined">
-                                            <MenuItem value="" disabled>Select Pick-Up/Delivery</MenuItem>
+                                            <MenuItem disabled>Select Pick-Up/Delivery</MenuItem>
                                             <MenuItem value="Pick-Up">Pick-Up</MenuItem>
                                             <MenuItem value="Delivery">Delivery</MenuItem>
                                         </SelectValidator>
@@ -193,11 +194,12 @@ export class CustomerDetails extends Component {
                                                     <Grid item xs={12} style = {{ marginTop: 15 }}>
                                                         <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Pick-Up Time Frame</InputLabel>
                                                         <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginBottom: 10 }}>
-                                                            <SelectValidator id="pickUpTime" placeholder="Enter pick-up time frame" defaultValue='' value={values.pickUpTime} 
+                                                            <InputLabel>{ values.pickUpTime === '' ? 'Select Pick-Up Time Frame' : null}</InputLabel>
+                                                            <SelectValidator id="pickUpTime" value={values.pickUpTime} 
                                                                     onChange={handleChange('pickUpTime')} required validators = { ['required'] } errorMessages = { ['Required field'] }
                                                                     MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
                                                                     variant="outlined">
-                                                                <MenuItem value="" disabled>Select Pick-Up Time Frame</MenuItem>
+                                                                <MenuItem disabled>Select Pick-Up Time Frame</MenuItem>
                                                                 <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
                                                                 <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
                                                                 <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
@@ -261,11 +263,12 @@ export class CustomerDetails extends Component {
                                                 <Grid item xs={12} style = {{ marginTop: 5, marginBottom: -10 }}>
                                                     <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: 5 }}>Delivery Time Frame</InputLabel>
                                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275 }}>
-                                                        <SelectValidator id="deliveryTime" defaultValue={values.deliveryTime} value={values.deliveryTime} 
+                                                        <InputLabel>{ values.deliveryTime === '' ? 'Select Delivery Time Frame' : null }</InputLabel>
+                                                        <SelectValidator id="deliveryTime" value={values.deliveryTime} 
                                                                 onChange={handleChange('deliveryTime')} required validators = { ['required'] } errorMessages = { ['Required field'] }
                                                                 MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
                                                                 variant="outlined">
-                                                            <MenuItem value="" disabled>Select Delivery Time Frame</MenuItem>
+                                                            <MenuItem disabled>Select Delivery Time Frame</MenuItem>
                                                             <MenuItem value="10:00am-11:00am">10:00am-11:00am</MenuItem>
                                                             <MenuItem value="11:00am-12:00pm">11:00am-12:00pm</MenuItem>
                                                             <MenuItem value="12:00pm-1:00pm">12:00pm-1:00pm</MenuItem>
@@ -341,11 +344,12 @@ export class CustomerDetails extends Component {
                                                 <Grid item xs={12} style = {{ marginTop: 10 }}>
                                                     <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Delivery State</InputLabel>
                                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275 }}>
-                                                        <SelectValidator id="deliveryState" defaultValue={values.deliveryState} value={values.deliveryState} 
+                                                        <InputLabel>{ values.deliveryState === '' ? 'Select Delivery State' : null}</InputLabel>
+                                                        <SelectValidator id="deliveryState" value={values.deliveryState} 
                                                                 onChange={handleChange('deliveryState')} validators = { ['required'] } errorMessages = { ['Required field'] }
                                                                 MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
                                                                 variant="outlined">
-                                                            <MenuItem value="" disabled>Select Delivery State</MenuItem>
+                                                            <MenuItem disabled>Select Delivery State</MenuItem>
                                                             <MenuItem value="DC">District of Columbia (DC)</MenuItem>
                                                             <MenuItem value="MD">Maryland (MD)</MenuItem>
                                                             <MenuItem value="VA">Virginia (VA)</MenuItem>
@@ -376,20 +380,21 @@ export class CustomerDetails extends Component {
 
                                 <hr/><br/>
                                 <Grid item xs={12}>
-                                    <Grid style = {{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}>
+                                    <Grid style = {{ marginLeft: 15, marginRight: 15, marginBottom: 5 }}>
                                         <Typography style = {{ fontWeight: 600, fontSize: '15px', textAlign: 'center' }}>Non-refundable deposit required: </Typography>
                                         <List style = {{ marginTop: -8, fontSize: 5, textAlign: 'center' }}>
                                             <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Pick-up (Pentagon City): 50% Deposit</Typography>} />
                                             <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Nearby Delivery (+$10): Full Deposit</Typography>}/>
                                         </List>
                                     </Grid>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: 5 }}>Payment Method</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 5, marginBottom: 5 }}>Payment Method</InputLabel>
                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginBottom: 10 }}>
-                                        <SelectValidator id="paymentMethod" defaultValue={values.paymentMethod} value={values.paymentMethod}
+                                        <InputLabel>{ values.paymentMethod === '' ? 'Select Payment Method' : null }</InputLabel>
+                                        <SelectValidator id="paymentMethod" value={values.paymentMethod}
                                                 onChange={handleChange('paymentMethod')} required validators = { ['required'] } errorMessages = { ['Required field'] }
                                                 MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}
                                                 variant="outlined">
-                                            <MenuItem value="" disabled>Select Payment Method</MenuItem>
+                                            <MenuItem disabled>Select Payment Method</MenuItem>
                                             <MenuItem value="Venmo">Venmo (Preferred)</MenuItem>
                                             <MenuItem value="Zelle">Zelle</MenuItem>
                                             <MenuItem value="Cash">Cash</MenuItem>

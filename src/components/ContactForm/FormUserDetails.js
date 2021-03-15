@@ -73,11 +73,12 @@ export class FormUserDetails extends Component {
                                 <Grid item xs={12}>
                                     <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 15, marginBottom: -10 }}>Method of Contact</InputLabel>
                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginTop: 15, marginBottom: 10 }}>
+                                        <InputLabel>{ values.methodOfContact === '' ? 'Select Method of Contact' : null }</InputLabel>
                                         <SelectValidator id="methodOfContact" defaultValue={values.methodOfContact} value={values.methodOfContact}
                                                 onChange={handleChange('methodOfContact')} validators={['required']} errorMessages={['Required field']}
                                                 variant="outlined"  style = {{ width: 275 }} 
                                                 MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
-                                            <MenuItem value="" disabled>Select Method of Contact</MenuItem>
+                                            <MenuItem disabled>Select Method of Contact</MenuItem>
                                             <MenuItem value="Phone">Phone</MenuItem>
                                             <MenuItem value="Email">Email</MenuItem>
                                         </SelectValidator>
