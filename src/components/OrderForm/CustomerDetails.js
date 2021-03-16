@@ -131,10 +131,10 @@ export class CustomerDetails extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Phone (XXX-XXX-XXXX)</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Cell Phone (XXX-XXX-XXXX)</InputLabel>
                                     <TextValidator 
                                         id = "phone"
-                                        placeholder = "Enter Phone Number"
+                                        placeholder = "Enter Cell Phone Number"
                                         required
                                         margin = "normal"
                                         InputLabelProps={{
@@ -145,8 +145,8 @@ export class CustomerDetails extends Component {
                                         size = "small"
                                         onChange = { handleChange('phone') }
                                         value = { values.phone }
-                                        validators = { ['required'] }
-                                        errorMessages = { ['Required field'] }
+                                        validators = { ['required', 'matchRegexp:\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}'] }
+                                        errorMessages = { ['Required field', 'Invalid Phone Number'] }
                                     />
                                 </Grid>
                                 <hr/><br/>

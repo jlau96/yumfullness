@@ -107,10 +107,10 @@ export class FormUserDetails extends Component {
                                                 </div>)
                                             : (values.methodOfContact === 'Phone' 
                                                 ? (<div>
-                                                        <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 20, marginBottom: -10 }}>Phone</InputLabel>
+                                                        <InputLabel style = {{ fontSize: 15, fontColor: 'black', marginLeft: 20, marginBottom: -10 }}>Cell Phone (XXX-XXX-XXXX)</InputLabel>
                                                         <TextValidator 
                                                             id = "phone"
-                                                            placeholder = "Enter Phone Number"
+                                                            placeholder = "Enter Cell Phone Number"
                                                             required
                                                             margin = "normal"
                                                             InputLabelProps={{
@@ -121,8 +121,8 @@ export class FormUserDetails extends Component {
                                                             size = "medium"
                                                             onChange = { handleChange('phone') }
                                                             value = { values.phone }
-                                                            validators = { ['required'] }
-                                                            errorMessages = { ['Required field'] }
+                                                            validators = { ['required', 'matchRegexp:\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}'] }
+                                                            errorMessages = { ['Required field', 'Invalid Phone Number'] }
                                                         />
                                                     </div>) 
                                                 : null)

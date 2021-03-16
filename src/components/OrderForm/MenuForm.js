@@ -386,20 +386,23 @@ export class MenuForm extends Component {
                             
                             <br/><hr style = {{ maxWidth: '300px', marginTop: -10 }}/><br/>
                             
-                            <Typography style = {{ marginLeft: 5, marginRight: 5, fontSize: 14, maxWidth: '270px' }}>
+                            <Typography style = {{ marginLeft: 15, marginRight: 15, fontSize: 14, maxWidth: '270px' }}>
                                 Baked goods are made using kitchen equipment with known allergens such as eggs, dairy, wheat, soy, and nuts.
                                 I cannot guarantee allergen-free, gluten-free, or nut-free baked goods.
                             </Typography>
                             <FormControl component="fieldset">
                                 <FormControlLabel control={ <Checkbox color="primary" onChange={handleCheckboxChange('orderCertification')}/> }
                                                   checked = { values.orderCertification } 
+                                                  style = {{ marginLeft: -5 }}
                                                   label= { <Typography style = {{ fontSize: 14 }}>I understand and will still love to order!</Typography> } />
                             </FormControl>
 
                             <div>
                                 {
                                     values.orderCertification === false 
-                                        ? <Alert variant="outlined" severity="error"><Typography style = {{ fontSize: 12 }}>Must certify statement to continue order</Typography></Alert> 
+                                        ? <Alert variant="outlined" severity="error" style = {{ maxWidth: "285px", marginLeft: 5 }}>
+                                            <Typography style = {{ fontSize: 12 }}>Must certify statement to continue order</Typography>
+                                          </Alert> 
                                         : null
                                 }
                             </div>

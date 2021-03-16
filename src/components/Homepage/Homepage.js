@@ -23,9 +23,9 @@ const imageNames = [
     "assets/galleryImages/12_choco_straw.jpg",
     "assets/galleryImages/13_7_yr_heart.jpg",
     "assets/galleryImages/14_coco_bombs.jpg",
-    "assets/galleryImages/15_plain_heart.jpg",
-    "assets/galleryImages/16_cake_heart.jpg",
-    "assets/galleryImages/17_12_yr_heart.jpg"
+    // "assets/galleryImages/15_plain_heart.jpg"
+    // "assets/galleryImages/16_cake_heart.jpg",
+    // "assets/galleryImages/17_12_yr_heart.jpg"
 ]
 
 const muiTheme = createMuiTheme({
@@ -58,7 +58,6 @@ export default function Homepage() {
                                 return (   
                                     <div className="carouselImg" key={key}>
                                         <img alt="" src={imageName} />
-                                        <p>Legend</p>
                                     </div>
                                 )
                             })

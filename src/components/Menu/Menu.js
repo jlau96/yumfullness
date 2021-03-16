@@ -12,6 +12,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Link } from 'react-scroll';
 
+import { Carousel } from 'react-responsive-carousel';
+import "react-image-gallery/styles/css/image-gallery.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+
 import NumberCake from './menuImages/25_number_cake.jpg';
 import LetterCake from './menuImages/letter_cake.jpg';
 import BreakableHeart from './menuImages/breakable_heart.jpg';
@@ -22,6 +26,12 @@ const muiTheme = createMuiTheme({
     overrides: {
     }
 });
+
+const imageNames = [
+    NumberCake,
+    NumberCake,
+    NumberCake
+]
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -96,7 +106,17 @@ export default function Menu() {
                             <Grid item>
                                 <Card className={classes.cardRoot}>
                                     <CardActionArea>
-                                        <CardMedia className={classes.cardMedia} image={NumberCake} title="Number Cake" />
+                                        <Carousel className={classes.carousel} infiniteLoop useKeyboardArrows autoPlay transitionTime="500">
+                                            {
+                                                imageNames.map((imageName, key) => {
+                                                    return (   
+                                                        <div className="carouselImg" key={key}>
+                                                            <img alt="" src={imageName} />
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 Number Cake
