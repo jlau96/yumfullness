@@ -63,7 +63,7 @@ export class MenuForm extends Component {
                                     ? (<div>
                                             <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
                                                 <Grid>
-                                                    <InputLabel id="singleCakeFlavor">Cake Flavor</InputLabel>
+                                                    <InputLabel id="singleCakeFlavor">Cake Flavor*</InputLabel>
                                                 </Grid>
                                                 <Select id="singleCakeFlavor" label="Single Cake Flavor" defaultValue={values.singleCakeFlavor} 
                                                         value={values.singleCakeFlavor} onChange={handleChange('singleCakeFlavor')}
@@ -71,10 +71,12 @@ export class MenuForm extends Component {
                                                     <MenuItem value="Select" disabled>Select Cake Flavor</MenuItem>
                                                     <MenuItem value="Strawberry Crunch">Strawberry Crunch</MenuItem>
                                                     <MenuItem value="Oreo">Oreo</MenuItem>
-                                                    <MenuItem value="Other">Other Flavor (Customized)</MenuItem>
+                                                    <MenuItem value="French Vanilla">French Vanilla</MenuItem>
+                                                    <MenuItem value="Chocolate">Chocolate</MenuItem>
+                                                    {/* <MenuItem value="Other">Other Flavor (Customized)</MenuItem> */}
                                                 </Select>
                                             </FormControl>
-                                        <div>
+                                        {/* <div>
                                             {
                                                 values.singleCakeFlavor === 'Other'
                                                 ? (<TextField 
@@ -91,7 +93,7 @@ export class MenuForm extends Component {
                                                     />)
                                                 : null
                                             }
-                                        </div>
+                                        </div> */}
                                         <TextField 
                                             label = "Cake Shape"
                                             placeholder = "Enter number, letter, or shape"
@@ -108,7 +110,7 @@ export class MenuForm extends Component {
                                         />
                                         <TextField 
                                             label = "Additional Comments (Optional)"
-                                            placeholder = "Enter any additional comments"
+                                            placeholder = "Enter any additional comments or customizations (theme, toppings, etc.)"
                                             margin = "normal"
                                             InputLabelProps={{
                                                 shrink: true,
@@ -136,7 +138,7 @@ export class MenuForm extends Component {
                                     ? (<div>
                                             <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
                                                 <Grid>
-                                                    <InputLabel id="doubleCakeFlavor">Cake Flavor</InputLabel>
+                                                    <InputLabel id="doubleCakeFlavor">Cake Flavor*</InputLabel>
                                                 </Grid>
                                                 <Select id="doubleCakeFlavor" label="Cake Flavor" defaultValue={values.doubleCakeFlavor} 
                                                         value={values.doubleCakeFlavor} onChange={handleChange('doubleCakeFlavor')}
@@ -144,10 +146,12 @@ export class MenuForm extends Component {
                                                     <MenuItem value="Select" disabled>Select Cake Flavor</MenuItem>
                                                     <MenuItem value="Strawberry Crunch">Strawberry Crunch</MenuItem>
                                                     <MenuItem value="Oreo">Oreo</MenuItem>
-                                                    <MenuItem value="Other">Other Flavor (Customized)</MenuItem>
+                                                    <MenuItem value="French Vanilla">French Vanilla</MenuItem>
+                                                    <MenuItem value="Chocolate">Chocolate</MenuItem>
+                                                    {/* <MenuItem value="Other">Other Flavor (Customized)</MenuItem> */}
                                                 </Select>
                                             </FormControl>
-                                        <div>
+                                        {/* <div>
                                             {
                                                 values.doubleCakeFlavor === 'Other'
                                                 ? (<TextField 
@@ -164,7 +168,7 @@ export class MenuForm extends Component {
                                                     />)
                                                 : null                                                    
                                             }
-                                        </div>
+                                        </div> */}
                                         <TextField 
                                             label = "Cake Shape"
                                             placeholder = "Enter number, letter, or shape"
@@ -181,7 +185,7 @@ export class MenuForm extends Component {
                                         />
                                         <TextField 
                                             label = "Additional Comments (Optional)"
-                                            placeholder = "Enter any additional comments"
+                                            placeholder = "Enter any additional comments or customizations (theme, toppings, etc.)"
                                             margin = "normal"
                                             InputLabelProps={{
                                                 shrink: true,
@@ -209,7 +213,7 @@ export class MenuForm extends Component {
                                     ? (<div>
                                             <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
                                                 <Grid>
-                                                    <InputLabel id="breakableHeartColor">Heart Chocolate</InputLabel>
+                                                    <InputLabel id="breakableHeartColor">Heart Chocolate*</InputLabel>
                                                 </Grid>
                                                 <Select id="breakableHeartColor" label="Heart Chocolate" defaultValue={values.breakableHeartColor} 
                                                         value={values.breakableHeartColor} onChange={handleChange('breakableHeartColor')}
@@ -295,7 +299,7 @@ export class MenuForm extends Component {
                                     ? (<div>
                                         <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 5, marginBottom: 10 }}>
                                             <Grid>
-                                                <InputLabel id="cakeHeartQty">Quantity</InputLabel>
+                                                <InputLabel id="cakeHeartQty">Quantity*</InputLabel>
                                             </Grid>
                                             <Select id="cakeHeartQty" label="Quantity" defaultValue={values.cakeHeartQty} 
                                                     value={values.cakeHeartQty} onChange={handleChange("cakeHeartQty")}
@@ -310,7 +314,7 @@ export class MenuForm extends Component {
                                         </FormControl>
                                         <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 5, marginBottom: 10 }}>
                                             <Grid>
-                                                <InputLabel id="cakeHeartCoating">Chocolate Coating</InputLabel>
+                                                <InputLabel id="cakeHeartCoating">Chocolate Coating*</InputLabel>
                                             </Grid>
                                             <Select id="cakeHeartCoating" label="Chocolate Coating" defaultValue={values.cakeHeartCoating} 
                                                     value={values.cakeHeartCoating} onChange={handleChange('cakeHeartCoating')}
@@ -343,7 +347,7 @@ export class MenuForm extends Component {
                                         </FormControl>
                                         <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 0, marginBottom: 10 }}>
                                             <Grid>
-                                                <InputLabel id="cakeHeartFilling">Cake Filling</InputLabel>
+                                                <InputLabel id="cakeHeartFilling">Cake Filling*</InputLabel>
                                             </Grid>
                                             <Select id="cakeHeartFilling" label="Cake Filling" defaultValue={values.cakeHeartFilling} 
                                                     value={values.cakeHeartFilling} onChange={handleChange("cakeHeartFilling")}

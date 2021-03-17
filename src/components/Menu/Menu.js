@@ -118,12 +118,12 @@ export default function Menu() {
                                             }
                                         </Carousel>
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                Number Cake
+                                            <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
+                                                1 Number/Letter Cake
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            {/* <Typography variant="body2" color="textSecondary" component="p">
                                                 Custom number cake!
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -133,12 +133,12 @@ export default function Menu() {
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={LetterCake} title="Letter Cake" />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                Letter Cake
+                                            <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
+                                                2 Numbers/Letters Cake
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            {/* <Typography variant="body2" color="textSecondary" component="p">
                                                 Custom letter cake!
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -153,12 +153,12 @@ export default function Menu() {
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={BreakableHeart} title="Breakable Heart" />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
                                                 Breakable Heart
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            {/* <Typography variant="body2" color="textSecondary" component="p">
                                                 Custom breakable heart!
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -173,12 +173,12 @@ export default function Menu() {
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={CakeHeart} title="Cake Hearts" />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
                                                 Cake Hearts
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            {/* <Typography variant="body2" color="textSecondary" component="p">
                                                 Custom cake hearts!
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -188,12 +188,12 @@ export default function Menu() {
                                     <CardActionArea>
                                         <CardMedia className={classes.cardMedia} image={ChocoStraw} title="Chocolate Covered Strawberries" />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
                                                 Chocolate Covered Strawberries
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            {/* <Typography variant="body2" color="textSecondary" component="p">
                                                 Custom chocolate covered strawberries!
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>

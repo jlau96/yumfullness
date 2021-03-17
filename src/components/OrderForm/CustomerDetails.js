@@ -73,7 +73,7 @@ export class CustomerDetails extends Component {
                             }}>
                             <ValidatorForm ref="form" onSubmit={this.continue}>
                                 <Grid item xs={12}>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 20, marginBottom: -25 }}>First Name</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 20, marginBottom: -25 }}>First Name*</InputLabel>
                                     <TextValidator
                                         id = "firstName"
                                         placeholder = "Enter First Name"
@@ -93,7 +93,7 @@ export class CustomerDetails extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Last Name</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Last Name*</InputLabel>
                                     <TextValidator 
                                         id = "lastName"
                                         placeholder = "Enter Last Name"
@@ -112,7 +112,7 @@ export class CustomerDetails extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Email</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Email*</InputLabel>
                                     <TextValidator
                                         id = "email"
                                         placeholder = "Enter Email Address"
@@ -131,7 +131,7 @@ export class CustomerDetails extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12} style = {{ marginTop: -5 }}>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Cell Phone (XXX-XXX-XXXX)</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Cell Phone* (XXX-XXX-XXXX)</InputLabel>
                                     <TextValidator 
                                         id = "phone"
                                         placeholder = "Enter Cell Phone Number"
@@ -152,7 +152,7 @@ export class CustomerDetails extends Component {
                                 <hr/><br/>
                                 
                                 <Grid item xs={12} style = {{ marginLeft: 12 }}>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginBottom: 5}}>Pick-Up or Delivery</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginBottom: 5}}>Pick-Up or Delivery*</InputLabel>
                                     <FormControl variant="outlined" style = {{ width: 275, marginBottom: 5 }}>
                                         <InputLabel>{ values.transferMethod === '' ? 'Select Pick-Up/Delivery' : null}</InputLabel>
                                         <SelectValidator id="transferMethod" value={values.transferMethod}
@@ -172,7 +172,7 @@ export class CustomerDetails extends Component {
                                         ? (values.transferMethod !== 'Delivery'
                                             ? (<div className="pickUpOptions" style = {{ marginTop: -5 }}>
                                                     <Grid item xs={12} style = {{ marginLeft: 12 }}>
-                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginTop: 20, marginBottom: -10 }}>Pick-Up Date</InputLabel>
+                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginTop: 20, marginBottom: -10 }}>Pick-Up Date*</InputLabel>
                                                         <MuiPickersUtilsProvider utils={MomentUtils}>
                                                             <KeyboardDatePicker
                                                                 id="pickUpDate"
@@ -192,7 +192,7 @@ export class CustomerDetails extends Component {
                                                         </MuiPickersUtilsProvider>
                                                     </Grid>
                                                     <Grid item xs={12} style = {{ marginTop: 15 }}>
-                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Pick-Up Time Frame</InputLabel>
+                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Pick-Up Time Frame*</InputLabel>
                                                         <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginBottom: 10 }}>
                                                             <InputLabel>{ values.pickUpTime === '' ? 'Select Pick-Up Time Frame' : null}</InputLabel>
                                                             <SelectValidator id="pickUpTime" value={values.pickUpTime} 
@@ -217,7 +217,7 @@ export class CustomerDetails extends Component {
                                                             {
                                                                 values.pickUpTime === 'Other'
                                                                 ? ( <div>
-                                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Other Pick-Up Time</InputLabel>
+                                                                        <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Other Pick-Up Time*</InputLabel>
                                                                         <TextValidator
                                                                             id = "pickUpTimeOther"
                                                                             placeholder = "Enter Pick-Up Time Frame"
@@ -230,6 +230,7 @@ export class CustomerDetails extends Component {
                                                                             style = {{ marginBottom: 20, marginLeft: 12, width: 275  }}
                                                                             size = "small"
                                                                             onChange = { handleChange('pickUpTimeOther') }
+                                                                            value = { values.pickUpTimeOther }
                                                                             validators = { ['required'] } 
                                                                             errorMessages = { ['Required field'] }
                                                                             />
@@ -241,7 +242,7 @@ export class CustomerDetails extends Component {
                                             </div>)
                                             : (<div className="deliveryOptions" style = {{ marginTop: 10 }}>
                                                 <Grid item xs={12} style = {{ marginLeft: 12 }}>
-                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginTop: 15, marginBottom: -10 }}>Delivery Date</InputLabel>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 5, marginTop: 15, marginBottom: -10 }}>Delivery Date*</InputLabel>
                                                     <MuiPickersUtilsProvider utils={MomentUtils}>
                                                         <KeyboardDatePicker
                                                             id="deliverypDate"
@@ -261,7 +262,7 @@ export class CustomerDetails extends Component {
                                                     </MuiPickersUtilsProvider>
                                                 </Grid>
                                                 <Grid item xs={12} style = {{ marginTop: 5, marginBottom: -10 }}>
-                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: 5 }}>Delivery Time Frame</InputLabel>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: 5 }}>Delivery Time Frame*</InputLabel>
                                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275 }}>
                                                         <InputLabel>{ values.deliveryTime === '' ? 'Select Delivery Time Frame' : null }</InputLabel>
                                                         <SelectValidator id="deliveryTime" value={values.deliveryTime} 
@@ -282,7 +283,7 @@ export class CustomerDetails extends Component {
                                                         {
                                                             values.deliveryTime === 'Other'
                                                             ? (<div>
-                                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Other Delivery Time</InputLabel>
+                                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 15, marginBottom: -10 }}>Other Delivery Time*</InputLabel>
                                                                     <TextValidator 
                                                                         id = "deliveryTimeOther"
                                                                         placeholder = "Enter Delivery Time Frame"
@@ -295,6 +296,7 @@ export class CustomerDetails extends Component {
                                                                         style = {{ marginLeft: 12, width: 275, marginBottom: 0 }}
                                                                         size = "small"
                                                                         onChange = { handleChange('deliveryTimeOther') }
+                                                                        value = { values.deliveryTimeOther }
                                                                         validators = { ['required'] } 
                                                                         errorMessages = { ['Required field'] }
                                                                     />
@@ -304,7 +306,7 @@ export class CustomerDetails extends Component {
                                                     </div>
                                                 </Grid>
                                                 <Grid item xs={12} style = {{ marginTop: 20 }}>
-                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 30, marginBottom: -10 }}>Delivery Address</InputLabel>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 30, marginBottom: -10 }}>Delivery Address*</InputLabel>
                                                     <TextValidator
                                                         id = "deliveryAddress"
                                                         placeholder = "Enter Delivery Address"
@@ -317,13 +319,13 @@ export class CustomerDetails extends Component {
                                                         style = {{ marginLeft: 12, width: 275 }}
                                                         size = "small"
                                                         onChange = { handleChange('deliveryAddress') }
-                                                        defaultValue = { values.deliveryAddress }
+                                                        value = { values.deliveryAddress }
                                                         validators = { ['required'] } 
                                                         errorMessages = { ['Required field'] }
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12} style = {{ marginTop: 0 }}>
-                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: -10 }}>Delivery City</InputLabel>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: -10 }}>Delivery City*</InputLabel>
                                                     <TextValidator
                                                         id = "deliveryCity"
                                                         placeholder = "Enter Delivery City"
@@ -336,13 +338,13 @@ export class CustomerDetails extends Component {
                                                         style = {{ marginLeft: 12, width: 275 }}
                                                         size = "small"
                                                         onChange = { handleChange('deliveryCity') }
-                                                        defaultValue = { values.deliveryCity }
+                                                        value = { values.deliveryCity }
                                                         validators = { ['required'] } 
                                                         errorMessages = { ['Required field'] }
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12} style = {{ marginTop: 10 }}>
-                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Delivery State</InputLabel>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>Delivery State*</InputLabel>
                                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275 }}>
                                                         <InputLabel>{ values.deliveryState === '' ? 'Select Delivery State' : null}</InputLabel>
                                                         <SelectValidator id="deliveryState" value={values.deliveryState} 
@@ -357,7 +359,7 @@ export class CustomerDetails extends Component {
                                                     </FormControl>
                                                 </Grid>
                                                 <Grid item xs={12} style = {{ marginTop: 15 }}>
-                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 20, marginBottom: -10 }}>Delivery Zip Code</InputLabel>
+                                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 20, marginBottom: -10 }}>Delivery Zip Code*</InputLabel>
                                                     <TextValidator 
                                                         id = "deliveryZip"
                                                         placeholder = "Enter Delivery Zip Code"
@@ -370,7 +372,7 @@ export class CustomerDetails extends Component {
                                                         style = {{ marginLeft: 12, width: 275 }}
                                                         size = "small"
                                                         onChange = { handleChange('deliveryZip') }
-                                                        defaultValue = { values.deliveryZip }
+                                                        value = { values.deliveryZip }
                                                     />
                                                 </Grid>
                                             </div>))
@@ -387,7 +389,7 @@ export class CustomerDetails extends Component {
                                             <ListItemText primary={<Typography style = {{fontSize: '15px'}}>Nearby Delivery (+$10): Full Deposit</Typography>}/>
                                         </List>
                                     </Grid>
-                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 5, marginBottom: 5 }}>Payment Method</InputLabel>
+                                    <InputLabel className="inputLabel" style = {{ marginLeft: 15, marginTop: 5, marginBottom: 5 }}>Payment Method*</InputLabel>
                                     <FormControl variant="outlined" style = {{ marginLeft: 12, width: 275, marginBottom: 10 }}>
                                         <InputLabel>{ values.paymentMethod === '' ? 'Select Payment Method' : null }</InputLabel>
                                         <SelectValidator id="paymentMethod" value={values.paymentMethod}
@@ -406,7 +408,6 @@ export class CustomerDetails extends Component {
                                     <TextField 
                                         id = "discoveryMethod"
                                         placeholder = "Instagram, Facebook, Friend, Other"
-                                        required
                                         margin = "normal"
                                         InputLabelProps={{
                                             shrink: true,
@@ -415,7 +416,7 @@ export class CustomerDetails extends Component {
                                         style = {{ marginLeft: 12, resize: 5 }}
                                         size = "small"
                                         onChange = { handleChange('discoveryMethod') }
-                                        defaultValue = { values.discoveryrMethod }
+                                        value = { values.discoveryMethod }
                                     />
                                 </Grid>
                                 <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 25}}>

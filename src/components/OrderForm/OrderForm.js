@@ -15,6 +15,8 @@ import emailjs from 'emailjs-com';
 import Moment from 'moment';
 import InstagramSticker from './follow_me_instagram.jpg';
 
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+
 const muiTheme = createMuiTheme({
     overrides: {
         MuiStepIcon: {
@@ -35,10 +37,19 @@ const muiTheme = createMuiTheme({
     }
 });
 
+const googleSpreadsheetKeys = {
+    SPREADSHEET_ID: "1fx1eiIr2M0mvodUvr3WZ75wor0qxCqAwnUa15J7RzCE",
+    SHEET_ID: "0",
+    CLIENT_EMAIL: "yumfullness@iloveyumfullness.iam.gserviceaccount.com",
+    PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCzPjL9RN7nOLp3\nl6NuPvjpAikX7IZ9iDGjEMc07wfzVCwIZi4OlvWTPjs9XHCMmSKqpOizpDN4zkFr\nuBGnwEA+CxcpyivC9Ng308odUC1BWfOzd09xINQgVObtVQoMWBCKB1TXoO3B263q\nNTw2oPz8poySpUOIgp97NO5JIrvmRg5GU3SF6dXjr7Nr4nrx7SqsXBTyyP5KprdA\ngVWVdiXVQiyDFNQGblvoZSy0b3+byc9xR1yWJVVuXVKS+5BcJTHsefZoxnw2p4UM\nLAV9ppVNS9EPxAO3OYK6STYw64evn6SmO4jzLKuFv5+4+bdpFUErmZ9w3g45x/SE\nWqU9XxPLAgMBAAECggEAA3PyyoM9ogmrOeuPZ+vJor96aC4Txy5M+n2zwLbMGelo\nsb66K2jIEU6VGJED0AmRK+ViYDeNEEo042zX1jnzYt6W0yTEZAyQb77iOV9Wh9hC\nRBZLzvuZaogILNFDEMrPgsEyZrcAbYgcWRMudkTyqrFQqvCJFQOjK93wqzMCmKR/\niRZGpTHuGgJZzRt9DpOM/hKn6rv38hBzyIROQCrAgGGRWjNVDa7Nux2uhi4vjzwU\no9YOmPFN1B8cc5TvdiTGfZ3YjIbsyfpY2Ju/uBtKJah29M8EUVYqAi1zLPOVAkKy\nPASHs/sbXdpBGsJ0Da3IeANArXPDIeo+8WO8ZAkWEQKBgQDxS4aC57z08wlTtUVl\nhMQ9eDaHRGPs3h1+Dy3RhPWNg102tRG6F6VH0EQteIRz9WJy9hsxjsE2Dxyi6GNo\nkiulcJ5r53lFtL7MLS4ZX5SKFrB4RaOQ2hKtbEQJjfwugDKhjmCEuPWcK9pqL4xB\nRdq1CPIke6YTRbMH30fATugCkQKBgQC+Kpd3WiFCsEeD0LZlnBRuwAeLkws0F2Rz\nfvhQxMQvdattSNrMrGgRx1eDrBwrTHIiM3PcjlslRH+7yymIzKoI6BHZtqLR87z1\ngk5BT6WCWkWnARVfOYSllYGA6Ij02Esmbv5093Ctn4XqNEBh71omYpV/Erv3xkel\ncbx02EQmmwKBgQDBUEnGrJRFBkUtrCeZ6qExwhKlklQgG98y9EQ3/LahlmHih3RZ\nS8Jd42wLpecv46LpCWTF8mG2xqqhlV63E4wmMjCpsDwHbYQCnhu1tk6RxxXAdcJS\nNXQLPpbPtNIaCxkFN8T58BjN8pA8zDUowiczLKSaN/nYrNl+8BJS7qSQEQKBgQCs\nNfvmvLtEHkkVKOwUhkzGoqXykt3hdZGlOgV7d0VGyWPN2t0x3qt79i7dcf4sg9UT\n/c5dnJkT3b1i/i+Fz/nniOmpZEh8oyKqni9p28vBiShsfYGyM29ZWFPnvi1QtZMQ\nohFTMUVcJgtqtZjcV5onCr3hTsDkOC5nt+D3W2YUIwKBgQDIDW82jyR6HUFNziD+\nOFwE3tUgcUNhnp7aTLhhh09vJ69fKEflgTy+PWqv3FDqA8xIz06At7PVcjjZ2UKO\njygDvHs2M98Wpe80zIm8EprvXbtNPI9oWooqxjWTb3nkzJZ9eNxYKbvvFD4n35Od\nmHQcN+yqIUJtongg8WCp+7XmYg==\n-----END PRIVATE KEY-----\n"
+}
+
 const emailJsKeys = {
     USER_ID: 'user_LysXNUTBkPlLzkuwiEVB3',
     TEMPLATE_ID: 'yumfullness_order_form'
 }
+
+const CAKE_HEARTS_PER_ORDER = 8;
 
 export class OrderForm extends Component {
     state = {
@@ -108,7 +119,8 @@ export class OrderForm extends Component {
     nextStep = () => {
         const { activeStep } = this.state;
         if (activeStep === 2) {
-            this.submit();
+            this.sendToGoogleSheets();
+            this.sendEmail();
         }
         this.setState({
             activeStep: activeStep + 1
@@ -140,9 +152,66 @@ export class OrderForm extends Component {
         return Moment(date).format("dddd, MMMM DD, YYYY");
     }
 
-    submit = () => {
+    appendSpreadsheet = async(row) => {
+        const spreadsheet = new GoogleSpreadsheet(googleSpreadsheetKeys.SPREADSHEET_ID);
+        try {
+            await spreadsheet.useServiceAccountAuth({
+                client_email: googleSpreadsheetKeys.CLIENT_EMAIL,
+                private_key: googleSpreadsheetKeys.PRIVATE_KEY,
+            });
+
+            await spreadsheet.loadInfo();
+            const sheet = spreadsheet.sheetsById[googleSpreadsheetKeys.SHEET_ID];
+            await sheet.addRow(row);
+        } catch (e) {
+            console.error("Error appending to Google Sheets: ", e);
+        }
+        console.log("Successfully added order to Google Sheets!");
+    }
+
+    sendToGoogleSheets = () => {
         const values = this.state;
-        const CAKE_HEARTS_PER_ORDER = 8;
+        const row = {
+            "First Name": values.firstName,
+            "Last Name": values.lastName,
+            "Email": values.email,
+            "Phone": values.phone,
+            "Pick-Up/Delivery": values.transferMethod,
+            "Order Date": values.transferMethod === 'Delivery' ? this.toDateStr(values.deliveryDate) : this.toDateStr(values.pickUpDate), 
+            "Time Frame": values.transferMethod === 'Delivery' 
+                    ? (values.deliveryTime !== 'Other' ? values.deliveryTime : "Other - " + values.deliveryTimeOther) 
+                    : (values.pickUpTime !== 'Other' ? values.pickUpTime : "Other - " + values.pickUpTimeOther),
+            "Delivery Address": values.transferMethod === 'Delivery' ? (values.deliveryAddress + ', ' + values.deliveryCity + ', ' + values.deliveryState + ' ' + values.deliveryZip) : "N/A",
+            "Payment Method": values.paymentMethod,
+            "Discovery Method": values.discoveryMethod,
+            "Order": "→",
+            "Single Cake": values.singleCake === true 
+                            ? ("Flavor: " + (values.singleCakeFlavor !== 'Other' ? values.singleCakeFlavor : "Other - " + values.singleCakeCustomFlavor) + ", " +
+                               "Shape: " + values.singleCakeShape + ", " + "Comments: " + (values.singleCakeComments !== null ? values.singleCakeComments : "N/A"))
+                            : null,
+            "Double Cake": values.doubleCake === true 
+                            ? ("Flavor: " + (values.doubleCakeFlavor !== 'Other' ? values.doubleCakeFlavor : "Other - " + values.doubleCakeCustomFlavor) + ", " +
+                            "Shape: " + values.doubleCakeShape + ", " + "Comments: " + (values.doubleCakeComments !== null ? values.doubleCakeComments : "N/A"))
+                            : null,
+            "Breakable Heart": values.breakableHeart === true
+                                ? ("Color: " + (values.breakableHeartColor !== 'Other' ? values.breakableHeartColor : "Other - " + values.breakableHeartCustomColor) + ", " +
+                                   "Letters: " + (values.breakableHeartLetters !== null ? values.breakableHeartLetters : "N/A") + ", " +
+                                   "Customization: " + (values.breakableHeartCustom !== null ? values.breakableHeartCustom : "N/A") + ", " +
+                                   "Comments: " + (values.breakableHeartComments !== null ? values.breakableHeartComments : "N/A"))
+                                : null, 
+            "Cake Heart": values.cakeHeart === true
+                            ? ("Qty: " + values.cakeHeartQty*CAKE_HEARTS_PER_ORDER + ", " +
+                               "Coating: " + (values.cakeHeartCoating !== 'Other' ? values.cakeHeartCoating : values.cakeHeartCustomCoating) + ", " +
+                               "Filling: " + (values.cakeHeartFilling !== null ? values.cakeHeartFilling : "N/A") + ", " +
+                               "Letters: " + (values.cakeHeartLetters !== null ? values.cakeHeartLetters : "N/A") + ", " +
+                               "Comments: " + (values.cakeHeartComments !== null ? values.cakeHeartComments : "N/A"))
+                            : null
+        }
+        this.appendSpreadsheet(row);
+    }
+
+    sendEmail = () => {
+        const values = this.state;
 
         var orderValues = {
             firstName: values.firstName,
