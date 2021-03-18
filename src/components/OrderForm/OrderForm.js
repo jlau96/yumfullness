@@ -65,6 +65,7 @@ export class OrderForm extends Component {
         doubleCakeShape: null,
         doubleCakeComments: null,
         breakableHeart: false,
+        breakableHeartQty: null,
         breakableHeartColor: "Select",
         breakableHeartCustomColor: null,
         breakableHeartLetters: null, 
@@ -188,24 +189,25 @@ export class OrderForm extends Component {
             "Single Cake": values.singleCake === true 
                             ? ("Flavor: " + (values.singleCakeFlavor !== 'Other' ? values.singleCakeFlavor : "Other - " + values.singleCakeCustomFlavor) + ", " +
                                "Shape: " + values.singleCakeShape + ", " + "Comments: " + (values.singleCakeComments !== null ? values.singleCakeComments : "N/A"))
-                            : null,
+                            : "Not Ordered",
             "Double Cake": values.doubleCake === true 
                             ? ("Flavor: " + (values.doubleCakeFlavor !== 'Other' ? values.doubleCakeFlavor : "Other - " + values.doubleCakeCustomFlavor) + ", " +
                             "Shape: " + values.doubleCakeShape + ", " + "Comments: " + (values.doubleCakeComments !== null ? values.doubleCakeComments : "N/A"))
-                            : null,
+                            : "Not Ordered",
             "Breakable Heart": values.breakableHeart === true
-                                ? ("Color: " + (values.breakableHeartColor !== 'Other' ? values.breakableHeartColor : "Other - " + values.breakableHeartCustomColor) + ", " +
+                                ? ("Qty: " + (values.breakableHeartQty) + ", " +
+                                   "Color: " + (values.breakableHeartColor !== 'Other' ? values.breakableHeartColor : "Other - " + values.breakableHeartCustomColor) + ", " +
                                    "Letters: " + (values.breakableHeartLetters !== null ? values.breakableHeartLetters : "N/A") + ", " +
                                    "Customization: " + (values.breakableHeartCustom !== null ? values.breakableHeartCustom : "N/A") + ", " +
                                    "Comments: " + (values.breakableHeartComments !== null ? values.breakableHeartComments : "N/A"))
-                                : null, 
+                                : "Not Ordered", 
             "Cake Heart": values.cakeHeart === true
                             ? ("Qty: " + values.cakeHeartQty*CAKE_HEARTS_PER_ORDER + ", " +
                                "Coating: " + (values.cakeHeartCoating !== 'Other' ? values.cakeHeartCoating : values.cakeHeartCustomCoating) + ", " +
                                "Filling: " + (values.cakeHeartFilling !== null ? values.cakeHeartFilling : "N/A") + ", " +
                                "Letters: " + (values.cakeHeartLetters !== null ? values.cakeHeartLetters : "N/A") + ", " +
                                "Comments: " + (values.cakeHeartComments !== null ? values.cakeHeartComments : "N/A"))
-                            : null
+                            : "Not Ordered"
         }
         this.appendSpreadsheet(row);
     }
@@ -238,6 +240,7 @@ export class OrderForm extends Component {
             doubleCakeShape: values.doubleCakeShape !== null ? values.doubleCakeShape : "N/A",
             doubleCakeComments: values.doubleCakeComments !== null ? values.doubleCakeComments : "N/A", 
             breakableHeart: values.breakableHeart === true ? "ORDERED" : "NOT ORDERED",
+            breakableHeartQty: values.breakableHeartQty,
             breakableHeartColor: values.breakableHeartColor !== null ? (values.breakableHeartColor !== "Select" ? values.breakableHeartColor : "N/A") : "N/A",
             breakableHeartCustomColor: values.breakableHeartCustomColor !== null ? values.breakableHeartCustomColor : "N/A",
             breakableHeartLetters: values.breakableHeartLetters !== null ? values.breakableHeartLetters : "N/A",
@@ -252,12 +255,12 @@ export class OrderForm extends Component {
             cakeHeartComments: values.cakeHeartComments !== null ? values.cakeHeartComments : "N/A"     
         }
 
-        // emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, orderValues, emailJsKeys.USER_ID)
-        //     .then(function(response) {
-        //         console.log("Order form email successfully sent!", response.status, response.text);
-        //     }, function(error) {
-        //         console.log("Order form email failed to send...", error);
-        //     });
+        emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, orderValues, emailJsKeys.USER_ID)
+            .then(function(response) {
+                console.log("Order form email successfully sent!", response.status, response.text);
+            }, function(error) {
+                console.log("Order form email failed to send...", error);
+            });
     }
     
     render() {
@@ -265,14 +268,14 @@ export class OrderForm extends Component {
 
         const { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, singleCakeComments,
                 doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, doubleCakeComments,
-                breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
+                breakableHeart, breakableHeartQty, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
                 cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartLetters, cakeHeartComments, 
                 firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
                 deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod, discoveryMethod, orderCertification } = this.state;
 
         const values = { activeStep, singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, singleCakeComments, 
                          doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, doubleCakeComments, 
-                         breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
+                         breakableHeart, breakableHeartQty, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
                          cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartComments, 
                          cakeHeartLetters, firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, 
                          deliveryTimeOther, deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod, discoveryMethod, orderCertification };

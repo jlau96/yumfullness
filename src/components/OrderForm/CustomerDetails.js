@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';

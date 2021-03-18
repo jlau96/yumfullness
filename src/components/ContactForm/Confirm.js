@@ -32,12 +32,12 @@ export class Confirm extends Component {
             message: values.message
         }
 
-        // emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, formValues, emailJsKeys.USER_ID)
-        //     .then(function(response) {
-        //         console.log("Contact form email successfully sent!", response.status, response.text);
-        //     }, function(error) {
-        //         console.log("Contact form email failed to send...", error);
-        //     });
+        emailjs.send('gmail', emailJsKeys.TEMPLATE_ID, formValues, emailJsKeys.USER_ID)
+            .then(function(response) {
+                console.log("Contact form email successfully sent!", response.status, response.text);
+            }, function(error) {
+                console.log("Contact form email failed to send...", error);
+            });
 
         this.props.nextStep();
     }

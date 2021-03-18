@@ -24,7 +24,7 @@ export class Confirm extends Component {
     render() {
         const { values: { singleCake, singleCakeFlavor, singleCakeCustomFlavor, singleCakeShape, singleCakeComments, 
                           doubleCake, doubleCakeFlavor, doubleCakeCustomFlavor, doubleCakeShape, doubleCakeComments, 
-                          breakableHeart, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
+                          breakableHeart, breakableHeartQty, breakableHeartColor, breakableHeartCustomColor, breakableHeartLetters, breakableHeartCustom, breakableHeartComments, 
                           cakeHeart, cakeHeartQty, cakeHeartCoating, cakeHeartCustomCoating, cakeHeartFilling, cakeHeartLetters, cakeHeartComments, 
                           firstName, lastName, email, phone, transferMethod, pickUpDate, pickUpTime, pickUpTimeOther, deliveryDate, deliveryTime, deliveryTimeOther, 
                           deliveryAddress, deliveryCity, deliveryState, deliveryZip, paymentMethod } } = this.props;
@@ -82,6 +82,7 @@ export class Confirm extends Component {
                                                 breakableHeart === true
                                                 ? (<div>
                                                         <ListItemText primary = { "Breakable Heart" } style = {{ marginLeft: 15, marginTop: 15, whiteSpace: 'normal' }} />
+                                                        <ListItemText secondary = { "Quantity: " + (breakableHeartQty !== null ? breakableHeartQty : "0") } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
                                                         <ListItemText secondary = { "Chocolate: " + (breakableHeartColor !== 'Other' ? breakableHeartColor : breakableHeartCustomColor) } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
                                                         <ListItemText secondary = { "Letters: " + (breakableHeartLetters !== null ? breakableHeartLetters : "none") } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />
                                                         <ListItemText secondary = { "Customization: " + (breakableHeartCustom !== null ? breakableHeartCustom : 'none') } style = {{ marginLeft: 15, whiteSpace: 'normal' }} />

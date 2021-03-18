@@ -68,7 +68,7 @@ export default function Homepage() {
                 <div style = {{ display: "flex", justifyContent: "center" }} > 
                     <hr width="325px"/>
                 </div>
-                <Grid container spacing={3} direction="row" style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
+                <Grid container spacing={2} direction="row" style = {{ marginTop: 20, marginBottom: 50, justifyContent:'center', alignItems: 'center' }}>
                     <Grid container item sm alignItems="center" justify="center" direction="column">
                         <h1 style = {{ marginBottom: 10, textAlign: "center"}}>About Me</h1>
                         <img src={AboutMe} alt="aboutMe" style = {{ width: 250, height: 320 }}/>

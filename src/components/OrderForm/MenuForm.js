@@ -211,11 +211,23 @@ export class MenuForm extends Component {
                                 { 
                                     values.breakableHeart === true
                                     ? (<div>
-                                            <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 15, marginBottom: 10 }}>
+                                            <TextField 
+                                                label = "Quantity"
+                                                placeholder = "Enter quantity"
+                                                margin = "normal"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                variant = "outlined"
+                                                style = {{ width: "300px", marginLeft: 25, marginTop: 15 }}
+                                                defaultValue = { values.breakableHeartQty }
+                                                onChange = { handleChange('breakableHeartQty') }
+                                            />
+                                            <FormControl variant="outlined" style = {{ marginLeft: 25, width: 275, marginTop: 10, marginBottom: 10 }}>
                                                 <Grid>
                                                     <InputLabel id="breakableHeartColor">Heart Chocolate*</InputLabel>
                                                 </Grid>
-                                                <Select id="breakableHeartColor" label="Heart Chocolate" defaultValue={values.breakableHeartColor} 
+                                                <Select id="breakableHeartColor" label="Heart Chocolate" defaultValue={values.breakableHeartColor}
                                                         value={values.breakableHeartColor} onChange={handleChange('breakableHeartColor')}
                                                         MenuProps={{ anchorOrigin: { horizontal: 'left', vertical: "bottom" }, getContentAnchorEl: null }}>
                                                     <MenuItem value="Select" disabled>Select Heart Chocolate</MenuItem>

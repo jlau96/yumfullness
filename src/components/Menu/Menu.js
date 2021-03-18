@@ -121,9 +121,9 @@ export default function Menu() {
                                             <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
                                                 1 Number/Letter Cake
                                             </Typography>
-                                            {/* <Typography variant="body2" color="textSecondary" component="p">
-                                                Custom number cake!
-                                            </Typography> */}
+                                            <Typography variant="body2" color="textSecondary" component="p" style = {{ textAlign: "center" }}>
+                                                Serves ~6-9 people
+                                            </Typography>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -136,9 +136,9 @@ export default function Menu() {
                                             <Typography gutterBottom variant="h5" component="h2" style = {{ textAlign: "center" }}>
                                                 2 Numbers/Letters Cake
                                             </Typography>
-                                            {/* <Typography variant="body2" color="textSecondary" component="p">
-                                                Custom letter cake!
-                                            </Typography> */}
+                                            <Typography variant="body2" color="textSecondary" component="p" style = {{ textAlign: "center" }}>
+                                                Serves ~12-18 people
+                                            </Typography>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
